@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'Fortune';
+  src: url('fortune-wheel-font/fortune-font.ttf') format('truetype')
+}
+
+* {
+}
+
+body {
+  background-color: #784dc8;
+  font-family: 'Fortune';
+}
+
+.title {
+  color: #f4bc18;
+  font-size: 6rem;
+  text-align: center;
+}
+
+header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+}
+
+header div {
+  text-align: center;
+  background-color: #d8d8d8;
+  width: 25rem;
+  margin: 0 auto;
+  border: 5px solid grey;
+  border-radius: 15px;
+}
+
+.in-the-hole {
+  margin-right: 0px;
+  height: 8rem;
+  margin-top: 6rem;
+}
+
+.on-deck {
+  margin-left: 0px;
+  height: 8rem;
+  margin-top: 6rem;
+}
+
+.at-bat {
+  width: 40rem;
+  height: 12rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.top-buttons {
+  color: whitesmoke;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding-top: 3px;
+  text-shadow: 0 .5px 1px rgba(50, 50, 50, .5);
+  width: 150px;
+  height: 50px;
+  border-radius: 50px;
+  background: linear-gradient(#eeb32e, #da8b1a);
+  border: 2px solid #c17717;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top: none;
+  box-shadow: 0px 3px 11px 0 grey;
+  margin-top: 13px;
+}
+
+.guess-button {
+  margin: 0 85px;
+}
+
