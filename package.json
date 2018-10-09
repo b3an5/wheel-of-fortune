@@ -1,0 +1,24 @@
+{
+  "name": "wheel-of-fortune",
+  "version": "1.0.0",
+  "description": "a web based playable wheel of fortune game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b3an5/wheel-of-fortune.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b3an5/wheel-of-fortune/issues"
+  },
+  "homepage": "https://github.com/b3an5/wheel-of-fortune#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.6.1",
+    "mocha": "^5.2.0"
+  }
+}
