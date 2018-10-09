@@ -1,0 +1,78 @@
+-- WHEEL --
+
+  - Needs Access to -
+    - Wheel array data (from data file) - choose 6 at random (in array) and populate DOM
+    - When to display / hide (from game)
+
+  - Needs to be able to -
+    - New Wheel per Round
+    - Spin (animation)
+    - Know where it lands and what value that is associated with (pass to game)
+
+-- PLAYER --
+
+  - Needs Access to -
+    - Value from wheel, number of letters to calculate score (from wheel and puzzle)
+    - Name input at start of game
+
+  - Needs To Be Able to -
+    - Input name
+    - Have a score, update score
+    - Spin the wheel
+    - Guess consonant
+    - Guess answer
+    - Buy vowel
+
+-- PUZZLE --
+
+  - Needs Access to -
+    - Puzzle data (from data file), number of letters, spacing, etc.
+    - Round number, so it knows which bank to grab (from game)
+  
+  - Needs to be able to -
+    - Display category
+    - Put puzzle spaces on board
+    - Fill in letters
+    - Check correctness
+    - Indicate completion
+
+-- GAME --
+
+  - Needs Access to -
+    - Player scores to pick highest (from player(s))
+
+  - Needs to be able to -
+    - Start and end player turns
+    - Start and end rounds
+    - Display wheel when necessary
+    - Reset puzzle for each round
+    - Quit game on button click
+    - Display Winner w new game option
+
+
+
+
+File structure
+
+
+Repo
+  - HTML
+  - STYLES
+  - JS
+    - Data
+    - Game
+    - Player
+    - Puzzle
+    - Wheel
+  - TEST
+    - Game
+    - Player
+    - Puzzle
+    - Wheel
+  - jQUERY.min
+
+
+
+
+
+
