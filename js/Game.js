@@ -1,6 +1,6 @@
 class Game {
   constructor() {
-    this.round = 0;
+    this.round = 3;
     this.bonusRound = false;
     this.players = {};
     this.puzzleKeys = Object.keys(data.puzzles);
