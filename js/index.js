@@ -1,6 +1,10 @@
 let game = new Game();
+let round;
+let puzzle;
 
 const playerArray = [];
+let playerArrayIndex = 0;
+let currentTurn = playerArray[playerArrayIndex];
 
 $('.start-button').on('click', () => {
   game = new Game();
@@ -11,6 +15,8 @@ $('.start-button').on('click', () => {
     playerArray.push(newPlayer);
   });
   game.displayNames();
+  round = game.startRound();
+  puzzle = round.generatePuzzle();
 });
 
 $('.quit').on('click', game.quitGame);

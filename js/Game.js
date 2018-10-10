@@ -1,8 +1,9 @@
 class Game {
   constructor() {
-    this.round = 1;
+    this.round = 0;
     this.bonusRound = false;
     this.players = {};
+    this.puzzleKeys = Object.keys(data.puzzles);
   }
 
   init() {
@@ -18,7 +19,13 @@ class Game {
   }
 
   startRound() {
-
+    game.round++;
+    if (game.round === 5) {
+      game.bonusRound = true;
+      return new BonusRound();
+    } else {
+      return new Round(data.puzzles[game.puzzleKeys[game.round - 1]].puzzle_bank);
+    }
   }
 
   displayNames() {
@@ -33,10 +40,6 @@ class Game {
   // This needs to receive an array of all of the player instances (objects) at the end of each round
 
   endRound(players) {
-    if (game.round === 3) {
-      game.bonusRound = true;
-    }
-    game.round++;
     let winningPlayer = playerScores.sort((a, b) => {
       return b.score - a.score;
     })[0];
