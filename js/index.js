@@ -1,7 +1,16 @@
 let game = new Game();
 
+const playerArray = [];
+
 $('.start-button').on('click', () => {
   game = new Game();
-  game.init()
+  let gamePlayers = game.init();
+  const nameKeys = Object.keys(gamePlayers);
+  nameKeys.forEach(key => {
+    let newPlayer = new Player(key);
+    playerArray.push(newPlayer);
+  });
+  game.displayNames();
 });
-$('.quit').on('click', game.endGame);
+
+$('.quit').on('click', game.quitGame);
