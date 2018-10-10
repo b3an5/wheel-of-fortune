@@ -17,6 +17,7 @@ $('.start-button').on('click', () => {
   game.displayNames();
   round = game.startRound();
   puzzle = round.generatePuzzle();
+  puzzle.populateBoard();
 });
 
 $('.quit').on('click', game.quitGame);
