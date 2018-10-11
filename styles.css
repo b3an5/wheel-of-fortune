@@ -328,7 +328,7 @@ h2 {
 
 @keyframes slide {
   0% {
-    transform: translateX(-1000px);
+    transform: translateX(-1080px);
   }
   100% {
     transform: translateX(0);
