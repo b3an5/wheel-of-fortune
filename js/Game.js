@@ -62,7 +62,12 @@ class Game {
 
   displayWheel() {
     $('.popup-cover').css('display', 'unset');
-    $('svg').css('display', 'unset');
+    $('svg').toggleClass('slide-in');
+  }
+
+  hideWheel() {
+    $('.popup-cover').css('display', 'none');
+    $('svg').toggleClass('slide-in');
   }
 
 

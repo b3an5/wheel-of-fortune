@@ -239,6 +239,35 @@ h2 {
 
 svg {
   display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  margin: 0 auto;
+  background: linear-gradient(150deg, #38383a, #252122);
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px 0px black;
+  animation: slide 1s ease reverse;
+}
+
+.slide-in {
+  display: unset;
+  animation: slide 1s ease;
+  transform: translateX(0);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-1000px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+circle {
+  box-shadow: 10px 10px 0 0 black;
 }
 
 .popup-cover {
@@ -265,6 +294,7 @@ svg {
   margin: 0 auto;
   padding-top: 330px;
   padding-bottom: 20px;
+  border-radius: 15px;
   width: 900px;
   height: 600px;
   background: url(https://c1.staticflickr.com/4/3427/3360891586_8faa74b1be_b.jpg);
