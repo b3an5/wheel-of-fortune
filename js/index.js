@@ -37,3 +37,13 @@ function spinWheel() {
 
 
 
+$('.keyboard-section').on('click', functionA);
+
+function functionA() {
+  console.log(Player.wallet);
+  if($(event.target).text() === 'A', 'E', 'I', 'O', 'U') {
+    Player.wallet -= 100;
+    console.log(Player.wallet);
+  }
+  console.log($(event.target).text());
+}
