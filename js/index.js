@@ -14,7 +14,7 @@ $('.start-button').on('click', () => {
     let newPlayer = new Player(key);
     playerArray.push(newPlayer);
   });
-  game.displayNames();
+  domUpdates.displayNames();
   round = game.startRound();
   puzzle = round.generatePuzzle();
   puzzle.populateBoard();
@@ -22,15 +22,15 @@ $('.start-button').on('click', () => {
 
 $('.quit').on('click', game.quitGame);
 
-$('.spin-button').on('click', game.displayWheel);
+$('.spin-button').on('click', game.setUpWheel);
 
 $('.spin-text').on('click', spinWheel);
 
-
+// $('.solve-button').on('click', game.endGame);
 
 
 // Make this a method of wheel
 function spinWheel() {
   $('.wheel-circle').toggleClass('wheel-spin');
-  setTimeout(game.hideWheel, 5500);
+  setTimeout(game.tearDownWheel, 5500);
 }

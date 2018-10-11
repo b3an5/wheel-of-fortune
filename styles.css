@@ -238,7 +238,7 @@ h2 {
 }
 
 .wheel {
-  /*display: none;*/
+  display: none;
   width: 800px;
   height: 600px;
   position: absolute;
