@@ -8,3 +8,11 @@ class Puzzle {
     domUpdates.populatePuzzleSquares(puzzleArray);
   }
 }
+
+
+
+
+
+if (typeof module !== 'undefined') {
+  module.exports = Puzzle;
+}

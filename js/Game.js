@@ -7,19 +7,19 @@ class Game {
   }
 
   init() {
-    game.players = Object.assign({}, domUpdates.getPlayerNames());
+    this.players = Object.assign({}, domUpdates.getPlayerNames());
     domUpdates.clearInputs();
     domUpdates.goToGameScreen();
-    return game.players;
+    return this.players;
   }
 
   startRound() {
-    game.round++;
-    if (game.round === 5) {
-      game.bonusRound = true;
+    this.round++;
+    if (this.round === 5) {
+      this.bonusRound = true;
       return new BonusRound();
     } else {
-      return new Round(data.puzzles[game.puzzleKeys[game.round - 1]].puzzle_bank);
+      return new Round(data.puzzles[this.puzzleKeys[this.round - 1]].puzzle_bank);
     }
   }
 
@@ -27,18 +27,22 @@ class Game {
   // This needs to receive an array of all of the player instances (objects) at the end of each round
 
   endRound(players) {
-    let winningPlayer = playerScores.sort((a, b) => {
+    let scoreReset = players.map(player => {
+      return {name: player.name, score: 0};
+    });
+    let winningPlayer = players.sort((a, b) => {
       return b.score - a.score;
     })[0];
-    game.players[winningPlayer.name] = winningPlayer.score;
+    this.players[winningPlayer.name] = winningPlayer.score;
+    return scoreReset;
   }
 
   endGame() {
-    const playerKeys = Object.keys(game.players);
+    const playerKeys = Object.keys(this.players);
     let winner = playerKeys.sort((a, b) => {
-      return game.players[b] - game.players[a];
+      return this.players[b] - this.players[a];
     })[0];
-    let winningScore = game.players[winner];
+    let winningScore = this.players[winner];
     domUpdates.displayWinner(winner, winningScore);
   }
 
@@ -55,4 +59,8 @@ class Game {
   }
 
 
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = Game;
 }

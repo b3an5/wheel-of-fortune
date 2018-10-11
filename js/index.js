@@ -34,3 +34,6 @@ function spinWheel() {
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(game.tearDownWheel, 5500);
 }
+
+
+
