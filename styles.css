@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Fortune';
-  src: url('fortune-wheel-font/fortune-font.ttf') format('truetype')
+  src: url('fortune-wheel-font/fortune-font.ttf') format('truetype');
 }
 
 * {
@@ -238,7 +238,7 @@ h2 {
 }
 
 .wheel {
-  display: none;
+  /*display: none;*/
   width: 800px;
   height: 600px;
   position: absolute;
@@ -274,6 +274,48 @@ h2 {
   width: 350px;
   height: 350px;
   clip-path: polygon(0% 87%, 50% 0%, 50% 0%, 100% 87%);
+}
+
+.q-mark {
+  z-index: 7;
+  position: absolute;
+  font-size: 7rem;
+}
+
+.mark1 {
+  right: 89px;
+  bottom: 75px;
+  transform: rotate(-60deg);
+}
+
+.mark2 {
+  right: 142px;
+  bottom: 150px;
+  transform: rotate(-180deg);
+}
+
+.mark3 {
+  right: 140px;
+  bottom: 150px;
+  transform: rotate(-190deg);
+}
+
+.mark4 {
+  right: 149px;
+  bottom: 150px;
+  transform: rotate(-190deg);
+}
+
+.mark5 {
+  right: 149px;
+  bottom: 150px;
+  transform: rotate(-190deg);
+}
+
+.mark6 {
+  right: 149px;
+  bottom: 150px;
+  transform: rotate(-190deg);
 }
 
 .option1 {
