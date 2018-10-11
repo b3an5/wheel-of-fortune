@@ -14,3 +14,8 @@ class BonusRound extends Round {
 
   }
 }
+
+
+if (typeof module !== 'undefined') {
+  module.exports = Round;
+}
