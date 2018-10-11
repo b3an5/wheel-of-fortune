@@ -237,18 +237,84 @@ h2 {
   font-size: 1.5rem;
 }
 
-svg {
-  display: none;
+.wheel {
+  /*display: none;*/
+  width: 800px;
+  height: 600px;
   position: absolute;
   top: 60px;
   left: 0;
   right: 0;
-  z-index: 4;
+  z-index: 6;
   margin: 0 auto;
   background: linear-gradient(150deg, #38383a, #252122);
   border-radius: 15px;
   box-shadow: 5px 5px 5px 0px black;
-  animation: slide 1s ease reverse;
+}
+
+
+.wheel-circle {
+  clip-path: circle(50%);
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  height: 525px;
+  width: 525px;
+  background: lightblue;
+}
+
+.wheel-option {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  clip-path: polygon(0% 87%, 50% 0%, 50% 0%, 100% 87%);
+}
+
+
+
+.option1 {
+  top: -102px;
+  left: -5px;
+  transform: rotate(30deg);  
+  background: tomato;
+}
+
+.option2 {
+  top: 97.5px;
+  left: -92.5px;
+  background: green;
+  transform: rotate(90deg);
+}
+
+.option3 {
+  top: 248.5px;
+  left: -5.5px;
+  background: purple;
+  transform: rotate(30.2deg);
+}
+
+.option4 {
+  bottom: -75px;
+  left: 168px;
+  background: mediumblue;
+  transform: rotate(-29.5deg);
+}
+
+.option5 {
+  top: 99.5px;
+  right: -82px;
+  background: gold;
+  transform: rotate(-89.3deg);
+}
+
+.option6 {
+  clip-path: polygon(0% 83%, 50% 0%, 50% 0%, 100% 87%);
+  top: -53px;
+  left: 169px;
+  background: pink;
+  transform: rotate(-150.1deg);
 }
 
 .slide-in {
@@ -266,8 +332,30 @@ svg {
   }
 }
 
-circle {
-  box-shadow: 10px 10px 0 0 black;
+.spin-text {
+  cursor: pointer;
+  position: absolute;
+  bottom: 65px;
+  left: 101px;
+  transform: rotate(-38deg);
+  font-size: 2rem;
+  color: lightgrey;
+  background-color: #666666;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+
+.arrow {
+  cursor: pointer;
+  position: absolute;
+  bottom: 60px;
+  left: 90px;
+  transform: rotate(-38deg);
+  color: whitesmoke;
+  fill: currentColor;
 }
 
 .popup-cover {

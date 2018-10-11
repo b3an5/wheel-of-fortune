@@ -24,4 +24,4 @@ $('.quit').on('click', game.quitGame);
 
 $('.spin-button').on('click', game.displayWheel);
 
-$('svg').on('click', game.hideWheel);
+$('.wheel').on('click', game.hideWheel);
