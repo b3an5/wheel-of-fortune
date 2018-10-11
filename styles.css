@@ -238,7 +238,7 @@ h2 {
 }
 
 .wheel {
-  /*display: none;*/
+  display: none;
   width: 800px;
   height: 600px;
   position: absolute;
@@ -265,6 +265,10 @@ h2 {
   background: lightblue;
 }
 
+.wheel-spin {
+  animation: spin 4s ease-out;
+}
+
 .wheel-option {
   position: absolute;
   width: 350px;
@@ -272,48 +276,47 @@ h2 {
   clip-path: polygon(0% 87%, 50% 0%, 50% 0%, 100% 87%);
 }
 
-
-
 .option1 {
-  top: -102px;
-  left: -5px;
+  top: -108px;
+  left: -2px;
   transform: rotate(30deg);  
-  background: tomato;
+  background: #ab79db;
 }
 
 .option2 {
-  top: 97.5px;
-  left: -92.5px;
-  background: green;
+  clip-path: polygon(0% 84%, 50% 0%, 50% 0%, 100% 87%);
+  top: 90.5px;
+  left: -91.5px;
+  background: #ff0000;
   transform: rotate(90deg);
 }
 
 .option3 {
-  top: 248.5px;
-  left: -5.5px;
-  background: purple;
+  top: 241.5px;
+  left: -3.5px;
+  background: #3abaff;
   transform: rotate(30.2deg);
 }
 
 .option4 {
-  bottom: -75px;
-  left: 168px;
-  background: mediumblue;
+  bottom: -68px;
+  left: 170px;
+  background: #fff200;
   transform: rotate(-29.5deg);
 }
 
 .option5 {
-  top: 99.5px;
-  right: -82px;
-  background: gold;
+  top: 91.5px;
+  right: -83px;
+  background: #3bb878;
   transform: rotate(-89.3deg);
 }
 
 .option6 {
   clip-path: polygon(0% 83%, 50% 0%, 50% 0%, 100% 87%);
-  top: -53px;
-  left: 169px;
-  background: pink;
+  top: -60px;
+  left: 171px;
+  background: #ff6a0e;
   transform: rotate(-150.1deg);
 }
 
@@ -329,6 +332,15 @@ h2 {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-1000deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 

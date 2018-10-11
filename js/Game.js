@@ -68,6 +68,7 @@ class Game {
   hideWheel() {
     $('.popup-cover').css('display', 'none');
     $('.wheel').toggleClass('slide-in');
+    $('.wheel-circle').toggleClass('wheel-spin')
   }
 
 

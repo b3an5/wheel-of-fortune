@@ -24,4 +24,13 @@ $('.quit').on('click', game.quitGame);
 
 $('.spin-button').on('click', game.displayWheel);
 
-$('.wheel').on('click', game.hideWheel);
+$('.spin-text').on('click', spinWheel);
+
+
+
+
+// Make this a method of wheel
+function spinWheel() {
+  $('.wheel-circle').toggleClass('wheel-spin');
+  setTimeout(game.hideWheel, 5500);
+}
