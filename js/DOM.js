@@ -63,6 +63,14 @@ const domUpdates = {
     });
   },
 
+  resetPuzzleSquares() {
+    let letterBoxArray = Array.from($('.letter-content'));
+    letterBoxArray.forEach(box => {
+      $(box).text('');
+      $(box).parent().css('background', '#1c7455')
+    })
+  },
+
 
 }
 
