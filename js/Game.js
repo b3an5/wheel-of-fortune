@@ -49,6 +49,7 @@ class Game {
   quitGame() {
     domUpdates.resetPuzzleSquares();
     domUpdates.goToHomeScreen();
+    domUpdates.resetKeyboard();
   }
 
   setUpWheel() {

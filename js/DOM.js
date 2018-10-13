@@ -79,7 +79,16 @@ const domUpdates = {
 
   revealCorrectLetters(box) {
     $(box).css('opacity', 1);
-  }
+  },
+
+  resetKeyboard() {
+    let keyboardLetters = Array.from($('.keyboard-letters'));
+    keyboardLetters.forEach(letter => {
+      if(!['A', 'E', 'I', 'O', 'U'].includes($(letter).text())) {
+        $(letter).removeClass('vowel');
+      }
+    });
+  },
 
 
 }
