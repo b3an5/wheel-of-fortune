@@ -72,8 +72,14 @@ const domUpdates = {
   },
 
   disableGuessedLetter(event) {
-    $(event.target).parent().toggleClass('vowel');
+    if ($(event.target).parent().hasClass('keyboard-letters')) {
+      $(event.target).parent().toggleClass('vowel');
+    }
   },
+
+  revealCorrectLetters(box) {
+    $(box).css('opacity', 1);
+  }
 
 
 }

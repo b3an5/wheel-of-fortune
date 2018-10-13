@@ -40,10 +40,11 @@ function spinWheel() {
 $('.keyboard-section').on('click', () => {
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
-  if($(event.target).text() === 'A', 'E', 'I', 'O', 'U') {
-    currentTurn.wallet -= 100;
+  if(['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
+    return;
   }
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   domUpdates.disableGuessedLetter(event);
+  // isGuessCorrect ? player.guessCorrectLetter(puzzle.numberCorrect) // End Turn
 });
 

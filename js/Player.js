@@ -4,7 +4,7 @@ class Player {
     this.wallet = 0;
   }
 
-  guessLetter() {
+  guessCorrectLetter(numCorrect) {
     
   }
 
