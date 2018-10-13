@@ -20,4 +20,8 @@ describe('Player', () => {
     expect(player.wallet).to.equal(0);
   });
 
+  it('should be able to guess a letter', () => {
+    
+  });
+
 });

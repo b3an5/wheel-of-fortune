@@ -19,7 +19,7 @@ $('.start-button').on('click', () => {
   puzzle.populateBoard();
 });
 
-let currentTurn = playerArray[playerArrayIndex];
+
 
 $('.quit').on('click', game.quitGame);
 
@@ -37,14 +37,13 @@ function spinWheel() {
 }
 
 
-
-$('.keyboard-section').on('click', functionA);
-
-function functionA() {
-  console.log(currentTurn.wallet);
+$('.keyboard-section').on('click', () => {
+  let currentTurn = playerArray[playerArrayIndex];
+  let currentGuess = $(event.target).text();
   if($(event.target).text() === 'A', 'E', 'I', 'O', 'U') {
-    Player.wallet -= 100;
-    console.log(currentTurn.wallet);
+    currentTurn.wallet -= 100;
   }
-  console.log($(event.target).text());
-}
+  let isGuessCorrect = puzzle.checkGuess(currentGuess);
+  domUpdates.disableGuessedLetter(event);
+});
+

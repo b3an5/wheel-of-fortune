@@ -71,6 +71,10 @@ const domUpdates = {
     })
   },
 
+  disableGuessedLetter(event) {
+    $(event.target).parent().toggleClass('vowel');
+  },
+
 
 }
 

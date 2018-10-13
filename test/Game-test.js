@@ -6,7 +6,6 @@ chai.use(spies);
 global.data = require('../js/data.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
-// global.index = require('../js/index.js');
 chai.spy.on(global.domUpdates, ['getPlayerNames', 'clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel'], () => true);
 
 describe('Game', () => {

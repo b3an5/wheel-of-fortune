@@ -4,8 +4,15 @@ class Puzzle {
   }
 
   populateBoard() {
-    let puzzleArray = puzzle.currentPuzzle.correct_answer.split('');
+    let puzzleArray = this.currentPuzzle.correct_answer.split('');
     domUpdates.populatePuzzleSquares(puzzleArray);
+  }
+
+  checkGuess(guess) {
+    if (this.currentPuzzle.correct_answer.toUpperCase().includes(guess)) {
+      return true;
+    }
+    return false;
   }
 }
 

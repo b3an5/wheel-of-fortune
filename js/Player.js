@@ -4,8 +4,8 @@ class Player {
     this.wallet = 0;
   }
 
-  displayName(player) {
-
+  guessLetter() {
+    
   }
 
 }
