@@ -53,8 +53,8 @@ class Game {
   }
 
   quitGame() {
-    domUpdates.resetPuzzleSquares();
     domUpdates.goToHomeScreen();
+    domUpdates.resetPuzzleSquares();
     domUpdates.resetKeyboard();
   }
 

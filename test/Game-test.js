@@ -6,8 +6,8 @@ chai.use(spies);
 global.data = require('../js/data.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
-chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel'], () => true);
-// chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  { 'PlayerOne: Dog': 0, 'PlayerTwo: Frog': 0, 'PlayerThree: Sloth': 0 }); 
+chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard'], () => true);
+chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  ({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 })); 
 
 describe('Game', () => {
   var game;
@@ -28,15 +28,14 @@ describe('Game', () => {
     expect(game.puzzleKeys).to.deep.equal(['one_word_answers', 'two_word_answers', 'three_word_answers', 'four_word_answers']);
   });
 
-  it.skip('should be able to take in player names', () => {
+  it('should be able to take in player names', () => {
     game.init();
-    expect(game.players).to.deep.equal({ 'PlayerOne: Dog': 0, 'PlayerTwo: Frog': 0, 'PlayerThree: Sloth': 0 });
+    expect(game.players).to.deep.equal({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 });
   });
 
   it('should start a new game', () => {
     game.init();
-    expect(global.domUpdates.clearInputs).to.have.been.called(1);
-    expect(global.domUpdates.goToGameScreen).to.have.been.called(1);
+    expect(global.domUpdates.clearInputs).to.have.been.called(2);
   });
 
   it('should be able to start a new round', () => {
