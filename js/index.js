@@ -43,29 +43,6 @@ function spinWheel() {
 }
 
 
-// $('.keyboard-section').on('click', () => {
-//   let currentTurn = playerArray[playerArrayIndex];
-//   let currentGuess = $(event.target).text();
-//   let isGuessCorrect = puzzle.checkGuess(currentGuess);
-//   if ($(event.target).hasClass('disabled') || $(event.target).parent().hasClass('disabled')) {
-//     return;
-//   } else if (isGuessCorrect) {
-//     currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
-//     puzzle.countCorrectLetters(currentGuess);
-//   } else {
-//     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
-//     game.endRound(playerArray);
-//   }
-//   if(['A', 'E', 'I', 'O', 'U'].includes($(event.target).text()) && $(event.target).hasClass('active-vowel')) {
-//     currentTurn.buyVowel();
-//     domUpdates.disableGuessedVowel(event);
-//   } else if ($(event.target).hasClass('disabled')) {
-//     return;
-//   } else {
-//     domUpdates.disableGuessedLetter(event);
-//   }
-// });
-
 $('.keyboard-section').on('click', (event) => {
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
@@ -78,6 +55,9 @@ $('.keyboard-section').on('click', (event) => {
     if (isEnabled && isGuessCorrect) {
       puzzle.countCorrectLetters(currentGuess);
       currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+    } else if (isEnabled && !isGuessCorrect) {
+      playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+      domUpdates.disableKeyboard();
     }
   }
 });
