@@ -1,11 +1,11 @@
 class Player {
   constructor(name) {
     this.name = name;
-    this.wallet = 110;
+    this.wallet = 0;
   }
 
-  guessCorrectLetter(numCorrect) {
-    
+  guessCorrectLetter(numCorrect, wheelValue) {
+    this.wallet = numCorrect * wheelValue;
   }
 
   buyVowel() {
