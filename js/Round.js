@@ -4,8 +4,8 @@ class Round {
   }
 
   generatePuzzle() {
-    let randomIndex = Math.floor(Math.random() * round.puzzleBank.length);
-    return new Puzzle(round.puzzleBank[randomIndex]);
+    let randomIndex = Math.floor(Math.random() * this.puzzleBank.length);
+    return new Puzzle(this.puzzleBank[randomIndex]);
   }
 }
 

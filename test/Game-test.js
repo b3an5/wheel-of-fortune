@@ -6,7 +6,7 @@ chai.use(spies);
 global.data = require('../js/data.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
-chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard'], () => true);
+chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn'], () => true);
 chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  ({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 })); 
 
 describe('Game', () => {
@@ -41,6 +41,11 @@ describe('Game', () => {
   it('should be able to start a new round', () => {
     game.startRound();
     expect(game.round).to.equal(1);
+  });
+
+  it('should be able to end a players turn', () => {
+    let index = game.endTurn([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}], 0);
+    expect(index).to.equal(1);
   });
 
   it('should choose the winner of the round and push value to score', () => {

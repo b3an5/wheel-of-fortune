@@ -51,7 +51,7 @@ $('.keyboard-section').on('click', () => {
   }
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   if (isGuessCorrect) {
-    currentTurn.guessCorrectLetter(puzzle.numberCorrect);
+    currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
   } else {
     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     game.endRound(playerArray);
