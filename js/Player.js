@@ -5,7 +5,8 @@ class Player {
   }
 
   guessCorrectLetter(numCorrect, wheelValue) {
-    this.wallet = numCorrect * wheelValue;
+    this.wallet += numCorrect * wheelValue;
+    domUpdates.updateWallet(this);
   }
 
   buyVowel() {
