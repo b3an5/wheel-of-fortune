@@ -74,6 +74,8 @@ const domUpdates = {
   disableGuessedLetter(event) {
     if ($(event.target).parent().hasClass('keyboard-letters')) {
       $(event.target).parent().toggleClass('vowel');
+    } else if ($(event.target).hasClass('keyboard-letters')) {
+      $(event.target).toggleClass('vowel')
     }
   },
 
