@@ -59,6 +59,7 @@ class Game {
   }
 
   setUpWheel() {
+    domUpdates.enableLetters();
     domUpdates.displayWheel();
   }
 

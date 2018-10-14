@@ -72,10 +72,8 @@ const domUpdates = {
   },
 
   disableGuessedLetter(event) {
-    if ($(event.target).parent().hasClass('keyboard-letters')) {
-      $(event.target).parent().toggleClass('disabled');
-    } else if ($(event.target).hasClass('keyboard-letters')) {
-      $(event.target).toggleClass('disabled')
+    if ($(event.target).hasClass('keyboard-letters')) {
+      $(event.target).addClass('disabled')
     }
   },
 
@@ -116,21 +114,19 @@ const domUpdates = {
   highlightVowels() {
     let keyboardLetters = Array.from($('.keyboard-letters'));
     keyboardLetters.forEach(letter => {
-      if ($(letter).hasClass('vowel') && !$(letter).hasClass('disabled')) {
+      if ($(letter).hasClass('vowel') && !$(letter).hasClass('vowel-disabled')) {
         $(letter).toggleClass('active-vowel');
       } else {
         if (!$(letter).hasClass('disabled')) {
-          $(letter).toggleClass('temp-disabled');
+          $(letter).addClass('temp-disabled');
         }
       }
     });
   },
 
   disableGuessedVowel(event) {
-     if ($(event.target).parent().hasClass('vowel')) {
-      $(event.target).parent().toggleClass('disabled');
-    } else if ($(event.target).hasClass('vowel')) {
-      $(event.target).toggleClass('disabled')
+     if ($(event.target).hasClass('vowel')) {
+      $(event.target).toggleClass('vowel-disabled');
     }
   },
 
@@ -140,6 +136,24 @@ const domUpdates = {
 
   updateCurrentSpin() {
     $('.spin-number').text(wheel.currentValue)
+  },
+
+  enableLetters() {
+    let keyboardLetters = Array.from($('.keyboard-letters'));
+    keyboardLetters.forEach(letter => {
+      if ($(letter).hasClass('temp-disabled')) {
+        $(letter).toggleClass('temp-disabled');
+      }
+    });
+  },
+
+  disableKeyboard() {
+    let keyboardLetters = Array.from($('.keyboard-letters'));
+    keyboardLetters.forEach(letter => {
+      if (!$(letter).hasClass('vowel')) {
+        $(letter).toggleClass('temp-disabled');
+      }
+    })
   },
 
 

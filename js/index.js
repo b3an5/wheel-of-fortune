@@ -43,26 +43,54 @@ function spinWheel() {
 }
 
 
-$('.keyboard-section').on('click', () => {
+// $('.keyboard-section').on('click', () => {
+//   let currentTurn = playerArray[playerArrayIndex];
+//   let currentGuess = $(event.target).text();
+//   let isGuessCorrect = puzzle.checkGuess(currentGuess);
+//   if ($(event.target).hasClass('disabled') || $(event.target).parent().hasClass('disabled')) {
+//     return;
+//   } else if (isGuessCorrect) {
+//     currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+//     puzzle.countCorrectLetters(currentGuess);
+//   } else {
+//     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+//     game.endRound(playerArray);
+//   }
+//   if(['A', 'E', 'I', 'O', 'U'].includes($(event.target).text()) && $(event.target).hasClass('active-vowel')) {
+//     currentTurn.buyVowel();
+//     domUpdates.disableGuessedVowel(event);
+//   } else if ($(event.target).hasClass('disabled')) {
+//     return;
+//   } else {
+//     domUpdates.disableGuessedLetter(event);
+//   }
+// });
+
+$('.keyboard-section').on('click', (event) => {
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
-  if(['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
-    currentTurn.buyVowel();
-    domUpdates.disableGuessedVowel(event);
-  } else {
-    domUpdates.disableGuessedLetter(event);
-  }
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
-  if (isGuessCorrect) {
-    currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+  if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
+    puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
+    return;
   } else {
-    playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
-    game.endRound(playerArray);
+    let isEnabled = puzzle.checkIfConsonantEnabled(event);
+    if (isEnabled && isGuessCorrect) {
+      puzzle.countCorrectLetters(currentGuess);
+      currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+    }
   }
 });
 
+
 $('.vowel-button').on('click', () => {
-  domUpdates.highlightVowels();
+  let currentTurn = playerArray[playerArrayIndex];
+  if (currentTurn.wallet < 100) {
+    alert('You do not have enough money, please spin the wheel');
+    return;
+  } else {
+    domUpdates.highlightVowels();
+  }
 });
 
 
