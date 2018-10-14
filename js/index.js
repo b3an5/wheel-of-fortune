@@ -21,7 +21,10 @@ $('.start-button').on('click', () => {
 
 
 
-$('.quit').on('click', game.quitGame);
+$('.quit').on('click', () => {
+  game.quitGame();
+  playerArrayIndex = 0;
+});
 
 $('.spin-button').on('click', game.setUpWheel);
 
