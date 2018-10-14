@@ -24,4 +24,8 @@ describe('Player', () => {
     
   });
 
+  it('should be able to buy a vowel', () => {
+    
+  });
+
 });

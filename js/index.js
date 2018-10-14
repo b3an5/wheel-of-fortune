@@ -44,14 +44,25 @@ $('.keyboard-section').on('click', () => {
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
   if(['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
-    return;
+    currentTurn.buyVowel();
+    domUpdates.disableGuessedVowel(event);
+  } else {
+    domUpdates.disableGuessedLetter(event);
   }
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
-  domUpdates.disableGuessedLetter(event);
   if (isGuessCorrect) {
-    player.guessCorrectLetter(puzzle.numberCorrect);
+    currentTurn.guessCorrectLetter(puzzle.numberCorrect);
   } else {
     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+    game.endRound(playerArray);
   }
 });
+
+$('.vowel-button').on('click', () => {
+  domUpdates.highlightVowels();
+});
+
+
+
+
 

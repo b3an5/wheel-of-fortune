@@ -73,9 +73,9 @@ const domUpdates = {
 
   disableGuessedLetter(event) {
     if ($(event.target).parent().hasClass('keyboard-letters')) {
-      $(event.target).parent().toggleClass('vowel');
+      $(event.target).parent().toggleClass('disabled');
     } else if ($(event.target).hasClass('keyboard-letters')) {
-      $(event.target).toggleClass('vowel')
+      $(event.target).toggleClass('disabled')
     }
   },
 
@@ -111,6 +111,31 @@ const domUpdates = {
       $('.in-the-hole-name').text(array[2].name)
       $('.in-the-hole-score').text(array[2].wallet)
     }
+  },
+
+  highlightVowels() {
+    let keyboardLetters = Array.from($('.keyboard-letters'));
+    keyboardLetters.forEach(letter => {
+      if ($(letter).hasClass('vowel') && !$(letter).hasClass('disabled')) {
+        $(letter).toggleClass('active-vowel');
+      } else {
+        if (!$(letter).hasClass('disabled')) {
+          $(letter).toggleClass('temp-disabled');
+        }
+      }
+    });
+  },
+
+  disableGuessedVowel(event) {
+     if ($(event.target).parent().hasClass('vowel')) {
+      $(event.target).parent().toggleClass('disabled');
+    } else if ($(event.target).hasClass('vowel')) {
+      $(event.target).toggleClass('disabled')
+    }
+  },
+
+  updateWallet(player) {
+    $('.winning-score').text(player.wallet);
   },
 
 
