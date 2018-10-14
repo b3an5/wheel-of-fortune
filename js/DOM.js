@@ -71,6 +71,10 @@ const domUpdates = {
     })
   },
 
+  updateCurrentSpin() {
+    $('.spin-number').text(wheel.currentValue)
+  }
+
 
 }
 

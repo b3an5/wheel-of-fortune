@@ -19,7 +19,7 @@ class Game {
       this.bonusRound = true;
       return new BonusRound();
     } else {
-      return new Round(data.puzzles[this.puzzleKeys[this.round - 1]].puzzle_bank);
+      return new Round(data.puzzles[this.puzzleKeys[this.round - 1]].puzzle_bank, data.wheel);
     }
   }
 

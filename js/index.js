@@ -1,6 +1,7 @@
 let game = new Game();
 let round;
 let puzzle;
+let wheel;
 
 const playerArray = [];
 let playerArrayIndex = 0;
@@ -17,6 +18,7 @@ $('.start-button').on('click', () => {
   round = game.startRound();
   puzzle = round.generatePuzzle();
   puzzle.populateBoard();
+  wheel = round.generateWheelValue();
 });
 
 let currentTurn = playerArray[playerArrayIndex];
@@ -34,6 +36,7 @@ $('.spin-text').on('click', spinWheel);
 function spinWheel() {
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(game.tearDownWheel, 5500);
+  wheel.grabSpinValue();
 }
 
 
@@ -41,10 +44,7 @@ function spinWheel() {
 $('.keyboard-section').on('click', functionA);
 
 function functionA() {
-  console.log(currentTurn.wallet);
   if($(event.target).text() === 'A', 'E', 'I', 'O', 'U') {
     Player.wallet -= 100;
-    console.log(currentTurn.wallet);
   }
-  console.log($(event.target).text());
 }
