@@ -1,6 +1,7 @@
 let game = new Game();
 let round;
 let puzzle;
+let wheel;
 
 const playerArray = [];
 let playerArrayIndex = 0;
@@ -17,6 +18,7 @@ $('.start-button').on('click', () => {
   round = game.startRound();
   puzzle = round.generatePuzzle();
   puzzle.populateBoard();
+  wheel = round.generateWheelValue();
 });
 
 
@@ -37,6 +39,7 @@ $('.spin-text').on('click', spinWheel);
 function spinWheel() {
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(game.tearDownWheel, 5500);
+  wheel.grabSpinValue();
 }
 
 
@@ -61,8 +64,6 @@ $('.keyboard-section').on('click', () => {
 $('.vowel-button').on('click', () => {
   domUpdates.highlightVowels();
 });
-
-
 
 
 

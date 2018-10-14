@@ -138,6 +138,10 @@ const domUpdates = {
     $('.winning-score').text(player.wallet);
   },
 
+  updateCurrentSpin() {
+    $('.spin-number').text(wheel.currentValue)
+  },
+
 
 }
 
