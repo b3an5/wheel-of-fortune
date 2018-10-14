@@ -15,11 +15,13 @@ class Game {
 
   startRound() {
     this.round++;
+    let roundIndex = this.round - 1;
+    let puzzleKeyIndex = this.puzzleKeys[roundIndex];
     if (this.round === 5) {
       this.bonusRound = true;
       return new BonusRound();
     } else {
-      return new Round(data.puzzles[this.puzzleKeys[this.round - 1]].puzzle_bank, data.wheel);
+      return new Round(data.puzzles[puzzleKeyIndex].puzzle_bank, data.wheel);
     }
   }
 
@@ -29,17 +31,22 @@ class Game {
     return index;
   }
 
+  getWinner(players) {
+    let winningPlayer = players.sort((a, b) => {
+      return b.score - a.score;
+    })[0];
+    this.players[winningPlayer.name] = winningPlayer.score;
+  }
+
 
   // This needs to receive an array of all of the player instances (objects) at the end of each round
+
 
   endRound(players) {
     let scoreReset = players.map(player => {
       return {name: player.name, score: 0};
     });
-    let winningPlayer = players.sort((a, b) => {
-      return b.score - a.score;
-    })[0];
-    this.players[winningPlayer.name] = winningPlayer.score;
+    this.getWinner(players);
     return scoreReset;
   }
 
