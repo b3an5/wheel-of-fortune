@@ -90,6 +90,27 @@ const domUpdates = {
     });
   },
 
+  newPlayerTurn(array, index) {
+    $('.game-winner').text(array[index].name);
+    $('.winning-score').text(array[index].wallet);
+    if (index === 2) {
+      $('.on-deck-name').text(array[0].name);
+      $('.on-deck-score').text(array[0].wallet);
+      $('.in-the-hole-name').text(array[1].name)
+      $('.in-the-hole-score').text(array[1].wallet)
+    } else if (index === 1) {
+      $('.on-deck-name').text(array[2].name);
+      $('.on-deck-score').text(array[2].wallet);
+      $('.in-the-hole-name').text(array[0].name)
+      $('.in-the-hole-score').text(array[0].wallet)
+    } else {
+      $('.on-deck-name').text(array[1].name);
+      $('.on-deck-score').text(array[1].wallet);
+      $('.in-the-hole-name').text(array[2].name)
+      $('.in-the-hole-score').text(array[2].wallet)
+    }
+  },
+
 
 }
 

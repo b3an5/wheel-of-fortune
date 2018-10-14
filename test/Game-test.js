@@ -6,7 +6,8 @@ chai.use(spies);
 global.data = require('../js/data.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
-chai.spy.on(global.domUpdates, ['getPlayerNames', 'clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel'], () => true);
+chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel'], () => true);
+// chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  { 'PlayerOne: Dog': 0, 'PlayerTwo: Frog': 0, 'PlayerThree: Sloth': 0 }); 
 
 describe('Game', () => {
   var game;
@@ -28,7 +29,8 @@ describe('Game', () => {
   });
 
   it.skip('should be able to take in player names', () => {
-   
+    game.init();
+    expect(game.players).to.deep.equal({ 'PlayerOne: Dog': 0, 'PlayerTwo: Frog': 0, 'PlayerThree: Sloth': 0 });
   });
 
   it('should start a new game', () => {

@@ -45,6 +45,10 @@ $('.keyboard-section').on('click', () => {
   }
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   domUpdates.disableGuessedLetter(event);
-  // isGuessCorrect ? player.guessCorrectLetter(puzzle.numberCorrect) // End Turn
+  if (isGuessCorrect) {
+    player.guessCorrectLetter(puzzle.numberCorrect);
+  } else {
+    playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+  }
 });
 
