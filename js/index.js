@@ -42,7 +42,18 @@ $('.spin-text').on('click', spinWheel);
 function spinWheel() {
   $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
-  setTimeout(game.tearDownWheel, 3500);
+  setTimeout(() => {
+    let currentTurn = playerArray[playerArrayIndex];
+    let spinResult = game.tearDownWheel();
+    if (spinResult === 'LOSE A TURN') {
+      playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+      domUpdates.disableKeyboard();
+    } else if (spinResult === 'BANKRUPT') {
+      currentTurn.wallet = 0;
+      playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+      domUpdates.disableKeyboard();
+    }
+  }, 3500);
 }
 
 
