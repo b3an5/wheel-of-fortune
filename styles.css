@@ -292,9 +292,10 @@ h2 {
 }
 
 .mark1 {
-  right: 181px;
-  bottom: 109px;
+  right: 100px;
+  bottom: 15px;
   transform: rotate(-65deg);
+  height: 200px;
 }
 
 .mark2 {
