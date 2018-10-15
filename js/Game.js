@@ -23,6 +23,12 @@ class Game {
     }
   }
 
+  endTurn(array, index) {
+    index === 2 ? index = 0 : index++;
+    domUpdates.newPlayerTurn(array, index);
+    return index;
+  }
+
 
   // This needs to receive an array of all of the player instances (objects) at the end of each round
 
@@ -47,11 +53,13 @@ class Game {
   }
 
   quitGame() {
-    domUpdates.resetPuzzleSquares();
     domUpdates.goToHomeScreen();
+    domUpdates.resetPuzzleSquares();
+    domUpdates.resetKeyboard();
   }
 
   setUpWheel() {
+    domUpdates.enableLetters();
     domUpdates.displayWheel();
   }
 

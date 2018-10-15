@@ -4,8 +4,16 @@ class Player {
     this.wallet = 0;
   }
 
-  displayName(player) {
+  guessCorrectLetter(numCorrect, wheelValue) {
+    this.wallet += numCorrect * wheelValue;
+    domUpdates.updateWallet(this);
+    domUpdates.disableKeyboard();
+  }
 
+  buyVowel() {
+    this.wallet > 100 ? this.wallet -= 100 : alert('No!');
+    domUpdates.highlightVowels();
+    domUpdates.updateWallet(this);
   }
 
 }

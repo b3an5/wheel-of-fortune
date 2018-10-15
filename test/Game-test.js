@@ -6,8 +6,8 @@ chai.use(spies);
 global.data = require('../js/data.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
-// global.index = require('../js/index.js');
-chai.spy.on(global.domUpdates, ['getPlayerNames', 'clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel'], () => true);
+chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn', 'enableLetters'], () => true);
+chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  ({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 })); 
 
 describe('Game', () => {
   var game;
@@ -28,19 +28,24 @@ describe('Game', () => {
     expect(game.puzzleKeys).to.deep.equal(['one_word_answers', 'two_word_answers', 'three_word_answers', 'four_word_answers']);
   });
 
-  it.skip('should be able to take in player names', () => {
-   
+  it('should be able to take in player names', () => {
+    game.init();
+    expect(game.players).to.deep.equal({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 });
   });
 
   it('should start a new game', () => {
     game.init();
-    expect(global.domUpdates.clearInputs).to.have.been.called(1);
-    expect(global.domUpdates.goToGameScreen).to.have.been.called(1);
+    expect(global.domUpdates.clearInputs).to.have.been.called(2);
   });
 
   it('should be able to start a new round', () => {
     game.startRound();
     expect(game.round).to.equal(1);
+  });
+
+  it('should be able to end a players turn', () => {
+    let index = game.endTurn([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}], 0);
+    expect(index).to.equal(1);
   });
 
   it('should choose the winner of the round and push value to score', () => {
@@ -63,11 +68,14 @@ describe('Game', () => {
   it('should show homescreen when quit button is pressed', () => {
     game.quitGame();
     expect(global.domUpdates.goToHomeScreen).to.have.been.called(1);
+    expect(global.domUpdates.resetPuzzleSquares).to.have.been.called(1);
+    expect(global.domUpdates.resetKeyboard).to.have.been.called(1);
   });
 
-  it('should display the wheel when spin button is pressed', () => {
+  it('should display the wheel and keyboard when spin button is pressed', () => {
     game.setUpWheel();
     expect(global.domUpdates.displayWheel).to.have.been.called(1);
+    expect(global.domUpdates.enableLetters).to.have.been.called(1);
   });
 
   it('should hide wheel after it is spun on delay', () => {

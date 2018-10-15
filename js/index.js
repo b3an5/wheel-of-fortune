@@ -21,9 +21,13 @@ $('.start-button').on('click', () => {
   wheel = round.generateWheelValue();
 });
 
-let currentTurn = playerArray[playerArrayIndex];
 
-$('.quit').on('click', game.quitGame);
+
+$('.quit').on('click', () => {
+  $('.vowel-error').css('display', 'none');
+  game.quitGame();
+  playerArrayIndex = 0;
+});
 
 $('.spin-button').on('click', game.setUpWheel);
 
@@ -34,17 +38,43 @@ $('.spin-text').on('click', spinWheel);
 
 // Make this a method of wheel
 function spinWheel() {
+  $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(game.tearDownWheel, 5500);
   wheel.grabSpinValue();
 }
 
 
-
-$('.keyboard-section').on('click', functionA);
-
-function functionA() {
-  if($(event.target).text() === 'A', 'E', 'I', 'O', 'U') {
-    Player.wallet -= 100;
+$('.keyboard-section').on('click', (event) => {
+  $('.vowel-error').css('display', 'none');
+  let currentTurn = playerArray[playerArrayIndex];
+  let currentGuess = $(event.target).text();
+  let isGuessCorrect = puzzle.checkGuess(currentGuess);
+  if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
+    puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
+    return;
+  } else {
+    let isEnabled = puzzle.checkIfConsonantEnabled(event);
+    if (isEnabled && isGuessCorrect) {
+      puzzle.countCorrectLetters(currentGuess);
+      currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+    } else if (isEnabled && !isGuessCorrect) {
+      playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+      domUpdates.disableKeyboard();
+    }
   }
-}
+});
+
+
+$('.vowel-button').on('click', () => {
+  let currentTurn = playerArray[playerArrayIndex];
+  if (currentTurn.wallet < 100) {
+    $('.vowel-error').css('display', 'unset');
+    return;
+  } else {
+    domUpdates.highlightVowels();
+  }
+});
+
+
+
