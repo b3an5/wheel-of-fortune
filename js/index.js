@@ -43,7 +43,6 @@ function spinWheel() {
   $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(game.tearDownWheel, 3500);
-  wheel.grabSpinValue();
 }
 
 
