@@ -489,6 +489,10 @@ h2 {
   right: 30px;
 }
 
+.spin-number-header {
+  font-size: 2vw;
+}
+
 .spin-number {
   font-size: 1.5rem;
 }
@@ -498,7 +502,7 @@ h2 {
 }
 
 .hint-header{
-  font-size: 1.7rem;
+  font-size: 2vw;
 }
 
 .vowel-error {
