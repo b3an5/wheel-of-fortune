@@ -24,6 +24,7 @@ $('.start-button').on('click', () => {
 
 
 $('.quit').on('click', () => {
+  $('.vowel-error').css('display', 'none');
   game.quitGame();
   playerArrayIndex = 0;
 });
@@ -45,6 +46,7 @@ function spinWheel() {
 
 
 $('.keyboard-section').on('click', (event) => {
+  $('.vowel-error').css('display', 'none');
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
