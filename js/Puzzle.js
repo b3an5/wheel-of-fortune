@@ -63,6 +63,9 @@ class Puzzle {
       wheel.currentValue = 'CORRECT';
       domUpdates.yellCurrentSpin();
       setTimeout(domUpdates.yellCurrentSpin, 2000);
+      this.completed = true;
+      let letterBoxArray = Array.from($('.letter-content'));
+      letterBoxArray.forEach(box => domUpdates.revealCorrectLetters(box));
       return true;
     } else {
       domUpdates.hideSolvePopup();
