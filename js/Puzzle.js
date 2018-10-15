@@ -12,12 +12,30 @@ class Puzzle {
     domUpdates.populatePuzzleSquares(puzzleArray);
   }
 
+  checkIfConsonantEnabled(event) {
+    if ($(event.target).hasClass('disabled')) {
+      return false;
+    } else if ($(event.target).hasClass('temp-disabled')) {
+      return false;
+    } else {
+      domUpdates.disableGuessedLetter(event);
+      return true;
+    }
+  }
+
   checkGuess(guess) {
     if (this.currentPuzzle.correct_answer.toUpperCase().includes(guess)) {
-      this.countCorrectLetters(guess);
       return true;
     }
     return false;
+  }
+
+  checkIfVowelCorrect(vowel, player, event) {
+    if ($(event.target).hasClass('active-vowel')) {
+      player.buyVowel();
+      domUpdates.disableGuessedVowel(event);
+      this.countCorrectLetters(vowel);
+    }
   }
 
   countCorrectLetters(guess) {

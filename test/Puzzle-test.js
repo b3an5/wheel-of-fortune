@@ -4,8 +4,7 @@ const Puzzle = require('../js/Puzzle.js');
 const spies = require('chai-spies');
 chai.use(spies);
 global.domUpdates = require('../js/DOM.js');
-global.jquery = require('../jquery.min.js')
-chai.spy.on(global.domUpdates, ['populatePuzzleSquares'], () => true);
+chai.spy.on(global.domUpdates, ['populatePuzzleSquares', 'revealCorrectLetters'], () => true);
 
 
 describe('Puzzle', () => {
@@ -51,23 +50,24 @@ describe('Puzzle', () => {
   });
 
   it('should reveal the letter(s) on the board if correct', () => {
-    puzzle.checkGuess('C');
+    puzzle.countCorrectLetters('C');
     expect(domUpdates.revealCorrectLetters).to.have.been.called(1);
   });
 
   it('should indicate how many correct letters there are', () => {
-    puzzle.checkGuess('C');
+    puzzle.countCorrectLetters('C');
     expect(puzzle.numberCorrect).to.equal(1);
   });
 
   it('should keep track of how many letters have been revealed', () => {
-    puzzle.checkGuess('C');
+    puzzle.countCorrectLetters('C');
     expect(puzzle.correctCount).to.equal(1);
   });
 
   it('should indicate when the puzzle is complete', () => {
     expect(puzzle.completed).to.equal(false);
     puzzle.correctCount = 8;
+    puzzle.checkCompletion();
     expect(puzzle.completed).to.equal(true);
   });
 

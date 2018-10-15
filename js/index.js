@@ -25,6 +25,7 @@ $('.start-button').on('click', () => {
 
 
 $('.quit').on('click', () => {
+  $('.vowel-error').css('display', 'none');
   game.quitGame();
   playerArrayIndex = 0;
 });
@@ -38,32 +39,42 @@ $('.spin-text').on('click', spinWheel);
 
 // Make this a method of wheel
 function spinWheel() {
+  $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(game.tearDownWheel, 5500);
   wheel.grabSpinValue();
 }
 
 
-$('.keyboard-section').on('click', () => {
+$('.keyboard-section').on('click', (event) => {
+  $('.vowel-error').css('display', 'none');
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
-  if(['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
-    currentTurn.buyVowel();
-    domUpdates.disableGuessedVowel(event);
-  } else {
-    domUpdates.disableGuessedLetter(event);
-  }
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
-  if (isGuessCorrect) {
-    currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+  if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
+    puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
+    return;
   } else {
-    playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
-    game.endRound(playerArray);
+    let isEnabled = puzzle.checkIfConsonantEnabled(event);
+    if (isEnabled && isGuessCorrect) {
+      puzzle.countCorrectLetters(currentGuess);
+      currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+    } else if (isEnabled && !isGuessCorrect) {
+      playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+      domUpdates.disableKeyboard();
+    }
   }
 });
 
+
 $('.vowel-button').on('click', () => {
-  domUpdates.highlightVowels();
+  let currentTurn = playerArray[playerArrayIndex];
+  if (currentTurn.wallet < 100) {
+    $('.vowel-error').css('display', 'unset');
+    return;
+  } else {
+    domUpdates.highlightVowels();
+  }
 });
 
 

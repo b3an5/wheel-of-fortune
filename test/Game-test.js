@@ -7,7 +7,7 @@ const Game = require('../js/Game.js');
 global.data = require('../js/data.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
-chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn'], () => true);
+chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn', 'enableLetters'], () => true);
 chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  ({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 })); 
 
 describe('Game', () => {
@@ -63,11 +63,14 @@ describe('Game', () => {
   it('should show homescreen when quit button is pressed', () => {
     game.quitGame();
     expect(global.domUpdates.goToHomeScreen).to.have.been.called(1);
+    expect(global.domUpdates.resetPuzzleSquares).to.have.been.called(1);
+    expect(global.domUpdates.resetKeyboard).to.have.been.called(1);
   });
 
-  it('should display the wheel when spin button is pressed', () => {
+  it('should display the wheel and keyboard when spin button is pressed', () => {
     game.setUpWheel();
     expect(global.domUpdates.displayWheel).to.have.been.called(1);
+    expect(global.domUpdates.enableLetters).to.have.been.called(1);
   });
 
   it('should hide wheel after it is spun on delay', () => {

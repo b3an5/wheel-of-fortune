@@ -159,60 +159,29 @@ h2 {
   margin: 2px;
   width: 95%;
   position: relative;
-  transition: .2s;
 }
 
-.keyboard-letters::after {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 50px;
-  border: 2px solid #246ab2;
-  border-left-width: 0;
-  border-right-width: 0;
-  border-top: none;
-  box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
-  background: linear-gradient(lightblue, #277cc9);
-  opacity: 0;
-  transition: .2s;
-}
-
-.keyboard-letters span {
-  z-index: 2;
-  cursor: pointer;
-}
-
-.keyboard-letters:hover::after {
+.keyboard-letters:hover {
+  background: #17b4e3;
   cursor: pointer;
   opacity: 1;
-  transition: .3s;
 }
 
 .vowel {
   background: #246ab2;
-}
-
-.vowel:hover::after {
-  opacity: 0;
-  cursor: default;
-}
-
-.disabled:hover::after,
-.temp-disabled:hover::after {
-  opacity: 0;
-  cursor: default;
-}
-
-.disabled > span,
-.temp-disabled > span {
   cursor: default;
 }
 
 .disabled,
-.temp-disabled {
+.temp-disabled,
+.vowel-disabled {
+  background: #246ab2;
+  cursor: default;
+}
+
+.vowel:hover,
+.disabled:hover,
+.temp-disabled:hover {
   background: #246ab2;
   cursor: default;
 }
@@ -234,11 +203,8 @@ h2 {
 }
 
 .active-vowel:hover {
+  background: linear-gradient(#51ef88, #3ed673);
   box-shadow: 0 0 3px 3px #6fe276;
-}
-
-.active-vowel:hover::after {
-  cursor: pointer;
 }
 
 .empty {
@@ -480,7 +446,7 @@ h2 {
   border-radius: 15px;
   width: 900px;
   height: 600px;
-  background: url(https://c1.staticflickr.com/4/3427/3360891586_8faa74b1be_b.jpg);
+  background: url(home-background.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -532,7 +498,18 @@ h2 {
   font-size: 1.7rem;
 }
 
-
+.vowel-error {
+  position: absolute;
+  font-size: .7rem;
+  top: -22px;
+  text-align: center;
+  background-color: #d8d8d8;
+  border: 5px solid grey;
+  border-radius: 15px;
+  color: darkred;
+  width: 450px;
+  display: none;
+}
 
 
 
