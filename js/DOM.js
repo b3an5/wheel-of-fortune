@@ -118,7 +118,7 @@ const domUpdates = {
         $(letter).toggleClass('active-vowel');
       } else {
         if (!$(letter).hasClass('disabled')) {
-          $(letter).addClass('temp-disabled');
+          $(letter).addopnClass('temp-disabled');
         }
       }
     });

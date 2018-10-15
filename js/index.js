@@ -37,6 +37,7 @@ $('.spin-text').on('click', spinWheel);
 
 // Make this a method of wheel
 function spinWheel() {
+  $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(game.tearDownWheel, 5500);
   wheel.grabSpinValue();
@@ -66,7 +67,7 @@ $('.keyboard-section').on('click', (event) => {
 $('.vowel-button').on('click', () => {
   let currentTurn = playerArray[playerArrayIndex];
   if (currentTurn.wallet < 100) {
-    alert('You do not have enough money, please spin the wheel');
+    $('.vowel-error').css('display', 'unset');
     return;
   } else {
     domUpdates.highlightVowels();
