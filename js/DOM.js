@@ -171,6 +171,13 @@ const domUpdates = {
     })
   },
 
+  displaySolvePopup() {
+    $('.solve-popup').css('display', 'flex');
+  },
+
+  hideSolvePopup() {
+    $('.solve-popup').css('display', 'none');
+  },
 
 
 }

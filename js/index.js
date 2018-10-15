@@ -33,6 +33,21 @@ $('.quit').on('click', () => {
 
 $('.spin-button').on('click', game.setUpWheel);
 
+$('.solve-button').on('click', () => {
+  domUpdates.displaySolvePopup();
+});
+
+$('.solve-input-button').on('click', (event) => {
+  event.preventDefault();
+  let guess = $('.solve-input').val().toLowerCase();
+  let result = puzzle.solvePuzzle(guess);
+  if (result) {
+
+  } else {
+    playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+  }
+});
+
 $('.spin-text').on('click', () => {
   $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
