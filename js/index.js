@@ -20,6 +20,7 @@ $('.start-button').on('click', () => {
   puzzle.populateBoard();
   wheel = round.generateWheelValue();
   domUpdates.updateCategory();
+  domUpdates.displayWheelValues();
 });
 
 
@@ -41,7 +42,7 @@ $('.spin-text').on('click', spinWheel);
 function spinWheel() {
   $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
-  setTimeout(game.tearDownWheel, 5500);
+  setTimeout(game.tearDownWheel, 3500);
   wheel.grabSpinValue();
 }
 
