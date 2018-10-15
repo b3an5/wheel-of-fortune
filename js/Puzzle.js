@@ -13,9 +13,7 @@ class Puzzle {
   }
 
   checkIfConsonantEnabled(event) {
-    if ($(event.target).hasClass('disabled')) {
-      return false;
-    } else if ($(event.target).hasClass('temp-disabled')) {
+    if ($(event.target).hasClass('disabled') || $(event.target).hasClass('temp-disabled') || $(event.target).hasClass('keyboard-section')) {
       return false;
     } else {
       domUpdates.disableGuessedLetter(event);

@@ -72,6 +72,7 @@ class Game {
 
   tearDownWheel() {
     domUpdates.hideWheel();
+    wheel.grabSpinValue();
   }
 
 
