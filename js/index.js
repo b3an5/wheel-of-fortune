@@ -40,6 +40,7 @@ $('.solve-button').on('click', () => {
 $('.solve-input-button').on('click', (event) => {
   event.preventDefault();
   let guess = $('.solve-input').val().toLowerCase();
+  $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
 
