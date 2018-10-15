@@ -505,18 +505,24 @@ h2 {
 
 .spin-number-header {
   font-size: 2vw;
+  text-shadow: 0px 0px 1px #eeb32e;
 }
 
 .spin-number {
   font-size: 1.5rem;
+  color: #da8b1a;
+  text-shadow: 0px 0px 1px #da8b1a;
 }
 
 .hint-value {
   font-size: 1.3rem;
+  color: #da8b1a;
+  text-shadow: 0px 0px 1px #da8b1a;
 }
 
 .hint-header{
   font-size: 2vw;
+  text-shadow: 0px 0px 1px #eeb32e;
 }
 
 .vowel-error {
