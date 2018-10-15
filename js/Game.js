@@ -32,22 +32,15 @@ class Game {
     return index;
   }
 
-  getWinner(players) {
-    let winningPlayer = players.sort((a, b) => {
-      return b.score - a.score;
-    })[0];
-    this.players[winningPlayer.name] = winningPlayer.score;
-  }
-
-
-  // This needs to receive an array of all of the player instances (objects) at the end of each round
-
-
   endRound(players) {
+    let winningPlayer = players.sort((a, b) => {
+      return b.wallet - a.wallet;
+    })[0];
     let scoreReset = players.map(player => {
-      return {name: player.name, score: 0};
+      return new Player(player.name);
     });
-    this.getWinner(players);
+    this.players[winningPlayer.name] += winningPlayer.wallet;
+    domUpdates.displayWinner(winningPlayer.name, winningPlayer.wallet);
     return scoreReset;
   }
 

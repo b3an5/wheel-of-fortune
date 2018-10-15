@@ -59,7 +59,21 @@ const domUpdates = {
         $(letterBoxArray[i]).text(letter);
         $(letterBoxArray[i]).css('opacity', 0);
         $(letterBoxArray[i]).parent().css('background', 'white');
-      } 
+      } else if (letter === ' ') {
+        $(letterBoxArray[i]).text(' ');
+        $(letterBoxArray[i]).parent().css('background', '#1c7455')
+      }
+    });
+  },
+
+  newRoundKeyboard() {
+    let keyboardLetters = Array.from($('.keyboard-letters'));
+    keyboardLetters.forEach(letter => {
+      if($(letter).hasClass('disabled')) {
+        $(letter).removeClass('disabled');
+      } else if ($(letter).hasClass('vowel-disabled')) {
+        $(letter).removeClass('vowel-disabled');
+      }
     });
   },
 

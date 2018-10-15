@@ -3,7 +3,7 @@ let round;
 let puzzle;
 let wheel;
 
-const playerArray = [];
+let playerArray = [];
 let playerArrayIndex = 0;
 
 $('.start-button').on('click', () => {
@@ -43,7 +43,18 @@ $('.solve-input-button').on('click', (event) => {
   $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
-
+    playerArray = game.endRound(playerArray);
+    setTimeout(() => {
+      domUpdates.displayNames();
+      round = game.startRound();
+      puzzle = round.generatePuzzle();
+      domUpdates.resetPuzzleSquares();
+      puzzle.populateBoard();
+      wheel = round.generateWheelValue();
+      domUpdates.updateCategory();
+      domUpdates.displayWheelValues();
+      domUpdates.newRoundKeyboard();
+    }, 2500);
   } else {
     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
   }
@@ -75,6 +86,9 @@ $('.keyboard-section').on('click', (event) => {
   if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
     if (isGuessCorrect) {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
+      if (puzzle.completed) {
+        playerArray = game.endRound(playerArray);
+      }
       return;
     } else {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
@@ -86,6 +100,9 @@ $('.keyboard-section').on('click', (event) => {
     if (isEnabled && isGuessCorrect) {
       puzzle.countCorrectLetters(currentGuess);
       currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+      if (puzzle.completed) {
+        playerArray = game.endRound(playerArray);
+      }    
     } else if (isEnabled && !isGuessCorrect) {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     }
