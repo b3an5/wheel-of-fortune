@@ -82,7 +82,8 @@ h2 {
 }
 
 .top-buttons,
-.start-button {
+.start-button,
+.solve-popup button {
   color: whitesmoke;
   letter-spacing: 2px;
   font-size: 1rem;
@@ -103,7 +104,8 @@ h2 {
 }
 
 .top-buttons:hover,
-.start-button:hover {
+.start-button:hover,
+.solve-popup button:hover {
   cursor: pointer;
   transform: translateY(-1px);
   letter-spacing: 3px;
@@ -285,7 +287,7 @@ h2 {
 }
 
 .wheel-spin {
-  animation: spin 4s ease-out;
+  animation: spin 2.2s ease-out;
 }
 
 .wheel-option {
@@ -304,9 +306,10 @@ h2 {
 }
 
 .mark1 {
-  right: 181px;
-  bottom: 109px;
+  right: 100px;
+  bottom: 15px;
   transform: rotate(-65deg);
+  height: 200px;
 }
 
 .mark2 {
@@ -500,6 +503,10 @@ h2 {
   right: 30px;
 }
 
+.spin-number-header {
+  font-size: 2vw;
+}
+
 .spin-number {
   font-size: 1.5rem;
 }
@@ -509,7 +516,7 @@ h2 {
 }
 
 .hint-header{
-  font-size: 1.7rem;
+  font-size: 2vw;
 }
 
 .vowel-error {
@@ -524,6 +531,67 @@ h2 {
   width: 450px;
   display: none;
 }
+
+.yell-box {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 0rem;
+  top: -22px;
+  color: tomato;
+  text-shadow: 0px 0px 10px tomato;
+}
+
+.yell-active {
+  animation: yell 2s ease;
+}
+
+@keyframes yell {
+  0%, 100% {
+    font-size: 0rem;
+  }
+  50% {
+    font-size: 7rem;
+  }
+}
+
+.solve-popup {
+  z-index: 2;
+  position: absolute;
+  background-color: #d8d8d8;
+  border: 5px solid grey;
+  border-radius: 15px;
+  width: 650px;
+  height: 190px;
+  bottom: 10px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.solve-input {
+  height: 35px;
+  width: 300px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.solve-popup h2 {
+  margin-bottom: 5px;
+  font-size: 1.7rem;
+}
+
+.solve-popup button {
+  margin-bottom: 5px;
+}
+
+
+
+
 
 
 

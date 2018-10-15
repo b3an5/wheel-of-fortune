@@ -28,6 +28,7 @@ class Game {
   endTurn(array, index) {
     index === 2 ? index = 0 : index++;
     domUpdates.newPlayerTurn(array, index);
+    domUpdates.disableKeyboard();
     return index;
   }
 
@@ -72,6 +73,8 @@ class Game {
 
   tearDownWheel() {
     domUpdates.hideWheel();
+    wheel.grabSpinValue();
+    return wheel.currentValue;
   }
 
 

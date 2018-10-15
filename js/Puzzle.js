@@ -13,9 +13,7 @@ class Puzzle {
   }
 
   checkIfConsonantEnabled(event) {
-    if ($(event.target).hasClass('disabled')) {
-      return false;
-    } else if ($(event.target).hasClass('temp-disabled')) {
+    if ($(event.target).hasClass('disabled') || $(event.target).hasClass('temp-disabled') || $(event.target).hasClass('keyboard-section')) {
       return false;
     } else {
       domUpdates.disableGuessedLetter(event);
@@ -56,6 +54,22 @@ class Puzzle {
   checkCompletion() {
     if (this.correctCount === this.puzzleLength) {
       this.completed = true;
+    }
+  }
+
+  solvePuzzle(guess) {
+    if (guess === this.currentPuzzle.correct_answer.toLowerCase()) {
+      domUpdates.hideSolvePopup();
+      wheel.currentValue = 'CORRECT';
+      domUpdates.yellCurrentSpin();
+      setTimeout(domUpdates.yellCurrentSpin, 2000);
+      return true;
+    } else {
+      domUpdates.hideSolvePopup();
+      wheel.currentValue = 'INCORRECT';
+      domUpdates.yellCurrentSpin();
+      setTimeout(domUpdates.yellCurrentSpin, 2000);
+      return false;
     }
   }
 }
