@@ -140,7 +140,7 @@ const domUpdates = {
 
   updateCategory() {
     $('.hint-value').text(puzzle.currentPuzzle.category)
-  }
+  },
 
   enableLetters() {
     let keyboardLetters = Array.from($('.keyboard-letters'));
