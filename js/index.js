@@ -19,6 +19,7 @@ $('.start-button').on('click', () => {
   puzzle = round.generatePuzzle();
   puzzle.populateBoard();
   wheel = round.generateWheelValue();
+  domUpdates.updateCategory();
 });
 
 

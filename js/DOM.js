@@ -142,6 +142,10 @@ const domUpdates = {
     $('.spin-number').text(wheel.currentValue)
   },
 
+  updateCategory() {
+    $('.hint-value').text(puzzle.currentPuzzle.category)
+  }
+
 
 }
 
