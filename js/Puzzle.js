@@ -56,6 +56,22 @@ class Puzzle {
       this.completed = true;
     }
   }
+
+  solvePuzzle(guess) {
+    if (guess === this.currentPuzzle.correct_answer.toLowerCase()) {
+      domUpdates.hideSolvePopup();
+      wheel.currentValue = 'CORRECT';
+      domUpdates.yellCurrentSpin();
+      setTimeout(domUpdates.yellCurrentSpin, 2000);
+      return true;
+    } else {
+      domUpdates.hideSolvePopup();
+      wheel.currentValue = 'INCORRECT';
+      domUpdates.yellCurrentSpin();
+      setTimeout(domUpdates.yellCurrentSpin, 2000);
+      return false;
+    }
+  }
 }
 
 
