@@ -1,8 +1,9 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Game = require('../js/Game.js');
 const spies = require('chai-spies');
 chai.use(spies);
+
+const Game = require('../js/Game.js');
 global.data = require('../js/data.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
@@ -15,16 +16,10 @@ describe('Game', () => {
     game = new Game()
   })
 
-  it('should start at round 0', () => {
-  expect(game.round).to.equal(0);
-  expect(game.bonusRound).to.equal(false);
-  });
-
-  it('should start with no players', () => {
-  expect(game.players).to.deep.equal({});
-  });
-
-  it('should start with 4 puzzle banks', () => {
+  it('should have the correct default properties', () => {
+    expect(game.round).to.equal(0);
+    expect(game.bonusRound).to.equal(false);
+    expect(game.players).to.deep.equal({});
     expect(game.puzzleKeys).to.deep.equal(['one_word_answers', 'two_word_answers', 'three_word_answers', 'four_word_answers']);
   });
 
@@ -49,7 +44,7 @@ describe('Game', () => {
   });
 
   it('should choose the winner of the round and push value to score', () => {
-    game.endRound([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}]);
+    game.getWinner([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}]);
     expect(game.players['Player 3: Dog']).to.equal(10000)
   });
 

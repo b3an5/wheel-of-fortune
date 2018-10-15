@@ -138,6 +138,10 @@ const domUpdates = {
     $('.spin-number').text(wheel.currentValue)
   },
 
+  updateCategory() {
+    $('.hint-value').text(puzzle.currentPuzzle.category)
+  }
+
   enableLetters() {
     let keyboardLetters = Array.from($('.keyboard-letters'));
     keyboardLetters.forEach(letter => {
@@ -155,6 +159,7 @@ const domUpdates = {
       }
     })
   },
+
 
 
 }
