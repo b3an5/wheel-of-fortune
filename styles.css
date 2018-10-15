@@ -286,43 +286,45 @@ h2 {
 .q-mark {
   z-index: 7;
   position: absolute;
-  font-size: 7rem;
+  font-size: 1.8rem;
+  writing-mode: vertical-lr;
+  /*text-orientation: upright;*/
 }
 
 .mark1 {
-  right: 89px;
-  bottom: 75px;
-  transform: rotate(-60deg);
+  right: 181px;
+  bottom: 109px;
+  transform: rotate(-65deg);
 }
 
 .mark2 {
-  right: 142px;
-  bottom: 150px;
+  right: 158px;
+  bottom: 105px;
   transform: rotate(-180deg);
 }
 
 .mark3 {
-  right: 140px;
-  bottom: 150px;
-  transform: rotate(-190deg);
+  right: 144px;
+  bottom: 114px;
+  transform: rotate(-182deg);
 }
 
 .mark4 {
-  right: 149px;
-  bottom: 150px;
-  transform: rotate(-190deg);
+  right: 153px;
+  bottom: 113px;
+  transform: rotate(-182deg);
 }
 
 .mark5 {
-  right: 149px;
-  bottom: 150px;
+  right: 148px;
+  bottom: 105px;
   transform: rotate(-190deg);
 }
 
 .mark6 {
-  right: 149px;
-  bottom: 150px;
-  transform: rotate(-190deg);
+  right: 152px;
+  bottom: 107px;
+  transform: rotate(-182deg);
 }
 
 .option1 {
@@ -370,15 +372,15 @@ h2 {
 }
 
 .slide-in {
-  display: unset;
   animation: slide 1s ease;
   transform: translateX(0);
+  display: unset;
 }
 
 @keyframes slide {
   0% {
     transform: translateX(-1080px);
-  }
+  }  
   100% {
     transform: translateX(0);
   }

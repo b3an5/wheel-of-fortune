@@ -140,7 +140,13 @@ const domUpdates = {
 
   updateCategory() {
     $('.hint-value').text(puzzle.currentPuzzle.category)
-  }
+  },
+
+  displayWheelValues() {
+    for (var i = 0; i < 6; i++) {
+      $(`.mark${i+1}`).text(wheel.spinValues[i])
+    }
+  },
 
   enableLetters() {
     let keyboardLetters = Array.from($('.keyboard-letters'));
