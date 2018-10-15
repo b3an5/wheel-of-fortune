@@ -88,6 +88,20 @@ $('.keyboard-section').on('click', (event) => {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       if (puzzle.completed) {
         playerArray = game.endRound(playerArray);
+        wheel.currentValue = 'CORRECT';
+        domUpdates.yellCurrentSpin();
+        setTimeout(domUpdates.yellCurrentSpin, 2000);
+        setTimeout(() => {
+          domUpdates.displayNames();
+          round = game.startRound();
+          puzzle = round.generatePuzzle();
+          domUpdates.resetPuzzleSquares();
+          puzzle.populateBoard();
+          wheel = round.generateWheelValue();
+          domUpdates.updateCategory();
+          domUpdates.displayWheelValues();
+          domUpdates.newRoundKeyboard();
+        }, 2500);
       }
       return;
     } else {
@@ -102,6 +116,20 @@ $('.keyboard-section').on('click', (event) => {
       currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
       if (puzzle.completed) {
         playerArray = game.endRound(playerArray);
+        wheel.currentValue = 'CORRECT';
+        domUpdates.yellCurrentSpin();
+        setTimeout(domUpdates.yellCurrentSpin, 2000);
+        setTimeout(() => {
+          domUpdates.displayNames();
+          round = game.startRound();
+          puzzle = round.generatePuzzle();
+          domUpdates.resetPuzzleSquares();
+          puzzle.populateBoard();
+          wheel = round.generateWheelValue();
+          domUpdates.updateCategory();
+          domUpdates.displayWheelValues();
+          domUpdates.newRoundKeyboard();
+        }, 2500);
       }    
     } else if (isEnabled && !isGuessCorrect) {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);

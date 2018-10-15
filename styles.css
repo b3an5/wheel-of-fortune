@@ -77,6 +77,19 @@ header div {
   box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
 }
 
+.game-winner {
+  animation: shimmer 1.7s ease infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    text-shadow: 0 0 0 whitesmoke;
+  }
+  50% {
+    text-shadow: 0 0 45px #da8b1a;
+  }
+}
+
 h2 {
   margin-bottom: 12px;
 }
