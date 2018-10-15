@@ -138,6 +138,11 @@ const domUpdates = {
     $('.spin-number').text(wheel.currentValue)
   },
 
+  yellCurrentSpin() {
+    $('.yell-box').text(wheel.currentValue);
+    $('.yell-box').toggleClass('yell-active');
+  },
+
   updateCategory() {
     $('.hint-value').text(puzzle.currentPuzzle.category)
   },

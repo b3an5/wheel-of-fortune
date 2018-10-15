@@ -33,28 +33,22 @@ $('.quit').on('click', () => {
 
 $('.spin-button').on('click', game.setUpWheel);
 
-$('.spin-text').on('click', spinWheel);
-
-// $('.solve-button').on('click', game.endGame);
-
-
-// Make this a method of wheel
-function spinWheel() {
+$('.spin-text').on('click', () => {
   $('.vowel-error').css('display', 'none');
   $('.wheel-circle').toggleClass('wheel-spin');
   setTimeout(() => {
     let currentTurn = playerArray[playerArrayIndex];
     let spinResult = game.tearDownWheel();
+    domUpdates.yellCurrentSpin();
+    setTimeout(domUpdates.yellCurrentSpin, 2000);
     if (spinResult === 'LOSE A TURN') {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
-      domUpdates.disableKeyboard();
     } else if (spinResult === 'BANKRUPT') {
       currentTurn.wallet = 0;
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
-      domUpdates.disableKeyboard();
     }
-  }, 3500);
-}
+  }, 2000);
+})
 
 
 $('.keyboard-section').on('click', (event) => {
@@ -63,8 +57,14 @@ $('.keyboard-section').on('click', (event) => {
   let currentGuess = $(event.target).text();
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
-    puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
-    return;
+    if (isGuessCorrect) {
+      puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
+      return;
+    } else {
+      puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
+      playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+      domUpdates.disableKeyboard();
+    }
   } else {
     let isEnabled = puzzle.checkIfConsonantEnabled(event);
     if (isEnabled && isGuessCorrect) {
@@ -72,7 +72,6 @@ $('.keyboard-section').on('click', (event) => {
       currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
     } else if (isEnabled && !isGuessCorrect) {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
-      domUpdates.disableKeyboard();
     }
   }
 });
