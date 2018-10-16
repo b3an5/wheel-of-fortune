@@ -5,11 +5,15 @@ chai.use(spies);
 
 const Game = require('../js/Game.js');
 global.data = require('../js/data.js');
-global.Wheel = require('../js/Wheel.js');
+global.wheel = {
+      grabSpinValue() {
+        return true;
+      }
+    }
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
 global.Player = require('../js/Player.js');
-chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn', 'enableLetters', 'disableKeyboard'], () => true);
+chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn', 'enableLetters', 'disableKeyboard', 'updateBankAccts'], () => true);
 chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  ({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 })); 
 
 describe('Game', () => {
@@ -46,14 +50,17 @@ describe('Game', () => {
   });
 
   it('should choose the winner of the round and push value to score', () => {
-    game.endRound([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}]);
-    expect(game.players['Player 3: Dog']).to.equal(10000)
+    game.players = {
+      'Player 1: Theo': 0,
+      'Player 2: Jamie': 0,
+      'Player 3: Dog': 0
+    }
+    game.endRound({name: 'Player 3: Dog', wallet: 10000}, [{name: 'Player 1: Theo', wallet: 400}, {name: 'Player 2: Jamie', wallet: -200}, {name: 'Player 3: Dog', wallet: 10000}], 2);
+    expect(game.players['Player 3: Dog']).to.equal(10000);
   });
 
-  //********????????????^^^^^^^^^^^
-
   it('should reset everyones wallet', () => {
-    let result = game.endRound([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}]);
+    let result = game.endRound({name: 'Player 3: Dog', wallet: 10000}, [{name: 'Player 1: Theo', wallet: 400}, {name: 'Player 2: Jamie', wallet: -200}, {name: 'Player 3: Dog', wallet: 10000}], 2);
     expect(result).to.deep.equal([{name: 'Player 1: Theo', wallet: 0}, {name: 'Player 2: Jamie', wallet: 0}, {name: 'Player 3: Dog', wallet: 0}])
   });
 
@@ -63,8 +70,6 @@ describe('Game', () => {
     expect(global.domUpdates.displayWinner).to.have.been.called(3);
     expect(global.domUpdates.displayWinner).to.have.been.called.with('player3: Bartholimule', 700)
   });
-
-  //^^^^teardown error???????
 
   it('should show homescreen when quit button is pressed', () => {
     game.quitGame();
