@@ -32,10 +32,8 @@ class Game {
     return index;
   }
 
-  endRound(players) {
-    let winningPlayer = players.sort((a, b) => {
-      return b.wallet - a.wallet;
-    })[0];
+  endRound(winner, players) {
+    let winningPlayer = winner;
     let scoreReset = players.map(player => {
       return new Player(player.name);
     });

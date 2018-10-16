@@ -43,7 +43,7 @@ $('.solve-input-button').on('click', (event) => {
   $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
-    playerArray = game.endRound(playerArray);
+    playerArray = game.endRound(currentTurn, playerArray);
     setTimeout(() => {
       domUpdates.displayNames();
       round = game.startRound();
@@ -87,7 +87,7 @@ $('.keyboard-section').on('click', (event) => {
     if (isGuessCorrect) {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       if (puzzle.completed) {
-        playerArray = game.endRound(playerArray);
+        playerArray = game.endRound(currentTurn, playerArray);
         wheel.currentValue = 'CORRECT';
         domUpdates.yellCurrentSpin();
         setTimeout(domUpdates.yellCurrentSpin, 2000);
@@ -115,7 +115,7 @@ $('.keyboard-section').on('click', (event) => {
       puzzle.countCorrectLetters(currentGuess);
       currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
       if (puzzle.completed) {
-        playerArray = game.endRound(playerArray);
+        playerArray = game.endRound(currentTurn, playerArray);
         wheel.currentValue = 'CORRECT';
         domUpdates.yellCurrentSpin();
         setTimeout(domUpdates.yellCurrentSpin, 2000);
