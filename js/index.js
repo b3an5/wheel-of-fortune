@@ -18,15 +18,22 @@ $('.start-button').on('click', () => {
 });
 
 function solvePuzzleHandler() {
-  domUpdates.displayNames();
   round = game.startRound();
-  puzzle = round.generatePuzzle();
-  domUpdates.resetPuzzleSquares();
-  puzzle.populateBoard();
-  wheel = round.generateWheelValue();
-  domUpdates.updateCategory();
-  domUpdates.displayWheelValues();
-  domUpdates.newRoundKeyboard();
+  domUpdates.displayNames();
+  if(game.bonusRound === true) {
+    game.endGame();
+    domUpdates.highlightVowels();
+    puzzle = round.generateBonusPuzzle();
+    wheel = round.generateBonusWheel();
+  } else {
+    puzzle = round.generatePuzzle();
+    wheel = round.generateWheelValue();
+  }
+    domUpdates.resetPuzzleSquares();
+    puzzle.populateBoard();
+    domUpdates.updateCategory();
+    domUpdates.displayWheelValues();
+    domUpdates.newRoundKeyboard();
 }
 
 $('.quit').on('click', () => {
@@ -76,6 +83,19 @@ $('.keyboard-section').on('click', (event) => {
   let currentGuess = $(event.target).text();
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   let isEnabled = puzzle.checkIfConsonantEnabled(event);
+  if (game.bonusRound === true) {
+    // currentTurn = game.winner;
+    if (round.keyBoardClickCount === 0) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    }
+    else if (round.keyBoardClickCount < 3) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    } else {
+      domUpdates.displaySolvePopup();
+    }
+  }
   if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
     if (!$(event.target).hasClass('active-vowel')) {
       return;

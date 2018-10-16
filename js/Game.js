@@ -1,9 +1,10 @@
 class Game {
   constructor() {
-    this.round = 0;
+    this.round = 3;
     this.bonusRound = false;
     this.players = {};
     this.puzzleKeys = Object.keys(data.puzzles);
+    this.winner = null;
   }
 
   init() {
@@ -19,7 +20,7 @@ class Game {
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
     if (this.round === 5) {
       this.bonusRound = true;
-      return new BonusRound();
+      return new BonusRound(data.puzzles[this.puzzleKeys[roundIndex - 1]].puzzle_bank, data.bonusWheel);
     } else {
       return new Round(data.puzzles[puzzleKeyIndex].puzzle_bank, data.wheel);
     }
@@ -40,7 +41,13 @@ class Game {
     this.players[winningPlayer.name] += winningPlayer.wallet;
     domUpdates.updateBankAccts(winningPlayer, index);
     domUpdates.displayWinner(winningPlayer.name, winningPlayer.wallet);
-    return scoreReset;
+      // return scoreReset;
+    if (this.round < 4) {
+      return scoreReset;
+    } else if (this.round === 4) {
+      // endGame();
+      return scoreReset;
+    }
   }
 
   endGame() {
@@ -49,6 +56,7 @@ class Game {
       return this.players[b] - this.players[a];
     })[0];
     let winningScore = this.players[winner];
+    this.winner = this.players[winner];
     domUpdates.displayWinner(winner, winningScore);
   }
 

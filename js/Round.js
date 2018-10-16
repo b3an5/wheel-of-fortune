@@ -23,6 +23,7 @@ class BonusRound extends Round {
   constructor(puzzleBank, bonusWheel) {
     super(puzzleBank);
     this.bonusWheel = data.bonusWheel;
+    this.keyBoardClickCount = 0;
   }
 
   generateBonusWheel() {
@@ -31,6 +32,11 @@ class BonusRound extends Round {
       wheelVals.push(data.bonusWheel[i]);
     }
     return new Wheel(wheelVals);
+  }
+
+  generateBonusPuzzle() {
+    let randomIndex = Math.floor(Math.random() * this.puzzleBank.length);
+    return new Puzzle(this.puzzleBank[randomIndex]);
   }
 }
 
