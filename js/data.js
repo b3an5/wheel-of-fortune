@@ -31,6 +31,14 @@ const data = {
     500,
     900
   ],
+  bonusWheel: [
+  2000,
+  3000,
+  4000,
+  5000,
+  6000,
+  7000
+  ],
   puzzles: {
     one_word_answers: {
       date: 'Oct 07 2018',

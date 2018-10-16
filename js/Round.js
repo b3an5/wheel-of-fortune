@@ -20,8 +20,17 @@ class Round {
 }
 
 class BonusRound extends Round {
-  constructor() {
+  constructor(puzzleBank, bonusWheel) {
+    super(puzzleBank);
+    this.bonusWheel = data.bonusWheel;
+  }
 
+  generateBonusWheel() {
+    let wheelVals = data.bonusWheel;
+    for (var i = 0; i < 6; i++) {
+      wheelVals.push(data.bonusWheel[i]);
+    }
+    return new Wheel(wheelVals);
   }
 }
 

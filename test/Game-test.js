@@ -5,9 +5,11 @@ chai.use(spies);
 
 const Game = require('../js/Game.js');
 global.data = require('../js/data.js');
+global.Wheel = require('../js/Wheel.js');
 global.domUpdates = require('../js/DOM.js');
 global.Round = require('../js/Round.js');
-chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn', 'enableLetters'], () => true);
+global.Player = require('../js/Player.js');
+chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen', 'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel', 'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn', 'enableLetters', 'disableKeyboard'], () => true);
 chai.spy.on(global.domUpdates, 'getPlayerNames', () =>  ({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 })); 
 
 describe('Game', () => {
@@ -44,21 +46,25 @@ describe('Game', () => {
   });
 
   it('should choose the winner of the round and push value to score', () => {
-    game.getWinner([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}]);
+    game.endRound([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}]);
     expect(game.players['Player 3: Dog']).to.equal(10000)
   });
 
+  //********????????????^^^^^^^^^^^
+
   it('should reset everyones wallet', () => {
     let result = game.endRound([{name: 'Player 1: Theo', score: 400}, {name: 'Player 2: Jamie', score: -200}, {name: 'Player 3: Dog', score: 10000}]);
-    expect(result).to.deep.equal([{name: 'Player 1: Theo', score: 0}, {name: 'Player 2: Jamie', score: 0}, {name: 'Player 3: Dog', score: 0}])
+    expect(result).to.deep.equal([{name: 'Player 1: Theo', wallet: 0}, {name: 'Player 2: Jamie', wallet: 0}, {name: 'Player 3: Dog', wallet: 0}])
   });
 
   it('should end game', () => {
     game.players = {'player1: Theo': 400, 'player2: Jamie': 500, 'player3: Bartholimule': 700};
     game.endGame();
-    expect(global.domUpdates.displayWinner).to.have.been.called(1);
+    expect(global.domUpdates.displayWinner).to.have.been.called(3);
     expect(global.domUpdates.displayWinner).to.have.been.called.with('player3: Bartholimule', 700)
   });
+
+  //^^^^teardown error???????
 
   it('should show homescreen when quit button is pressed', () => {
     game.quitGame();
