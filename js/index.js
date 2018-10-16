@@ -79,7 +79,9 @@ $('.keyboard-section').on('click', (event) => {
   let currentGuess = $(event.target).text();
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
-    if (isGuessCorrect) {
+    if (!$(event.target).hasClass('active-vowel')) {
+      return;
+    } else if (isGuessCorrect) {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       checkIfPuzzleSolved(currentTurn, playerArray);
       return;
