@@ -5,6 +5,13 @@ const domUpdates = {
     players[`Player 1: ${$('.player1-name').val()}`] = 0;
     players[`Player 2: ${$('.player2-name').val()}`] = 0;
     players[`Player 3: ${$('.player3-name').val()}`] = 0;
+    if ($('.player1-name').val() &&
+     $('.player2-name').val() &&
+      $('.player3-name').val()) {
+      $('.player1-ba').text(`${$('.player1-name').val()}: $`);
+      $('.player2-ba').text(`${$('.player2-name').val()}: $`);
+      $('.player3-ba').text(`${$('.player3-name').val()}: $`);
+    }
     return players;
   },
 
@@ -191,6 +198,10 @@ const domUpdates = {
 
   hideSolvePopup() {
     $('.solve-popup').css('display', 'none');
+  },
+
+  updateBankAccts(winner, i) {
+    $(`.player${i+1}-ba-num`).text(winner.wallet);
   },
 
 
