@@ -4,7 +4,7 @@ const Player = require('../js/Player.js');
 const spies = require('chai-spies');
 chai.use(spies);
 global.domUpdates = require('../js/DOM.js');
-chai.spy.on(global.domUpdates, ['highlightVowels', 'updateWallet'], () => true)
+chai.spy.on(global.domUpdates, ['highlightVowels', 'updateWallet', 'disableKeyboard'], () => true)
 
 describe('Player', () => {
 

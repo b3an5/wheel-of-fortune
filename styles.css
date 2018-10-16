@@ -608,6 +608,28 @@ h2 {
   margin-bottom: 5px;
 }
 
+.bank-accts {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  width: 170px;
+  background: #641084;
+  color: #eeb32e;
+  border: 5px solid grey;
+  border-radius: 15px;
+}
+
+.bank-accts h3 {
+  text-align: center;
+  font-size: .9rem;
+  margin: 10px auto;
+}
+
+.bank-accts h4 {
+  font-size: .8rem;
+  text-align: center;
+  margin: 5px auto;
+}
 
 
 

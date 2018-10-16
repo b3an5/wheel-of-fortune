@@ -32,14 +32,13 @@ class Game {
     return index;
   }
 
-  endRound(players) {
-    let winningPlayer = players.sort((a, b) => {
-      return b.wallet - a.wallet;
-    })[0];
+  endRound(winner, players, index) {
+    let winningPlayer = winner;
     let scoreReset = players.map(player => {
       return new Player(player.name);
     });
     this.players[winningPlayer.name] += winningPlayer.wallet;
+    domUpdates.updateBankAccts(winningPlayer, index);
     domUpdates.displayWinner(winningPlayer.name, winningPlayer.wallet);
     return scoreReset;
   }
@@ -54,6 +53,7 @@ class Game {
   }
 
   quitGame() {
+    this.round = 0;
     domUpdates.goToHomeScreen();
     domUpdates.resetPuzzleSquares();
     domUpdates.resetKeyboard();
