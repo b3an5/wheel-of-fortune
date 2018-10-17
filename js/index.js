@@ -10,6 +10,8 @@ var buzzer = new Audio('./audio/buzzer.mp3');
 let chooseSound = new Audio('./audio/choose.mp3');
 let ding = new Audio('./audio/ding.mp3');
 let theme = new Audio('./audio/theme.mp3');
+let solveSound = new Audio('./audio/solve.mp3');
+
 
 $('header').on('click', () => {
   theme.pause();
@@ -69,7 +71,6 @@ $('.solve-input-button').on('click', () => {
   $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
-    let solveSound = new Audio('./audio/solve.mp3');
     solveSound.play();
     playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
     if (game.round === 5) {
@@ -167,6 +168,7 @@ function checkIfPuzzleSolved(currentTurn, players) {
     playerArray = game.endRound(currentTurn, players, playerArrayIndex);
     wheel.currentValue = 'CORRECT';
     domUpdates.yellCurrentSpin();
+    solveSound.play();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     setTimeout(solvePuzzleHandler, 2500);
   }

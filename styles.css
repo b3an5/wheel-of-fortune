@@ -663,9 +663,9 @@ h2 {
 }
 
 .bonus-round-header {
+  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   font-size: 6rem;
   margin: 30px auto 20px;
   text-align: center;
@@ -673,9 +673,9 @@ h2 {
 }
 
 .bonus-instructions {
+  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   font-size: 1.5rem;
   text-align: center;
   width: 100%;
