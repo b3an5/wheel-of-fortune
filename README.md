@@ -20,3 +20,11 @@ Run `git clone https://github.com/b3an5/wheel-of-fortune.git` in your terminal t
 ![alt text](pics/wireframe.jpg)
 
 #### And some button inspiration [here](https://dribbble.com/shots/4658149-Turn-me-on)
+
+### Authors
+
+- Theo Bean
+  - https://github.com/b3an5
+- Jamie Rushford
+  - https://github.com/jarushford
+- Link to pair DTR [here](https://gist.github.com/jarushford/fa3d748f09c5e7d82bd9ec605d16f533);
