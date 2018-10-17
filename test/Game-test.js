@@ -4,6 +4,8 @@ const spies = require('chai-spies');
 chai.use(spies);
 
 const Game = require('../js/Game.js');
+global.BonusRound = require('../js/Round.js')
+global.Round = require('../js/Round.js')
 global.data = require('../js/data.js');
 global.wheel = {
   grabSpinValue() {
@@ -16,7 +18,8 @@ global.Player = require('../js/Player.js');
 chai.spy.on(global.domUpdates, ['clearInputs', 'goToGameScreen',
   'displayWinner', 'goToHomeScreen', 'displayWheel', 'hideWheel',
   'resetPuzzleSquares', 'resetKeyboard', 'newPlayerTurn', 'enableLetters',
-  'disableKeyboard', 'updateBankAccts'], () => true);
+  'disableKeyboard', 'updateBankAccts', 
+  'clearBankAccts', 'displayBonusIntro'], () => true);
 chai.spy.on(global.domUpdates, 'getPlayerNames', () =>
   ({ 'Player 1: Dog': 0, 'Player 2: Frog': 0, 'Player 3: Sloth': 0 })); 
 
@@ -50,6 +53,12 @@ describe('Game', () => {
     expect(game.round).to.equal(1);
   });
 
+  it('should be able to start a bonus round', () => {
+    game.round = 4;
+    game.startRound();
+    expect(game.bonusRound).to.equal(true);
+  })
+
   it('should be able to end a players turn', () => {
     let index = game.endTurn([{name: 'Player 1: Theo', score: 400},
       {name: 'Player 2: Jamie', score: -200},
@@ -57,7 +66,7 @@ describe('Game', () => {
     expect(index).to.equal(1);
   });
 
-  it('should choose the winner of the round and push value to score', () => {
+  it('should choose the winner of the round add to their bank account', () => {
     game.players = {
       'Player 1: Theo': 0,
       'Player 2: Jamie': 0,
@@ -70,7 +79,7 @@ describe('Game', () => {
     expect(game.players['Player 3: Dog']).to.equal(10000);
   });
 
-  it('should reset everyones wallet', () => {
+  it('should reset everyones wallet at the end of the round', () => {
     let result = game.endRound({name: 'Player 3: Dog', wallet: 10000},
       [{name: 'Player 1: Theo', wallet: 400},
         {name: 'Player 2: Jamie', wallet: -200},
@@ -80,13 +89,16 @@ describe('Game', () => {
       {name: 'Player 3: Dog', wallet: 0}])
   });
 
-  it('should end game', () => {
+  it('should pick the bonus player at the end of the game', () => {
     game.players = {'player1: Theo': 400, 'player2: Jamie': 500,
       'player3: Bartholimule': 700};
+    global.round = 
+      new BonusRound(data.puzzles['four_word_answers'].puzzle_bank,
+        data.bonusWheel)
     game.endGame();
-    expect(global.domUpdates.displayWinner).to.have.been.called(3);
-    expect(global.domUpdates.displayWinner).to.have.been.called.with(
-      'player3: Bartholimule', 700)
+    expect(global.domUpdates.displayBonusIntro).to.have.been.called(1);
+    expect(global.domUpdates.displayBonusIntro).to.have.been.called.with(
+      'player3: Bartholimule', 700);
   });
 
   it('should show homescreen when quit button is pressed', () => {
