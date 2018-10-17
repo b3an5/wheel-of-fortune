@@ -12,6 +12,12 @@ class Puzzle {
     domUpdates.populatePuzzleSquares(puzzleArray);
   }
 
+  populateBonus(puzzleLength) {
+    let puzzleArray = this.currentPuzzle.correct_answer.split('');
+    domUpdates.populatePuzzleSquares(puzzleArray);
+    domUpdates.showBonusLetters(puzzleLength);
+  }
+
   checkIfConsonantEnabled(event) {
     if ($(event.target).hasClass('disabled') || $(event.target).hasClass('temp-disabled') || $(event.target).hasClass('keyboard-section')) {
       return false;

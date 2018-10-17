@@ -8,6 +8,8 @@ let playerArrayIndex = 0;
 
 $('.start-button').on('click', () => {
   game = new Game();
+  playerArrayIndex = 0;
+  playerArray = [];
   let gamePlayers = game.init();
   const nameKeys = Object.keys(gamePlayers);
   nameKeys.forEach(key => {
@@ -30,7 +32,8 @@ function solvePuzzleHandler() {
     wheel = round.generateWheelValue();
   }
     domUpdates.resetPuzzleSquares();
-    puzzle.populateBoard();
+    game.bonusRound ? puzzle.populateBonus(puzzle.puzzleLength) : 
+      puzzle.populateBoard();
     domUpdates.updateCategory();
     domUpdates.displayWheelValues();
     domUpdates.newRoundKeyboard();
@@ -54,9 +57,16 @@ $('.solve-input-button').on('click', (event) => {
   let result = puzzle.solvePuzzle(guess);
   if (result) {
     playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
-    setTimeout(solvePuzzleHandler, 2500);
+    if (game.round === 5) {
+      setTimeout(game.quitGame, 5000);
+    } else {
+      setTimeout(solvePuzzleHandler, 2500);
+    }
   } else {
     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+    if (game.round === 5) {
+      setTimeout(game.quitGame, 5000);
+    }
   }
 });
 

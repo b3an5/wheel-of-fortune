@@ -21,6 +21,8 @@ class Game {
     if (this.round === 5) {
       this.bonusRound = true;
       return new BonusRound(data.puzzles[this.puzzleKeys[roundIndex - 1]].puzzle_bank, data.bonusWheel);
+    } else if (this.round === 6) {
+      setTimeout(this.quitGame, 5000);
     } else {
       return new Round(data.puzzles[puzzleKeyIndex].puzzle_bank, data.wheel);
     }
@@ -65,6 +67,7 @@ class Game {
     domUpdates.goToHomeScreen();
     domUpdates.resetPuzzleSquares();
     domUpdates.resetKeyboard();
+    domUpdates.clearBankAccts();
   }
 
   setUpWheel() {

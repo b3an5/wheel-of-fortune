@@ -73,6 +73,14 @@ const domUpdates = {
     });
   },
 
+  showBonusLetters(length) {
+    let letterBoxArray = Array.from($('.letter-content'));
+    for (let i = 0; i < 7; i++) {
+      let rand = Math.floor(Math.random() * length);
+      $(letterBoxArray[rand]).css('opacity', 1);
+    }
+  },
+
   newRoundKeyboard() {
     let keyboardLetters = Array.from($('.keyboard-letters'));
     keyboardLetters.forEach(letter => {
@@ -202,6 +210,12 @@ const domUpdates = {
 
   updateBankAccts(winner, i) {
     $(`.player${i+1}-ba-num`).text(winner.wallet);
+  },
+
+  clearBankAccts() {
+    $('.player1-ba-num').text('');
+    $('.player2-ba-num').text('');
+    $('.player3-ba-num').text('');
   },
 
 
