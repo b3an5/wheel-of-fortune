@@ -161,7 +161,7 @@ $('.vowel-button').on('click', () => {
 $('.start-bonus-round').on('click', () => {
   $('.popup-cover').css('display', 'none');
   $('.bonus-round-intro').css('display', 'none');
-  $('header').html('<h1 class="bonus-round-header">BONUS ROUND</h1><h2 class="bonus-instructions">Choose 1 vowel and 3 consonants')
+  $('header').html('<h1 class="bonus-round-header">BONUS RoUND</h1><h2 class="bonus-instructions">Choose 1 vowel and 3 consonants')
   $('header').css('display', 'block');
   $('.bank-accts').css('bottom', '35px');
   domUpdates.displayWheel();
