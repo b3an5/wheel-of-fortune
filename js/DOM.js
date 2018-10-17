@@ -26,13 +26,27 @@ const domUpdates = {
     $('.popup-cover').css('display', 'none');
   },
 
-  displayNames(playerArray) {
-    $('.game-winner').text(playerArray[0].name);
-    $('.winning-score').text(playerArray[0].wallet);
-    $('.on-deck-name').text(playerArray[1].name);
-    $('.on-deck-score').text(playerArray[1].wallet);
-    $('.in-the-hole-name').text(playerArray[2].name);
-    $('.in-the-hole-score').text(playerArray[2].wallet);
+  displayNames(playerArray, index) {
+    $('.game-winner').text(playerArray[index].name);
+    $('.winning-score').text(playerArray[index].wallet);
+    if (index === 2) {
+      $('.on-deck-name').text(playerArray[0].name);
+      $('.on-deck-score').text(playerArray[0].wallet);
+      $('.in-the-hole-name').text(playerArray[1].name);
+      $('.in-the-hole-score').text(playerArray[1].wallet);
+    } else if (index === 1) {
+      $('.on-deck-name').text(playerArray[2].name);
+      $('.on-deck-score').text(playerArray[2].wallet);
+      $('.in-the-hole-name').text(playerArray[0].name);
+      $('.in-the-hole-score').text(playerArray[0].wallet);
+    } else {
+      $('.on-deck-name').text(playerArray[1].name);
+      $('.on-deck-score').text(playerArray[1].wallet);
+      $('.in-the-hole-name').text(playerArray[2].name);
+      $('.in-the-hole-score').text(playerArray[2].wallet);
+    }
+    
+      
   },
 
   displayWinner(winner, score) {

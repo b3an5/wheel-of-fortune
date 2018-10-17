@@ -21,7 +21,7 @@ $('.start-button').on('click', () => {
 
 function solvePuzzleHandler() {
   round = game.startRound();
-  domUpdates.displayNames(playerArray);
+  domUpdates.displayNames(playerArray, playerArrayIndex);
   if(game.bonusRound === true) {
     game.endGame();
     domUpdates.highlightVowels();
@@ -140,6 +140,7 @@ $('.keyboard-section').on('click', (event) => {
 function checkIfPuzzleSolved(currentTurn, players) {
   if (puzzle.completed) {
     playerArray = game.endRound(currentTurn, players, playerArrayIndex);
+    playerArrayIndex = playerArrayIndex;
     wheel.currentValue = 'CORRECT';
     domUpdates.yellCurrentSpin();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
