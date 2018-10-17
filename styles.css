@@ -97,7 +97,8 @@ h2 {
 .top-buttons,
 .start-button,
 .solve-popup button,
-.start-bonus-round {
+.start-bonus-round,
+.new-game {
   color: whitesmoke;
   letter-spacing: 2px;
   font-size: 1rem;
@@ -120,7 +121,8 @@ h2 {
 .top-buttons:hover,
 .start-button:hover,
 .solve-popup button:hover,
-.start-bonus-round:hover {
+.start-bonus-round:hover,
+.new-game:hover {
   cursor: pointer;
   transform: translateY(-1px);
   letter-spacing: 3px;
@@ -128,8 +130,8 @@ h2 {
   transition: .3s;
 }
 
-.guess-button {
-  margin: 0 75px;
+.solve-button {
+  margin: 0 65px;
 }
 
 .puzzle-section {

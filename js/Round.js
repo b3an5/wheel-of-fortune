@@ -25,7 +25,7 @@ class BonusRound extends Round {
     this.bonusWheel = data.bonusWheel;
     this.keyBoardClickCount = 0;
     this.didWinBonus = null;
-    this.bonusWheelValue;
+    this.bonusWheelValue = null;
     this.bonusPlayer = null;
   }
 
@@ -43,7 +43,7 @@ class BonusRound extends Round {
   }
 
   postBonusResult(winner) {
-    $('.popup-cover').css('display', 'flex');
+    $('.popup-cover').css('display', 'unset');
     $('.bonus-round-intro').css('display', 'flex');
     if (this.didWinBonus) {
       $('.win-message').text(` WINS THE BONUS!`);
@@ -53,12 +53,8 @@ class BonusRound extends Round {
       var winnings = this.bonusPlayer;
     }
     $('.winner-money-pre-bonus').text(winnings)
-    $('.start-bonus-round').text('NEW GAME');
-    $('.start-bonus-round').on('click', () => {
-      game.quitGame();
-      domUpdates.hideWheel();
-      $('.popup-cover').css('display', 'unset');
-    });
+    $('.start-bonus-round').remove();
+    $('.bonus-round-intro').append('<button class="new-game">NEW GAME</button>')
   }
 }
 
