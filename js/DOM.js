@@ -254,6 +254,21 @@ const domUpdates = {
     $('.winner-money-pre-bonus').text(score);
   },
 
+  startBonusRound() {
+    $('.popup-cover').css('display', 'none');
+    $('.bonus-round-intro').css('display', 'none');
+    $('header').html('<h1 class="bonus-round-header">BONUS RoUND</h1><h2 class="bonus-instructions">Choose 1 vowel and 3 consonants')
+    $('header').css('display', 'block');
+    $('.bank-accts').css('bottom', '35px');
+  },
+
+  resetGameDisplay() {
+    $('.spin-number').text('--');
+    $('.bonus-round-intro').css('display', 'none');
+    $('.popup-cover').css('display', 'none');
+    $('header').css('display', 'unset');
+    $('header').html('<header><div class="on-deck"><h2 class="on-deck-name">player 2</h2><h2 class="on-deck-score">2,000</h2></div><div class="at-bat"><h2 class="game-winner">player 1</h2><h2 class="winning-score">2,000</h2><button class="spin-button top-buttons">SPIN</button><button class="solve-button top-buttons">SOLVE</button><button class="vowel-button top-buttons">VOWEL</button></div><div class="in-the-hole"><h2 class="in-the-hole-name">player 3</h2><h2 class="in-the-hole-score">2,000</h2></div></header>');
+  }
 
 }
 
