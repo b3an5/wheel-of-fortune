@@ -6,6 +6,8 @@ chai.use(spies);
 global.domUpdates = require('../js/DOM.js');
 chai.spy.on(global.domUpdates, ['populatePuzzleSquares',
   'revealCorrectLetters'], () => true);
+global.$ = () => ['A', 'r', 'm', 'c', 'h', 'a', 'i', 'r'];
+
 
 
 describe('Puzzle', () => {
