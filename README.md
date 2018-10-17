@@ -4,7 +4,7 @@ This project is a web-based Wheel of Fortune game designed for three players whe
 
 ## To View Live:
 
-Either visit [this page]() to see the live site
+Either visit [this page](https://b3an5.github.io/wheel-of-fortune/) to see the live site
 
 ### or
 
