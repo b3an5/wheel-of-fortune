@@ -225,9 +225,9 @@ const domUpdates = {
   },
 
   clearBankAccts() {
-    $('.player1-ba-num').text('');
-    $('.player2-ba-num').text('');
-    $('.player3-ba-num').text('');
+    $('.player1-ba-num').text('0');
+    $('.player2-ba-num').text('0');
+    $('.player3-ba-num').text('0');
   },
 
   displayBonusIntro(winner, score) {
