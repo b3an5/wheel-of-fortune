@@ -72,6 +72,8 @@ const domUpdates = {
 
   populatePuzzleSquares(puzzle) {
     let letterBoxArray = Array.from($('.letter-content'));
+    let revealSound = new Audio('./audio/reveal.mp3');
+    revealSound.play();
     puzzle.forEach((letter, i) => {
      if (letter === '-' || letter === '&' || letter === '\'') {
         $(letterBoxArray[i]).text(letter);
