@@ -137,9 +137,9 @@ $('.keyboard-section').on('click', (event) => {
   }
 });
 
-function checkIfPuzzleSolved(currentTurn, playerArray) {
+function checkIfPuzzleSolved(currentTurn, players) {
   if (puzzle.completed) {
-    playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
+    playerArray = game.endRound(currentTurn, players, playerArrayIndex);
     wheel.currentValue = 'CORRECT';
     domUpdates.yellCurrentSpin();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
