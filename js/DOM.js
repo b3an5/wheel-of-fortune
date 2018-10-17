@@ -242,6 +242,9 @@ const domUpdates = {
     $('.player1-ba-num').text('0');
     $('.player2-ba-num').text('0');
     $('.player3-ba-num').text('0');
+    $('.player1-ba').text('P1: $');
+    $('.player2-ba').text('P2: $');
+    $('.player3-ba').text('P3: $')
   },
 
   displayBonusIntro(winner, score) {
