@@ -106,7 +106,7 @@ $('.spin-text').on('click', () => {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     } else {
       chooseSound.play();
-    };
+    }
   }, 2000);
   let spinSound = new Audio('./audio/spin.mp3');
   spinSound.play();
