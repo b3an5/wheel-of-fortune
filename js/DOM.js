@@ -26,7 +26,7 @@ const domUpdates = {
     $('.popup-cover').css('display', 'none');
   },
 
-  displayNames() {
+  displayNames(playerArray) {
     $('.game-winner').text(playerArray[0].name);
     $('.winning-score').text(playerArray[0].wallet);
     $('.on-deck-name').text(playerArray[1].name);

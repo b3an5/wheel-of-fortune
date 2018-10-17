@@ -21,7 +21,7 @@ $('.start-button').on('click', () => {
 
 function solvePuzzleHandler() {
   round = game.startRound();
-  domUpdates.displayNames();
+  domUpdates.displayNames(playerArray);
   if(game.bonusRound === true) {
     game.endGame();
     domUpdates.highlightVowels();
@@ -41,6 +41,7 @@ function solvePuzzleHandler() {
 
 $('.quit').on('click', () => {
   $('.vowel-error').css('display', 'none');
+  $('.spin-number').text('--')
   game.quitGame();
   playerArrayIndex = 0;
   playerArray = [];
@@ -58,14 +59,16 @@ $('.solve-input-button').on('click', (event) => {
   if (result) {
     playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
     if (game.round === 5) {
-      setTimeout(game.quitGame, 5000);
+      round.didWinBonus = true;
+      round.postBonusResult(game.winner);
     } else {
       setTimeout(solvePuzzleHandler, 2500);
     }
   } else {
     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     if (game.round === 5) {
-      setTimeout(game.quitGame, 5000);
+      round.didWinBonus = false;
+      round.postBonusResult(game.winner);
     }
   }
 });
@@ -141,7 +144,6 @@ function checkIfPuzzleSolved(currentTurn, playerArray) {
     domUpdates.yellCurrentSpin();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     setTimeout(solvePuzzleHandler, 2500);
-    domUpdates.displayNames();
   }
 }
 
@@ -159,8 +161,8 @@ $('.start-bonus-round').on('click', () => {
   $('.popup-cover').css('display', 'none');
   $('.bonus-round-intro').css('display', 'none');
   $('header').html('<h1 class="bonus-round-header">BONUS ROUND</h1><h2 class="bonus-instructions">Choose 1 vowel and 3 consonants')
-  $('header').css('display', 'block')
-  $('.bank-accts').css('bottom', '35px')
+  $('header').css('display', 'block');
+  $('.bank-accts').css('bottom', '35px');
   domUpdates.displayWheel();
   domUpdates.highlightVowels();
 });
