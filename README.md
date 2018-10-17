@@ -10,6 +10,6 @@ Either visit [this page]() to see the live site
 
 Run `git clone https://github.com/b3an5/wheel-of-fortune.git` in your terminal to copy locally
 
-![alt text](pics/game-pic)
+![alt text](pics/game-pic.png)
 
 ![alt text](pics/wheel-spin.gif)
