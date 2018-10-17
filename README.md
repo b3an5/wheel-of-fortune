@@ -27,4 +27,4 @@ Run `git clone https://github.com/b3an5/wheel-of-fortune.git` in your terminal t
   - https://github.com/b3an5
 - Jamie Rushford
   - https://github.com/jarushford
-- Link to pair DTR [here](https://gist.github.com/jarushford/fa3d748f09c5e7d82bd9ec605d16f533);
+- Link to pair DTR [here](https://gist.github.com/jarushford/fa3d748f09c5e7d82bd9ec605d16f533)
