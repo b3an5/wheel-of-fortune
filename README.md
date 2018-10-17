@@ -17,4 +17,6 @@ Run `git clone https://github.com/b3an5/wheel-of-fortune.git` in your terminal t
 
 ### Original Wireframe
 
+![alt text](pics/wireframe.jpg)
 
+#### And some button inspiration [here](https://dribbble.com/shots/4658149-Turn-me-on)
