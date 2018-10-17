@@ -122,6 +122,15 @@ const domUpdates = {
     });
   },
 
+  resetKeyboard() {
+    let keyboardLetters = Array.from($('.keyboard-letters'));
+    keyboardLetters.forEach(letter => {
+      if(!['A', 'E', 'I', 'O', 'U'].includes($(letter).text())) {
+        $(letter).removeClass('vowel');
+      }
+    });
+  },
+
   newPlayerTurn(array, index) {
     $('.game-winner').text(array[index].name);
     $('.winning-score').text(array[index].wallet);
@@ -219,6 +228,13 @@ const domUpdates = {
     $('.player1-ba-num').text('');
     $('.player2-ba-num').text('');
     $('.player3-ba-num').text('');
+  },
+
+  displayBonusIntro(winner, score) {
+    $('.popup-cover').css('display', 'unset');
+    $('.bonus-round-intro').css('display', 'flex');
+    $('.name-of-bonus-player').text(winner);
+    $('.winner-money-pre-bonus').text(score);
   },
 
 

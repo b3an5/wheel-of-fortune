@@ -94,7 +94,6 @@ $('.keyboard-section').on('click', (event) => {
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   let isEnabled = puzzle.checkIfConsonantEnabled(event);
   if (game.bonusRound === true) {
-    // currentTurn = game.winner;
     if (round.keyBoardClickCount === 0) {
       domUpdates.disableKeyboard();
       round.keyBoardClickCount++;
@@ -112,11 +111,17 @@ $('.keyboard-section').on('click', (event) => {
     } else if (isGuessCorrect) {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       checkIfPuzzleSolved(currentTurn, playerArray);
+      if (game.bonusRound === true) {
+        domUpdates.enableLetters();
+      }
       return;
     } else {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
       domUpdates.disableKeyboard();
+      if (game.bonusRound === true) {
+        domUpdates.enableLetters();
+      }
     }
   } else {
     if (isEnabled && isGuessCorrect) {
@@ -149,6 +154,20 @@ $('.vowel-button').on('click', () => {
     domUpdates.highlightVowels();
   }
 });
+
+$('.start-bonus-round').on('click', () => {
+  $('.popup-cover').css('display', 'none');
+  $('.bonus-round-intro').css('display', 'none');
+  $('header').html('<h1 class="bonus-round-header">BONUS ROUND</h1><h2 class="bonus-instructions">Choose 1 vowel and 3 consonants')
+  $('header').css('display', 'block')
+  $('.bank-accts').css('bottom', '35px')
+  domUpdates.displayWheel();
+  domUpdates.highlightVowels();
+});
+
+
+
+
 
 
 

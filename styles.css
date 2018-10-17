@@ -96,7 +96,8 @@ h2 {
 
 .top-buttons,
 .start-button,
-.solve-popup button {
+.solve-popup button,
+.start-bonus-round {
   color: whitesmoke;
   letter-spacing: 2px;
   font-size: 1rem;
@@ -118,7 +119,8 @@ h2 {
 
 .top-buttons:hover,
 .start-button:hover,
-.solve-popup button:hover {
+.solve-popup button:hover,
+.start-bonus-round:hover {
   cursor: pointer;
   transform: translateY(-1px);
   letter-spacing: 3px;
@@ -630,6 +632,55 @@ h2 {
   text-align: center;
   margin: 5px auto;
 }
+
+.bonus-round-intro {
+  z-index: 99;
+  position: absolute;
+  width: 500px;
+  height: 250px;
+  top: 100px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: #d8d8d8;
+  border: 5px solid grey;
+  border-radius: 15px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.bonus-round-intro h2 {
+  margin-bottom: 25px;
+}
+
+.name-of-bonus-player {
+  font-size: 2rem;
+}
+
+.bonus-round-header {
+  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-size: 6rem;
+  margin: 30px auto 20px;
+  width: 100%;
+}
+
+.bonus-instructions {
+  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+
 
 
 

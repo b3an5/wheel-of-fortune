@@ -1,6 +1,6 @@
 class Game {
   constructor() {
-    this.round = 0;
+    this.round = 4;
     this.bonusRound = false;
     this.players = {};
     this.puzzleKeys = Object.keys(data.puzzles);
@@ -43,13 +43,7 @@ class Game {
     this.players[winningPlayer.name] += winningPlayer.wallet;
     domUpdates.updateBankAccts(winningPlayer, index);
     domUpdates.displayWinner(winningPlayer.name, winningPlayer.wallet);
-      // return scoreReset;
-    if (this.round < 4) {
       return scoreReset;
-    } else if (this.round === 4) {
-      // endGame();
-      return scoreReset;
-    }
   }
 
   endGame() {
@@ -59,7 +53,8 @@ class Game {
     })[0];
     let winningScore = this.players[winner];
     this.winner = this.players[winner];
-    domUpdates.displayWinner(winner, winningScore);
+    domUpdates.displayBonusIntro(winner, winningScore);
+    // domUpdates.displayWinner(winner, winningScore);
   }
 
   quitGame() {
