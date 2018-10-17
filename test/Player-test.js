@@ -4,7 +4,8 @@ const Player = require('../js/Player.js');
 const spies = require('chai-spies');
 chai.use(spies);
 global.domUpdates = require('../js/DOM.js');
-chai.spy.on(global.domUpdates, ['highlightVowels', 'updateWallet', 'disableKeyboard'], () => true)
+chai.spy.on(global.domUpdates, ['highlightVowels', 'updateWallet',
+  'disableKeyboard'], () => true)
 
 describe('Player', () => {
 
@@ -32,5 +33,4 @@ describe('Player', () => {
     player.buyVowel();
     expect(player.wallet).to.equal(400);
   });
-
 });

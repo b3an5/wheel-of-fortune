@@ -19,7 +19,9 @@ class Puzzle {
   }
 
   checkIfConsonantEnabled(event) {
-    if ($(event.target).hasClass('disabled') || $(event.target).hasClass('temp-disabled') || $(event.target).hasClass('keyboard-section')) {
+    if ($(event.target).hasClass('disabled') ||
+    $(event.target).hasClass('temp-disabled') ||
+    $(event.target).hasClass('keyboard-section')) {
       return false;
     } else {
       domUpdates.disableGuessedLetter(event);
@@ -44,7 +46,6 @@ class Puzzle {
 
   countCorrectLetters(guess) {
     let numLetters = 0;
-    let puzzleArray = this.currentPuzzle.correct_answer.split('');
     let letterBoxArray = Array.from($('.letter-content'));
     letterBoxArray.forEach(box => {
       if ($(box).text().toUpperCase() === guess) {
@@ -82,9 +83,6 @@ class Puzzle {
     }
   }
 }
-
-
-
 
 
 if (typeof module !== 'undefined') {

@@ -10,6 +10,8 @@ var buzzer = new Audio('./audio/buzzer.mp3');
 let chooseSound = new Audio('./audio/choose.mp3');
 let ding = new Audio('./audio/ding.mp3');
 let theme = new Audio('./audio/theme.mp3');
+let solveSound = new Audio('./audio/solve.mp3');
+
 
 $('header').on('click', () => {
   theme.pause();
@@ -34,7 +36,7 @@ $('.start-button').on('click', () => {
 function solvePuzzleHandler() {
   round = game.startRound();
   domUpdates.displayNames(playerArray, playerArrayIndex);
-  if(game.bonusRound === true) {
+  if (game.bonusRound === true) {
     game.endGame();
     domUpdates.highlightVowels();
     puzzle = round.generateBonusPuzzle();
@@ -43,12 +45,12 @@ function solvePuzzleHandler() {
     puzzle = round.generatePuzzle();
     wheel = round.generateWheelValue();
   }
-    domUpdates.resetPuzzleSquares();
-    game.bonusRound ? puzzle.populateBonus(puzzle.puzzleLength) : 
-      puzzle.populateBoard();
-    domUpdates.updateCategory();
-    domUpdates.displayWheelValues();
-    domUpdates.newRoundKeyboard();
+  domUpdates.resetPuzzleSquares();
+  game.bonusRound ? puzzle.populateBonus(puzzle.puzzleLength) : 
+    puzzle.populateBoard();
+  domUpdates.updateCategory();
+  domUpdates.displayWheelValues();
+  domUpdates.newRoundKeyboard();
 }
 
 $('.quit').on('click', () => {
@@ -63,13 +65,12 @@ $('.spin-button').on('click', game.setUpWheel);
 
 $('.solve-button').on('click', domUpdates.displaySolvePopup);
 
-$('.solve-input-button').on('click', (event) => {
+$('.solve-input-button').on('click', () => {
   let currentTurn = playerArray[playerArrayIndex];
   let guess = $('.solve-input').val().toLowerCase();
   $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
-    let solveSound = new Audio('./audio/solve.mp3');
     solveSound.play();
     playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
     if (game.round === 5) {
@@ -105,7 +106,7 @@ $('.spin-text').on('click', () => {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     } else {
       chooseSound.play();
-    };
+    }
   }, 2000);
   let spinSound = new Audio('./audio/spin.mp3');
   spinSound.play();
@@ -122,8 +123,7 @@ $('.keyboard-section').on('click', (event) => {
     if (round.keyBoardClickCount === 0) {
       domUpdates.disableKeyboard();
       round.keyBoardClickCount++;
-    }
-    else if (round.keyBoardClickCount < 3) {
+    } else if (round.keyBoardClickCount < 3) {
       domUpdates.disableKeyboard();
       round.keyBoardClickCount++;
     } else {
@@ -166,9 +166,9 @@ $('.keyboard-section').on('click', (event) => {
 function checkIfPuzzleSolved(currentTurn, players) {
   if (puzzle.completed) {
     playerArray = game.endRound(currentTurn, players, playerArrayIndex);
-    playerArrayIndex = playerArrayIndex;
     wheel.currentValue = 'CORRECT';
     domUpdates.yellCurrentSpin();
+    solveSound.play();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     setTimeout(solvePuzzleHandler, 2500);
   }
@@ -196,9 +196,3 @@ $('.bonus-round-intro').on('click', (event) => {
     game.quitGame();
   }
 });
-
-
-
-
-
-

@@ -4,7 +4,10 @@ const Puzzle = require('../js/Puzzle.js');
 const spies = require('chai-spies');
 chai.use(spies);
 global.domUpdates = require('../js/DOM.js');
-chai.spy.on(global.domUpdates, ['populatePuzzleSquares', 'revealCorrectLetters'], () => true);
+chai.spy.on(global.domUpdates, ['populatePuzzleSquares',
+  'revealCorrectLetters'], () => true);
+global.$ = () => ['A', 'r', 'm', 'c', 'h', 'a', 'i', 'r'];
+
 
 
 describe('Puzzle', () => {
@@ -13,30 +16,31 @@ describe('Puzzle', () => {
 
   beforeEach(() => {
     puzzle = new Puzzle({  
-          category: 'Around The House',
-          number_of_words: 1,
-          total_number_of_letters: 8,
-          first_word: 8, 
-          description:'Location or object(s) found within a typical house.',
-          correct_answer: 'Armchair',
-        });
+      category: 'Around The House',
+      number_of_words: 1,
+      total_number_of_letters: 8,
+      first_word: 8,
+      description: 'Location or object(s) found within a typical house.',
+      correct_answer: 'Armchair',
+    });
   });
 
   it('should keep track of the current puzzle', () => {
     expect(puzzle.currentPuzzle).to.deep.equal({  
-          category: 'Around The House',
-          number_of_words: 1,
-          total_number_of_letters: 8,
-          first_word: 8, 
-          description:'Location or object(s) found within a typical house.',
-          correct_answer: 'Armchair',
-        });
+      category: 'Around The House',
+      number_of_words: 1,
+      total_number_of_letters: 8,
+      first_word: 8, 
+      description: 'Location or object(s) found within a typical house.',
+      correct_answer: 'Armchair',
+    });
   });
 
   it('should set up the board with the current puzzle', () => {
     puzzle.populateBoard();
     expect(domUpdates.populatePuzzleSquares).to.have.been.called(1);
-    expect(domUpdates.populatePuzzleSquares).to.have.been.called.with(['A', 'r', 'm', 'c', 'h', 'a', 'i', 'r']);
+    expect(domUpdates.populatePuzzleSquares).to.have.been.called.with(
+      ['A', 'r', 'm', 'c', 'h', 'a', 'i', 'r']);
   });
 
   it('should be able to check whether a guess is correct', () => {
@@ -70,7 +74,6 @@ describe('Puzzle', () => {
     puzzle.checkCompletion();
     expect(puzzle.completed).to.equal(true);
   });
-
 });
 
 

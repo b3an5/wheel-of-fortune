@@ -17,10 +17,12 @@ class Game {
   startRound() {
     this.round++;
     let roundIndex = this.round - 1;
+    let bonusRoundPuzzles = this.puzzleKeys[roundIndex - 1];
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
     if (this.round === 5) {
       this.bonusRound = true;
-      return new BonusRound(data.puzzles[this.puzzleKeys[roundIndex - 1]].puzzle_bank, data.bonusWheel);
+      return new BonusRound(data.puzzles[bonusRoundPuzzles].puzzle_bank,
+        data.bonusWheel);
     } else {
       return new Round(data.puzzles[puzzleKeyIndex].puzzle_bank, data.wheel);
     }
@@ -77,8 +79,8 @@ class Game {
     return wheel.currentValue;
   }
 
-
 }
+
 
 if (typeof module !== 'undefined') {
   module.exports = Game;

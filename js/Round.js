@@ -30,7 +30,7 @@ class BonusRound extends Round {
   }
 
   generateBonusWheel() {
-    let wheelVals = data.bonusWheel;
+    let wheelVals = [];
     for (var i = 0; i < 6; i++) {
       wheelVals.push(data.bonusWheel[i]);
     }
@@ -42,7 +42,7 @@ class BonusRound extends Round {
     return new Puzzle(this.puzzleBank[randomIndex]);
   }
 
-  postBonusResult(winner) {
+  postBonusResult() {
     $('.popup-cover').css('display', 'unset');
     $('.bonus-round-intro').css('display', 'flex');
     if (this.didWinBonus) {
