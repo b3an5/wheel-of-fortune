@@ -26,13 +26,27 @@ const domUpdates = {
     $('.popup-cover').css('display', 'none');
   },
 
-  displayNames() {
-    $('.game-winner').text(playerArray[0].name);
-    $('.winning-score').text(playerArray[0].wallet);
-    $('.on-deck-name').text(playerArray[1].name);
-    $('.on-deck-score').text(playerArray[1].wallet);
-    $('.in-the-hole-name').text(playerArray[2].name);
-    $('.in-the-hole-score').text(playerArray[2].wallet);
+  displayNames(playerArray, index) {
+    $('.game-winner').text(playerArray[index].name);
+    $('.winning-score').text(playerArray[index].wallet);
+    if (index === 2) {
+      $('.on-deck-name').text(playerArray[0].name);
+      $('.on-deck-score').text(playerArray[0].wallet);
+      $('.in-the-hole-name').text(playerArray[1].name);
+      $('.in-the-hole-score').text(playerArray[1].wallet);
+    } else if (index === 1) {
+      $('.on-deck-name').text(playerArray[2].name);
+      $('.on-deck-score').text(playerArray[2].wallet);
+      $('.in-the-hole-name').text(playerArray[0].name);
+      $('.in-the-hole-score').text(playerArray[0].wallet);
+    } else {
+      $('.on-deck-name').text(playerArray[1].name);
+      $('.on-deck-score').text(playerArray[1].wallet);
+      $('.in-the-hole-name').text(playerArray[2].name);
+      $('.in-the-hole-score').text(playerArray[2].wallet);
+    }
+    
+      
   },
 
   displayWinner(winner, score) {
@@ -73,6 +87,14 @@ const domUpdates = {
     });
   },
 
+  showBonusLetters(length) {
+    let letterBoxArray = Array.from($('.letter-content'));
+    for (let i = 0; i < 7; i++) {
+      let rand = Math.floor(Math.random() * length);
+      $(letterBoxArray[rand]).css('opacity', 1);
+    }
+  },
+
   newRoundKeyboard() {
     let keyboardLetters = Array.from($('.keyboard-letters'));
     keyboardLetters.forEach(letter => {
@@ -82,6 +104,7 @@ const domUpdates = {
         $(letter).removeClass('vowel-disabled');
       }
     });
+    this.resetVowels();
   },
 
   resetPuzzleSquares() {
@@ -100,6 +123,17 @@ const domUpdates = {
 
   revealCorrectLetters(box) {
     $(box).css('opacity', 1);
+  },
+
+  resetVowels() {
+    let keyboardLetters = Array.from($('.keyboard-letters'));
+    keyboardLetters.forEach(letter => {
+      if($(letter).hasClass('vowel')) {
+        $(letter).removeClass('vowel-disabled');
+        $(letter).removeClass('active-vowel');
+        $(letter).addClass('temp-disabled');
+        }
+    });
   },
 
   resetKeyboard() {
@@ -204,6 +238,37 @@ const domUpdates = {
     $(`.player${i+1}-ba-num`).text(winner.wallet);
   },
 
+  clearBankAccts() {
+    $('.player1-ba-num').text('0');
+    $('.player2-ba-num').text('0');
+    $('.player3-ba-num').text('0');
+    $('.player1-ba').text('P1: $');
+    $('.player2-ba').text('P2: $');
+    $('.player3-ba').text('P3: $')
+  },
+
+  displayBonusIntro(winner, score) {
+    $('.popup-cover').css('display', 'unset');
+    $('.bonus-round-intro').css('display', 'flex');
+    $('.name-of-bonus-player').text(winner);
+    $('.winner-money-pre-bonus').text(score);
+  },
+
+  startBonusRound() {
+    $('.popup-cover').css('display', 'none');
+    $('.bonus-round-intro').css('display', 'none');
+    $('header').html('<h1 class="bonus-round-header">BONUS RoUND</h1><h2 class="bonus-instructions">Choose 1 vowel and 3 consonants')
+    $('header').css('display', 'block');
+    $('.bank-accts').css('bottom', '35px');
+  },
+
+  resetGameDisplay() {
+    $('.spin-number').text('--');
+    $('.bonus-round-intro').css('display', 'none');
+    $('.popup-cover').css('display', 'none');
+    $('header').css('display', 'unset');
+    $('header').html('<header><div class="on-deck"><h2 class="on-deck-name">player 2</h2><h2 class="on-deck-score">2,000</h2></div><div class="at-bat"><h2 class="game-winner">player 1</h2><h2 class="winning-score">2,000</h2><button class="spin-button top-buttons">SPIN</button><button class="solve-button top-buttons">SOLVE</button><button class="vowel-button top-buttons">VOWEL</button></div><div class="in-the-hole"><h2 class="in-the-hole-name">player 3</h2><h2 class="in-the-hole-score">2,000</h2></div></header>');
+  }
 
 }
 

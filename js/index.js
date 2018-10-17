@@ -8,6 +8,8 @@ let playerArrayIndex = 0;
 
 $('.start-button').on('click', () => {
   game = new Game();
+  playerArrayIndex = 0;
+  playerArray = [];
   let gamePlayers = game.init();
   const nameKeys = Object.keys(gamePlayers);
   nameKeys.forEach(key => {
@@ -18,19 +20,28 @@ $('.start-button').on('click', () => {
 });
 
 function solvePuzzleHandler() {
-  domUpdates.displayNames();
   round = game.startRound();
-  puzzle = round.generatePuzzle();
-  domUpdates.resetPuzzleSquares();
-  puzzle.populateBoard();
-  wheel = round.generateWheelValue();
-  domUpdates.updateCategory();
-  domUpdates.displayWheelValues();
-  domUpdates.newRoundKeyboard();
+  domUpdates.displayNames(playerArray, playerArrayIndex);
+  if(game.bonusRound === true) {
+    game.endGame();
+    domUpdates.highlightVowels();
+    puzzle = round.generateBonusPuzzle();
+    wheel = round.generateBonusWheel();
+  } else {
+    puzzle = round.generatePuzzle();
+    wheel = round.generateWheelValue();
+  }
+    domUpdates.resetPuzzleSquares();
+    game.bonusRound ? puzzle.populateBonus(puzzle.puzzleLength) : 
+      puzzle.populateBoard();
+    domUpdates.updateCategory();
+    domUpdates.displayWheelValues();
+    domUpdates.newRoundKeyboard();
 }
 
 $('.quit').on('click', () => {
   $('.vowel-error').css('display', 'none');
+  $('.spin-number').text('--');
   game.quitGame();
   playerArrayIndex = 0;
   playerArray = [];
@@ -47,9 +58,18 @@ $('.solve-input-button').on('click', (event) => {
   let result = puzzle.solvePuzzle(guess);
   if (result) {
     playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
-    setTimeout(solvePuzzleHandler, 2500);
+    if (game.round === 5) {
+      round.didWinBonus = true;
+      round.postBonusResult(game.winner);
+    } else {
+      setTimeout(solvePuzzleHandler, 2500);
+    }
   } else {
     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+    if (game.round === 5) {
+      round.didWinBonus = false;
+      round.postBonusResult(game.winner);
+    }
   }
 });
 
@@ -76,17 +96,35 @@ $('.keyboard-section').on('click', (event) => {
   let currentGuess = $(event.target).text();
   let isGuessCorrect = puzzle.checkGuess(currentGuess);
   let isEnabled = puzzle.checkIfConsonantEnabled(event);
+  if (game.bonusRound === true) {
+    if (round.keyBoardClickCount === 0) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    }
+    else if (round.keyBoardClickCount < 3) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    } else {
+      domUpdates.displaySolvePopup();
+    }
+  }
   if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
     if (!$(event.target).hasClass('active-vowel')) {
       return;
     } else if (isGuessCorrect) {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       checkIfPuzzleSolved(currentTurn, playerArray);
+      if (game.bonusRound === true) {
+        domUpdates.enableLetters();
+      }
       return;
     } else {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
       domUpdates.disableKeyboard();
+      if (game.bonusRound === true) {
+        domUpdates.enableLetters();
+      }
     }
   } else {
     if (isEnabled && isGuessCorrect) {
@@ -99,14 +137,14 @@ $('.keyboard-section').on('click', (event) => {
   }
 });
 
-function checkIfPuzzleSolved(currentTurn, playerArray) {
+function checkIfPuzzleSolved(currentTurn, players) {
   if (puzzle.completed) {
-    playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
+    playerArray = game.endRound(currentTurn, players, playerArrayIndex);
+    playerArrayIndex = playerArrayIndex;
     wheel.currentValue = 'CORRECT';
     domUpdates.yellCurrentSpin();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     setTimeout(solvePuzzleHandler, 2500);
-    domUpdates.displayNames();
   }
 }
 
@@ -119,6 +157,22 @@ $('.vowel-button').on('click', () => {
     domUpdates.highlightVowels();
   }
 });
+
+$('.start-bonus-round').on('click', () => {
+  domUpdates.startBonusRound();
+  domUpdates.displayWheel();
+  domUpdates.highlightVowels();
+});
+
+$('.bonus-round-intro').on('click', (event) => {
+  if ($(event.target).hasClass('new-game')) {
+    domUpdates.resetGameDisplay();
+    game.quitGame();
+  }
+});
+
+
+
 
 
 

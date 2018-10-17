@@ -4,6 +4,7 @@ class Game {
     this.bonusRound = false;
     this.players = {};
     this.puzzleKeys = Object.keys(data.puzzles);
+    this.winner = null;
   }
 
   init() {
@@ -19,7 +20,7 @@ class Game {
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
     if (this.round === 5) {
       this.bonusRound = true;
-      return new BonusRound();
+      return new BonusRound(data.puzzles[this.puzzleKeys[roundIndex - 1]].puzzle_bank, data.bonusWheel);
     } else {
       return new Round(data.puzzles[puzzleKeyIndex].puzzle_bank, data.wheel);
     }
@@ -49,7 +50,9 @@ class Game {
       return this.players[b] - this.players[a];
     })[0];
     let winningScore = this.players[winner];
-    domUpdates.displayWinner(winner, winningScore);
+    this.winner = this.players[winner];
+    round.bonusPlayer = this.winner;
+    domUpdates.displayBonusIntro(winner, winningScore);
   }
 
   quitGame() {
@@ -57,6 +60,7 @@ class Game {
     domUpdates.goToHomeScreen();
     domUpdates.resetPuzzleSquares();
     domUpdates.resetKeyboard();
+    domUpdates.clearBankAccts();
   }
 
   setUpWheel() {
@@ -67,6 +71,9 @@ class Game {
   tearDownWheel() {
     domUpdates.hideWheel();
     wheel.grabSpinValue();
+    if (this.bonusRound) {
+      round.bonusWheelValue = wheel.currentValue;
+    }
     return wheel.currentValue;
   }
 
