@@ -6,6 +6,15 @@ let wheel;
 let playerArray = [];
 let playerArrayIndex = 0;
 
+var buzzer = new Audio('./audio/buzzer.mp3');
+let chooseSound = new Audio('./audio/choose.mp3');
+let ding = new Audio('./audio/ding.mp3');
+let theme = new Audio('./audio/theme.mp3');
+
+$('header').on('click', () => {
+  theme.pause();
+})
+
 $('.start-button').on('click', () => {
   game = new Game();
   playerArrayIndex = 0;
@@ -17,6 +26,9 @@ $('.start-button').on('click', () => {
     playerArray.push(newPlayer);
   });
   solvePuzzleHandler();
+  setTimeout(() => {
+    theme.play()
+  }, 1000);
 });
 
 function solvePuzzleHandler() {
@@ -57,6 +69,8 @@ $('.solve-input-button').on('click', (event) => {
   $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
+    let solveSound = new Audio('./audio/solve.mp3');
+    solveSound.play();
     playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
     if (game.round === 5) {
       round.didWinBonus = true;
@@ -66,6 +80,7 @@ $('.solve-input-button').on('click', (event) => {
     }
   } else {
     playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+    buzzer.play();
     if (game.round === 5) {
       round.didWinBonus = false;
       round.postBonusResult(game.winner);
@@ -84,13 +99,20 @@ $('.spin-text').on('click', () => {
     if (spinResult === 'LOSE A TURN') {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     } else if (spinResult === 'BANKRUPT') {
+      let bankrupt = new Audio('./audio/bankr.mp3');
+      bankrupt.play();
       currentTurn.wallet = 0;
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
-    }
+    } else {
+      chooseSound.play();
+    };
   }, 2000);
+  let spinSound = new Audio('./audio/spin.mp3');
+  spinSound.play();
 });
 
 $('.keyboard-section').on('click', (event) => {
+  chooseSound.pause();
   $('.vowel-error').css('display', 'none');
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
@@ -114,6 +136,7 @@ $('.keyboard-section').on('click', (event) => {
     } else if (isGuessCorrect) {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       checkIfPuzzleSolved(currentTurn, playerArray);
+      ding.play();
       if (game.bonusRound === true) {
         domUpdates.enableLetters();
       }
@@ -122,6 +145,7 @@ $('.keyboard-section').on('click', (event) => {
       puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
       domUpdates.disableKeyboard();
+      buzzer.play();
       if (game.bonusRound === true) {
         domUpdates.enableLetters();
       }
@@ -131,8 +155,10 @@ $('.keyboard-section').on('click', (event) => {
       puzzle.countCorrectLetters(currentGuess);
       currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
       checkIfPuzzleSolved(currentTurn, playerArray);
+      ding.play();
     } else if (isEnabled && !isGuessCorrect) {
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
+      buzzer.play();
     }
   }
 });
