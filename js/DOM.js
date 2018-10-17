@@ -90,6 +90,7 @@ const domUpdates = {
         $(letter).removeClass('vowel-disabled');
       }
     });
+    this.resetVowels();
   },
 
   resetPuzzleSquares() {
@@ -110,12 +111,14 @@ const domUpdates = {
     $(box).css('opacity', 1);
   },
 
-  resetKeyboard() {
+  resetVowels() {
     let keyboardLetters = Array.from($('.keyboard-letters'));
     keyboardLetters.forEach(letter => {
-      if(!['A', 'E', 'I', 'O', 'U'].includes($(letter).text())) {
-        $(letter).removeClass('vowel');
-      }
+      if($(letter).hasClass('vowel')) {
+        $(letter).removeClass('vowel-disabled');
+        $(letter).removeClass('active-vowel');
+        $(letter).addClass('temp-disabled');
+        }
     });
   },
 
