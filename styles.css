@@ -16,14 +16,14 @@ body {
 }
 
 body::before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: -1;
+  bottom: 0;
   content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
 }
 
 .title {
@@ -31,8 +31,8 @@ body::before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 5rem;
-  text-align: center;
   margin: 20px auto 10px;
+  text-align: center;
 }
 
 .title:hover,
@@ -47,34 +47,34 @@ header {
 }
 
 header div {
-  text-align: center;
   background-color: #d8d8d8;
-  width: 90%;
-  margin: 0 auto;
-  border: 5px solid grey;
   border-radius: 15px;
+  border: 5px solid grey;
+  margin: 0 auto;
+  text-align: center;
+  width: 90%;
 }
 
 .in-the-hole {
-  margin-right: 0px;
-  height: 6rem;
-  margin-top: 6rem;
   font-size: .8rem;
+  height: 6rem;
+  margin-right: 0px;
+  margin-top: 6rem;
 }
 
 .on-deck {
-  margin-left: 0px;
-  height: 6rem;
-  margin-top: 6rem;
   font-size: .8rem;
+  height: 6rem;
+  margin-left: 0px;
+  margin-top: 6rem;
 }
 
 .at-bat {
-  width: 40rem;
+  box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
+  font-size: 1.3rem;
   height: 10rem;
   margin-bottom: 2rem;
-  font-size: 1.3rem;
-  box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
+  width: 40rem;
 }
 
 .game-winner {
@@ -99,23 +99,23 @@ h2 {
 .solve-popup button,
 .start-bonus-round,
 .new-game {
-  color: whitesmoke;
-  letter-spacing: 2px;
-  font-size: 1rem;
-  font-weight: bold;
-  padding-top: 3px;
-  text-shadow: 0 .5px 1px rgba(50, 50, 50, .5);
-  width: 150px;
-  height: 50px;
-  border-radius: 50px;
   background: linear-gradient(#eeb32e, #da8b1a);
   border: 2px solid #c17717;
   border-left-width: 0;
+  border-radius: 50px;
   border-right-width: 0;
   border-top: none;
   box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
-  transition: .3s;
+  color: whitesmoke;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 50px;
+  letter-spacing: 2px;
   outline: none;
+  padding-top: 3px;
+  text-shadow: 0 .5px 1px rgba(50, 50, 50, .5);
+  transition: .3s;
+  width: 150px;
 }
 
 .top-buttons:hover,
@@ -123,10 +123,10 @@ h2 {
 .solve-popup button:hover,
 .start-bonus-round:hover,
 .new-game:hover {
-  cursor: pointer;
-  transform: translateY(-1px);
-  letter-spacing: 3px;
   color: white;
+  cursor: pointer;
+  letter-spacing: 3px;
+  transform: translateY(-1px);
   transition: .3s;
 }
 
@@ -135,11 +135,11 @@ h2 {
 }
 
 .puzzle-section {
-  background-color: rgba(0, 0, 0, 0.65);
-  height: 250px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  height: 250px;
+  justify-content: center;
   position: relative;
 }
 
@@ -151,13 +151,13 @@ h2 {
 }
 
 .letter-container {
-  height: 56px;
+  align-items: center;
   background-color: #1c7455;
   border: 2px solid rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 2.5rem;
+  height: 56px;
+  justify-content: center;
   padding-top: 5px;
 }
 
@@ -167,29 +167,29 @@ h2 {
 
 .keyboard-section {
   display: grid;
+  font-size: 1.5rem;
   grid-template-columns: repeat(13, 1fr);
   height: 100px;
-  width: 65%;
-  font-size: 1.5rem;
   margin: 20px auto;
+  width: 65%;
 }
 
 .keyboard-letters {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  text-shadow: 0 1px 1px rgba(50, 50, 50, .5);
   background: linear-gradient(#17b4e3, #277cc9);
   border: 2px solid #246ab2;
   border-left-width: 0;
+  border-radius: 50px;
   border-right-width: 0;
   border-top: none;
   box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 50px;
-  padding-top: 5px; 
+  display: flex;
+  justify-content: center;
   margin: 2px;
-  width: 95%;
+  padding-top: 5px; 
   position: relative;
+  text-shadow: 0 1px 1px rgba(50, 50, 50, .5);
+  width: 95%;
 }
 
 .keyboard-letters:hover {
@@ -218,19 +218,19 @@ h2 {
 }
 
 .active-vowel {
-  text-shadow: 0 1px 1px rgba(50, 50, 50, .5);
   background: linear-gradient(#51ef88, #3ed673);
   border: 2px solid #2eaa59;
   border-left-width: 0;
+  border-radius: 50px;
   border-right-width: 0;
   border-top: none;
   box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 50px;
-  padding-top: 5px; 
   margin: 2px;
-  width: 95%;
+  padding-top: 5px; 
   position: relative;
+  text-shadow: 0 1px 1px rgba(50, 50, 50, .5);
   transition: .2s;
+  width: 95%;
 }
 
 .active-vowel:hover {
@@ -244,63 +244,63 @@ h2 {
 }
 
 .quit {
-  display: flex;
-  justify-content: center;
   align-items: center;
   background-color: #17b4e3;
   border: 2px solid #246ab2;
   border-left-width: 0;
+  border-radius: 10px;
   border-right-width: 0;
   border-top: none;
-  box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  width: 50px;
-  height: 125px;
-  position: absolute;
   bottom: -133px;
+  box-shadow: 0px 3px 11px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  height: 125px;
+  justify-content: center;
   left: 20px;
+  position: absolute;
   transition: .35s;
+  width: 50px;
 }
 
 .quit:hover {
-  cursor: pointer;
   background-color: tomato;
   border-color: darkred;
+  cursor: pointer;
   transition: .35s;
 }
 
 .quit-text {
-  writing-mode: vertical-lr;
-  text-orientation: upright;
   font-size: 1.5rem;
+  text-orientation: upright;
+  writing-mode: vertical-lr;
 }
 
 .wheel {
-  display: none;
-  width: 800px;
-  height: 600px;
-  position: absolute;
-  top: 60px;
-  left: 0;
-  right: 0;
-  z-index: 6;
-  margin: 0 auto;
   background: linear-gradient(150deg, #38383a, #252122);
   border-radius: 15px;
   box-shadow: 5px 5px 5px 0px black;
+  display: none;
+  height: 600px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 60px;
+  width: 800px;
+  z-index: 6;
 }
 
 
 .wheel-circle {
-  clip-path: circle(50%);
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  height: 525px;
-  width: 525px;
   background: lightblue;
+  clip-path: circle(50%);
+  height: 525px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  width: 525px;
 }
 
 .wheel-spin {
@@ -308,18 +308,17 @@ h2 {
 }
 
 .wheel-option {
+  clip-path: polygon(0% 87%, 50% 0%, 50% 0%, 100% 87%);
+  height: 350px;
   position: absolute;
   width: 350px;
-  height: 350px;
-  clip-path: polygon(0% 87%, 50% 0%, 50% 0%, 100% 87%);
 }
 
 .q-mark {
-  z-index: 7;
-  position: absolute;
   font-size: 1.8rem;
+  position: absolute;
   writing-mode: vertical-lr;
-  /*text-orientation: upright;*/
+  z-index: 7;
 }
 
 .mark1 {
@@ -428,72 +427,72 @@ h2 {
 }
 
 .spin-text {
-  cursor: pointer;
-  position: absolute;
-  bottom: 65px;
-  left: 101px;
-  transform: rotate(-38deg);
-  font-size: 2rem;
-  color: lightgrey;
-  background-color: #666666;
-  -webkit-background-clip: text;
   -moz-background-clip: text;
+  -webkit-background-clip: text;
   background-clip: text;
+  background-color: #666666;
+  bottom: 65px;
+  color: lightgrey;
   color: transparent;
+  cursor: pointer;
+  font-size: 2rem;
+  left: 101px;
+  position: absolute;
   text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+  transform: rotate(-38deg);
 }
 
 .arrow {
-  cursor: pointer;
-  position: absolute;
   bottom: 60px;
-  left: 90px;
-  transform: rotate(-38deg);
   color: whitesmoke;
+  cursor: pointer;
   fill: currentColor;
+  left: 90px;
+  position: absolute;
+  transform: rotate(-38deg);
 }
 
 .popup-cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 3;
   background: rgba(0, 0, 0, 0.85);
+  bottom: 0;
   display: unset;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 3;
 }
 
 .home-screen {
-  position: absolute;
-  z-index: 4;
-  top: 50px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
   align-items: center;
-  flex-direction: column;
-  margin: 0 auto;
-  padding-top: 330px;
-  padding-bottom: 20px;
-  border-radius: 15px;
-  width: 900px;
-  height: 600px;
   background: url(./pics/home-background.jpg);
-  background-size: cover;
   background-position: center;
+  background-size: cover;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  justify-content: space-around;
+  left: 0;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  padding-top: 330px;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 900px;
+  z-index: 4;
 }
 
 .name-input {
-  width: 200px;
-  height: 40px;
   border-radius: 15px;
   border: 4px solid #eeb32e;
-  padding-left: 8px;
-  outline: none;
-  font-size: 1.1rem;
   box-shadow: 0px 5px 11px 5px rgba(0, 0, 0, 0.7);
+  font-size: 1.1rem;
+  height: 40px;
+  outline: none;
+  padding-left: 8px;
+  width: 200px;
 }
 
 .start-button {
@@ -501,15 +500,15 @@ h2 {
 }
 
 .current-spin-value, .hint {
-  position: absolute;
-  text-align: center;
   background-color: #641084;
-  width: 15%;
-  margin: 0 auto;
-  border: 5px solid grey;
   border-radius: 15px;
+  border: 5px solid grey;
   color: #eeb32e;
   font-size: 1.2rem;
+  margin: 0 auto;
+  position: absolute;
+  text-align: center;
+  width: 15%;
 }
 
 .current-spin-value {
@@ -526,14 +525,14 @@ h2 {
 }
 
 .spin-number {
-  font-size: 1.5rem;
   color: #da8b1a;
+  font-size: 1.5rem;
   text-shadow: 0px 0px 1px #da8b1a;
 }
 
 .hint-value {
-  font-size: 1.3rem;
   color: #da8b1a;
+  font-size: 1.3rem;
   text-shadow: 0px 0px 1px #da8b1a;
 }
 
@@ -543,26 +542,26 @@ h2 {
 }
 
 .vowel-error {
-  position: absolute;
-  font-size: .7rem;
-  top: -22px;
-  text-align: center;
   background-color: #d8d8d8;
-  border: 5px solid grey;
   border-radius: 15px;
+  border: 5px solid grey;
   color: darkred;
-  width: 450px;
   display: none;
+  font-size: .7rem;
+  position: absolute;
+  text-align: center;
+  top: -22px;
+  width: 450px;
 }
 
 .yell-box {
-  justify-content: center;
   align-items: center;
-  position: absolute;
-  font-size: 0rem;
-  top: -22px;
   color: tomato;
+  font-size: 0rem;
+  justify-content: center;
+  position: absolute;
   text-shadow: 0px 0px 10px tomato;
+  top: -22px;
 }
 
 .yell-active {
@@ -579,33 +578,33 @@ h2 {
 }
 
 .solve-popup {
-  z-index: 2;
-  position: absolute;
+  align-items: center;
   background-color: #d8d8d8;
-  border: 5px solid grey;
   border-radius: 15px;
-  width: 650px;
-  height: 190px;
+  border: 5px solid grey;
   bottom: 10px;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
   display: none;
   flex-direction: column;
+  height: 190px;
   justify-content: space-around;
-  align-items: center;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 650px;
+  z-index: 2;
 }
 
 .solve-input {
-  height: 35px;
-  width: 300px;
   font-size: 1.2rem;
+  height: 35px;
   margin-bottom: 10px;
+  width: 300px;
 }
 
 .solve-popup h2 {
-  margin-bottom: 5px;
   font-size: 1.7rem;
+  margin-bottom: 5px;
 }
 
 .solve-popup button {
@@ -613,46 +612,46 @@ h2 {
 }
 
 .bank-accts {
-  position: absolute;
-  bottom: 20px;
-  right: 0;
-  width: 170px;
   background: #641084;
-  color: #eeb32e;
   border: 5px solid grey;
   border-radius: 15px;
+  bottom: 20px;
+  color: #eeb32e;
+  position: absolute;
+  right: 0;
+  width: 170px;
 }
 
 .bank-accts h3 {
-  text-align: center;
   font-size: .9rem;
   margin: 10px auto;
+  text-align: center;
 }
 
 .bank-accts h4 {
   font-size: .8rem;
-  text-align: center;
   margin: 5px auto;
+  text-align: center;
 }
 
 .bonus-round-intro {
-  z-index: 99;
-  position: absolute;
-  width: 500px;
-  height: 250px;
-  top: 100px;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  text-align: center;
+  align-items: center;
   background-color: #d8d8d8;
   border: 5px solid grey;
   border-radius: 15px;
   display: none;
   flex-direction: column;
+  height: 250px;
   justify-content: space-around;
-  align-items: center;
+  left: 0;
+  margin: 0 auto;
   padding-bottom: 20px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 100px;
+  width: 500px;
+  z-index: 99;
 }
 
 .bonus-round-intro h2 {
@@ -664,21 +663,21 @@ h2 {
 }
 
 .bonus-round-header {
-  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;
+  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   font-size: 6rem;
   margin: 30px auto 20px;
+  text-align: center;
   width: 100%;
 }
 
 .bonus-instructions {
-  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;
+  background: linear-gradient(to bottom, #eeb32e 0%, #da8b1a 100%);
   font-size: 1.5rem;
+  text-align: center;
   width: 100%;
 }
 

@@ -42,7 +42,7 @@ class BonusRound extends Round {
     return new Puzzle(this.puzzleBank[randomIndex]);
   }
 
-  postBonusResult(winner) {
+  postBonusResult() {
     $('.popup-cover').css('display', 'unset');
     $('.bonus-round-intro').css('display', 'flex');
     if (this.didWinBonus) {

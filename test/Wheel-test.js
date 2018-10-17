@@ -16,7 +16,8 @@ describe('Wheel Class', () => {
   });
 
   it('should start with an array of 6 values to choose from', () => {
-    expect(wheel.spinValues).to.deep.equal([500, 600, 600, 'BANKRUPT', 800, 2500])
+    expect(wheel.spinValues).to.deep.equal(
+      [500, 600, 600, 'BANKRUPT', 800, 2500]);
   });
 
   it('should be able to choose a random value when spun', () => {
@@ -24,5 +25,4 @@ describe('Wheel Class', () => {
     expect(wheel.spinValues).to.include(wheel.currentValue);
     expect(domUpdates.updateCurrentSpin).to.have.been.called(1);
   });
-
 });

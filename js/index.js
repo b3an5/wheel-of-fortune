@@ -22,7 +22,7 @@ $('.start-button').on('click', () => {
 function solvePuzzleHandler() {
   round = game.startRound();
   domUpdates.displayNames(playerArray, playerArrayIndex);
-  if(game.bonusRound === true) {
+  if (game.bonusRound === true) {
     game.endGame();
     domUpdates.highlightVowels();
     puzzle = round.generateBonusPuzzle();
@@ -31,12 +31,12 @@ function solvePuzzleHandler() {
     puzzle = round.generatePuzzle();
     wheel = round.generateWheelValue();
   }
-    domUpdates.resetPuzzleSquares();
-    game.bonusRound ? puzzle.populateBonus(puzzle.puzzleLength) : 
-      puzzle.populateBoard();
-    domUpdates.updateCategory();
-    domUpdates.displayWheelValues();
-    domUpdates.newRoundKeyboard();
+  domUpdates.resetPuzzleSquares();
+  game.bonusRound ? puzzle.populateBonus(puzzle.puzzleLength) : 
+    puzzle.populateBoard();
+  domUpdates.updateCategory();
+  domUpdates.displayWheelValues();
+  domUpdates.newRoundKeyboard();
 }
 
 $('.quit').on('click', () => {
@@ -51,7 +51,7 @@ $('.spin-button').on('click', game.setUpWheel);
 
 $('.solve-button').on('click', domUpdates.displaySolvePopup);
 
-$('.solve-input-button').on('click', (event) => {
+$('.solve-input-button').on('click', () => {
   let currentTurn = playerArray[playerArrayIndex];
   let guess = $('.solve-input').val().toLowerCase();
   $('.solve-input').val('');
@@ -100,8 +100,7 @@ $('.keyboard-section').on('click', (event) => {
     if (round.keyBoardClickCount === 0) {
       domUpdates.disableKeyboard();
       round.keyBoardClickCount++;
-    }
-    else if (round.keyBoardClickCount < 3) {
+    } else if (round.keyBoardClickCount < 3) {
       domUpdates.disableKeyboard();
       round.keyBoardClickCount++;
     } else {
@@ -140,7 +139,6 @@ $('.keyboard-section').on('click', (event) => {
 function checkIfPuzzleSolved(currentTurn, players) {
   if (puzzle.completed) {
     playerArray = game.endRound(currentTurn, players, playerArrayIndex);
-    playerArrayIndex = playerArrayIndex;
     wheel.currentValue = 'CORRECT';
     domUpdates.yellCurrentSpin();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
@@ -170,9 +168,3 @@ $('.bonus-round-intro').on('click', (event) => {
     game.quitGame();
   }
 });
-
-
-
-
-
-

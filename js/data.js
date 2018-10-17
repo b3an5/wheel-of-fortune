@@ -32,7 +32,7 @@ const data = {
     900
   ],
   bonusWheel: [
-  2000,
+  20000,
   3000,
   4000,
   5000,
@@ -816,7 +816,7 @@ const data = {
   }
 };
 
+
 if (typeof module !== 'undefined') {
   module.exports = data;
 }
-
