@@ -245,7 +245,8 @@ h2 {
   border: none;
 }
 
-.quit {
+.quit,
+.round-container {
   align-items: center;
   background-color: #17b4e3;
   border: 2px solid #246ab2;
@@ -264,6 +265,11 @@ h2 {
   width: 50px;
 }
 
+.round-container {
+  left: 80px;
+  width: 125px;
+}
+
 .quit:hover {
   background-color: tomato;
   border-color: darkred;
@@ -271,10 +277,23 @@ h2 {
   transition: .35s;
 }
 
-.quit-text {
+.quit-text,
+.round-text {
   font-size: 1.5rem;
   text-orientation: upright;
   writing-mode: vertical-lr;
+}
+
+.round-text {
+  text-align: center;
+  font-size: 1.1rem;
+  height: 100px;
+  margin-left: 20px;
+}
+
+.round-num {
+  font-size: 4rem;
+  margin-top: 11px;
 }
 
 .wheel {

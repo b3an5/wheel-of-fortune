@@ -16,6 +16,7 @@ class Game {
 
   startRound() {
     this.round++;
+    $('.round-num').text(this.round);
     let roundIndex = this.round - 1;
     let bonusRoundPuzzles = this.puzzleKeys[roundIndex - 1];
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
