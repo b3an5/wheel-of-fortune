@@ -6,7 +6,7 @@ let wheel;
 let playerArray = [];
 let playerArrayIndex = 0;
 
-var buzzer = new Audio('./audio/Buzzer.mp3');
+let buzzer = new Audio('./audio/Buzzer.mp3');
 let chooseSound = new Audio('./audio/choose.mp3');
 let ding = new Audio('./audio/Ding.mp3');
 let theme = new Audio('./audio/theme.mp3');
