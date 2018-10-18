@@ -55,6 +55,8 @@ function solvePuzzleHandler() {
 
 $('.quit').on('click', () => {
   $('.vowel-error').css('display', 'none');
+  $('.solve-popup').css('display', 'none');
+  $('.solve-input').val('');
   $('.spin-number').text('--');
   game.quitGame();
   playerArrayIndex = 0;

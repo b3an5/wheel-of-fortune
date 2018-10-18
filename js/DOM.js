@@ -231,6 +231,7 @@ const domUpdates = {
 
   displaySolvePopup() {
     $('.solve-popup').css('display', 'flex');
+    $('.solve-input').focus();
   },
 
   hideSolvePopup() {
