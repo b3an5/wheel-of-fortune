@@ -201,21 +201,21 @@ h2 {
 }
 
 .vowel {
-  background: #246ab2;
+  background: #1B5999;
   cursor: default;
 }
 
 .disabled,
 .temp-disabled,
 .vowel-disabled {
-  background: #246ab2;
+  background: #1B5999;
   cursor: default;
 }
 
 .vowel:hover,
 .disabled:hover,
 .temp-disabled:hover {
-  background: #246ab2;
+  background: #1B5999;
   cursor: default;
 }
 
@@ -324,40 +324,41 @@ h2 {
 }
 
 .mark1 {
-  right: 100px;
-  bottom: 15px;
+  right: 115px;
+  bottom: 2px;
   transform: rotate(-65deg);
-  height: 200px;
+  height: 221px;
 }
 
 .mark2 {
   right: 158px;
-  bottom: 105px;
+  bottom: 100px;
   transform: rotate(-180deg);
 }
 
 .mark3 {
-  right: 144px;
-  bottom: 114px;
-  transform: rotate(-182deg);
+  right: 162px;
+  bottom: 100px;
+  transform: rotate(-177deg);
 }
 
 .mark4 {
-  right: 153px;
-  bottom: 113px;
-  transform: rotate(-182deg);
+  right: 157px;
+  bottom: 98px;
+  transform: rotate(-181deg);
 }
 
 .mark5 {
-  right: 148px;
-  bottom: 105px;
-  transform: rotate(-190deg);
+  right: 157px;
+  bottom: 95px;
+  transform: rotate(-181deg);
 }
 
 .mark6 {
-  right: 152px;
-  bottom: 107px;
-  transform: rotate(-182deg);
+  right: 162px;
+  bottom: 98px;
+  transform: rotate(-178deg);
+  height: 221px;
 }
 
 .option1 {
