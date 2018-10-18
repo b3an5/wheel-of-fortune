@@ -12,7 +12,8 @@ body {
   background-size: cover; 
   font-family: 'Fortune';
   letter-spacing: 2px;
-  margin: 0; 
+  margin: 0 auto; 
+  max-width: 1400px;
 }
 
 body::before {
@@ -147,7 +148,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(14, 1fr);
   height: 225px;
-  width: 60%;
+  width: calc(600px + 6%);
 }
 
 .letter-container {
@@ -166,6 +167,7 @@ h2 {
 }
 
 .keyboard-section {
+  position: relative;
   display: grid;
   font-size: 1.5rem;
   grid-template-columns: repeat(13, 1fr);
@@ -615,10 +617,10 @@ h2 {
   background: #641084;
   border: 5px solid grey;
   border-radius: 15px;
-  bottom: 20px;
+  bottom: 0;
   color: #eeb32e;
   position: absolute;
-  right: 0;
+  right: -197px;
   width: 170px;
 }
 
