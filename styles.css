@@ -542,7 +542,7 @@ h2 {
 }
 
 .spin-number-header {
-  font-size: 2vw;
+  font-size: calc(.5vw + .65rem);
   text-shadow: 0px 0px 1px #eeb32e;
 }
 
@@ -559,7 +559,7 @@ h2 {
 }
 
 .hint-header{
-  font-size: 2vw;
+  font-size: calc(.5vw + .65rem);
   text-shadow: 0px 0px 1px #eeb32e;
 }
 

@@ -22,6 +22,7 @@ class Game {
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
     if (this.round === 5) {
       this.bonusRound = true;
+      $('.round-num').text('$');
       return new BonusRound(data.puzzles[bonusRoundPuzzles].puzzle_bank,
         data.bonusWheel);
     } else {
