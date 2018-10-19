@@ -14,7 +14,7 @@ let solveSound = new Audio('./audio/solve.mp3');
 
 
 $('header').on('click', () => {
-  theme.pause();
+  theme.volume = 0.4;
 })
 
 $('.start-button').on('click', () => {
@@ -55,6 +55,8 @@ function solvePuzzleHandler() {
 
 $('.quit').on('click', () => {
   $('.vowel-error').css('display', 'none');
+  $('.solve-popup').css('display', 'none');
+  $('.solve-input').val('');
   $('.spin-number').text('--');
   game.quitGame();
   playerArrayIndex = 0;
@@ -71,6 +73,8 @@ $('.solve-input-button').on('click', () => {
   $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
+    chooseSound.pause();
+    theme.play();
     solveSound.play();
     playerArray = game.endRound(currentTurn, playerArray, playerArrayIndex);
     if (game.round === 5) {
@@ -98,6 +102,7 @@ $('.spin-text').on('click', () => {
     domUpdates.yellCurrentSpin();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     if (spinResult === 'LOSE A TURN') {
+      buzz.play();
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     } else if (spinResult === 'BANKRUPT') {
       let bankrupt = new Audio('./audio/bankr.mp3');
@@ -105,7 +110,9 @@ $('.spin-text').on('click', () => {
       currentTurn.wallet = 0;
       playerArrayIndex = game.endTurn(playerArray, playerArrayIndex);
     } else {
+      theme.pause()
       chooseSound.play();
+      chooseSound.volume = 0.8;
     }
   }, 2000);
   let spinSound = new Audio('./audio/spin.mp3');
@@ -113,7 +120,7 @@ $('.spin-text').on('click', () => {
 });
 
 $('.keyboard-section').on('click', (event) => {
-  chooseSound.pause();
+  chooseSound.volume = 0.4;
   $('.vowel-error').css('display', 'none');
   let currentTurn = playerArray[playerArrayIndex];
   let currentGuess = $(event.target).text();
@@ -168,6 +175,8 @@ function checkIfPuzzleSolved(currentTurn, players) {
     playerArray = game.endRound(currentTurn, players, playerArrayIndex);
     wheel.currentValue = 'CORRECT';
     domUpdates.yellCurrentSpin();
+    chooseSound.pause();
+    theme.play();
     solveSound.play();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     setTimeout(solvePuzzleHandler, 2500);

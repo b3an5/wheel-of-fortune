@@ -16,11 +16,13 @@ class Game {
 
   startRound() {
     this.round++;
+    $('.round-num').text(this.round);
     let roundIndex = this.round - 1;
     let bonusRoundPuzzles = this.puzzleKeys[roundIndex - 1];
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
     if (this.round === 5) {
       this.bonusRound = true;
+      $('.round-num').text('$');
       return new BonusRound(data.puzzles[bonusRoundPuzzles].puzzle_bank,
         data.bonusWheel);
     } else {
