@@ -1,10 +1,4 @@
-import data from './data.js';
-import Game from './Game.js';
 import domUpdates from './DOM.js';
-import Player from './Player.js';
-import Round from './Round.js';
-import Wheel from './Wheel.js';
-
 
 class Puzzle {
   constructor(currentPuzzle) {

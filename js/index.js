@@ -1,19 +1,13 @@
-import data from './data.js';
 import Game from './Game.js';
 import domUpdates from './DOM.js';
-import Player from './Player.js';
-import Puzzle from './Puzzle.js';
-import Round from './Round.js';
-import BonusRound from './BonusRound.js';
-import Wheel from './Wheel.js';
 
-// let buzzer = new Audio('./audio/Buzzer.mp3');
-// let chooseSound = new Audio('./audio/choose.mp3');
-// let ding = new Audio('./audio/Ding.mp3');
-// let theme = new Audio('./audio/theme.mp3');
-// let solveSound = new Audio('./audio/solve.mp3');
-// let spinSound = new Audio('./audio/spin.mp3');
-// let bankrupt = new Audio('./audio/bankr.mp3');
+let buzzer = new Audio('./audio/Buzzer.mp3');
+let chooseSound = new Audio('./audio/choose.mp3');
+let ding = new Audio('./audio/Ding.mp3');
+let theme = new Audio('./audio/theme.mp3');
+let solveSound = new Audio('./audio/solve.mp3');
+let spinSound = new Audio('./audio/spin.mp3');
+let bankrupt = new Audio('./audio/bankr.mp3');
 
 let game = new Game();
 let round;
@@ -31,14 +25,14 @@ $('.start-bonus-round').on('click', startBonusHandler);
 $('.bonus-round-intro').on('click', newGameHandler);
 $('.keyboard-section').on('click', keyboardHandler);
 $('header').on('click', () => {
-  // theme.volume = 0.4;
+  theme.volume = 0.7;
 });
 
 function init() {
   game.getPlayers();
   newRoundHandler();
   setTimeout(() => {
-    // theme.play()
+    theme.play()
   }, 1000);
 }
 
@@ -77,9 +71,9 @@ function checkIfPuzzleSolved() {
   if (puzzle.completed) {
     game.endRound();
     domUpdates.yellCurrentSpin('CORRECT');
-    // chooseSound.pause();
-    // theme.play();
-    // solveSound.play();
+    chooseSound.pause();
+    theme.play();
+    solveSound.play();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     setTimeout(newRoundHandler, 2500);
   }
@@ -110,14 +104,14 @@ function solveHandler() {
   $('.solve-input').val('');
   let result = puzzle.solvePuzzle(guess);
   if (result) {
-    // chooseSound.pause();
-    // theme.play();
-    // solveSound.play();
+    chooseSound.pause();
+    theme.play();
+    solveSound.play();
     game.bonusRound ? solveBonusHandler(result) : null;
     game.endRound();
     setTimeout(newRoundHandler, 2500);
   } else {
-    // buzzer.play();
+    buzzer.play();
     game.bonusRound ? solveBonusHandler(result) : null;
     game.endTurn();
   }
@@ -134,7 +128,7 @@ function solveBonusHandler(result) {
 }
 
 function spinHandler() {
-  // spinSound.play();
+  spinSound.play();
   domUpdates.spinWheel();
   setTimeout(() => {
     game.tearDownWheel(wheel, round);
@@ -146,21 +140,21 @@ function spinHandler() {
 
 function badSpinHandler() {
   if (wheel.currentValue === 'LOSE A TURN') {
-    // buzz.play();
     game.endTurn();
+    buzz.play();
   } else if (wheel.currentValue === 'BANKRUPT') {
-    // bankrupt.play();
+    bankrupt.play();
     game.players[game.playerIndex].wallet = 0;
     game.endTurn();
   } else {
-    // theme.pause()
-    // chooseSound.play();
-    // chooseSound.volume = 0.8;
+    theme.pause()
+    chooseSound.play();
+    chooseSound.volume = 0.8;
   }
 }
 
 function keyboardHandler(e) {
-  // chooseSound.volume = 0.4;
+  chooseSound.volume = 0.7;
   $('.vowel-error').css('display', 'none');
   let currentTurn = game.players[game.playerIndex];
   let currentGuess = $(e.target).text();
@@ -185,11 +179,11 @@ function guessActiveVowel(currentGuess, currentTurn, e) {
   game.bonusRound ? domUpdates.enableLetters() : null;
   if (isGuessCorrect) {
     checkIfPuzzleSolved();
-    // ding.play();
+    ding.play();
   } else {
     game.endTurn();
-    // domUpdates.disableKeyboard();
-    // buzzer.play();
+    domUpdates.disableKeyboard();
+    buzzer.play();
   }
 }
 
@@ -201,11 +195,9 @@ function consonantGuessHandler(currentGuess, currentTurn, e) {
     puzzle.countCorrectLetters(currentGuess);
     currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
     checkIfPuzzleSolved();
-    // ding.play();
+    ding.play();
   } else if (isEnabled && !isGuessCorrect) {
     game.endTurn();
-    // buzzer.play();
+    buzzer.play();
   }
 }
-
-

@@ -1,10 +1,7 @@
 import data from './data.js';
 import domUpdates from './DOM.js';
-import Player from './Player.js';
-import Puzzle from './Puzzle.js';
 import Round from './Round.js';
 import BonusRound from './BonusRound.js';
-import Wheel from './Wheel.js';
 
 class Game {
   constructor() {

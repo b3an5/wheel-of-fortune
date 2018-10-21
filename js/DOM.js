@@ -1,21 +1,43 @@
 import Player from './Player.js';
 
-
 const domUpdates = {
 
   getPlayerNames() {
     let players = [];
-    players.push(new Player(`Player 1: ${$('.player1-name').val()}`));
-    players.push(new Player(`Player 2: ${$('.player2-name').val()}`));
-    players.push(new Player(`Player 3: ${$('.player3-name').val()}`));
-    if ($('.player1-name').val() &&
-     $('.player2-name').val() &&
-      $('.player3-name').val()) {
-      $('.player1-ba').text(`${$('.player1-name').val()}: $`);
-      $('.player2-ba').text(`${$('.player2-name').val()}: $`);
-      $('.player3-ba').text(`${$('.player3-name').val()}: $`);
-    }
+    players.push(this.getPlayerOne());
+    players.push(this.getPlayerTwo());
+    players.push(this.getPlayerThree());
     return players;
+  },
+
+  getPlayerOne() {
+    if ($('.player1-name').val()) {
+      var playerOne = new Player($('.player1-name').val());
+      $('.player1-ba').text(`${$('.player1-name').val()}: $`);
+    } else {
+      var playerOne = new Player('Player 1');
+    }
+    return playerOne;
+  },
+  
+  getPlayerTwo() {
+    if ($('.player2-name').val()) {
+      var playerTwo = new Player($('.player2-name').val());
+      $('.player2-ba').text(`${$('.player2-name').val()}: $`);
+    } else {
+      var playerTwo = new Player('Player 2');
+    }
+    return playerTwo;
+  },
+  
+  getPlayerThree() {
+    if ($('.player3-name').val()) {
+      var playerThree = new Player($('.player3-name').val());
+      $('.player3-ba').text(`${$('.player3-name').val()}: $`);
+    } else {
+      var playerThree = new Player('Player 3');
+    }
+    return playerThree;
   },
 
   clearInputs() {

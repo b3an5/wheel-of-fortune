@@ -1,9 +1,4 @@
-import data from './data.js';
-import Game from './Game.js';
 import domUpdates from './DOM.js';
-import Puzzle from './Puzzle.js';
-import Round from './Round.js';
-import Wheel from './Wheel.js';
 
 class Player {
   constructor(name) {
