@@ -11,10 +11,10 @@ class Wheel {
     this.currentValue = null;
   }
 
-  grabSpinValue(wheel) {
+  grabSpinValue() {
     let randomIndex = Math.floor(Math.random() * this.spinValues.length);
     this.currentValue = this.spinValues[randomIndex];
-    domUpdates.updateCurrentSpin(wheel);
+    domUpdates.updateCurrentSpin(this.currentValue);
   }
 }
 

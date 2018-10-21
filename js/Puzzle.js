@@ -72,7 +72,7 @@ class Puzzle {
     }
   }
 
-  solvePuzzle(guess, wheel) {
+  solvePuzzle(guess) {
     if (guess === this.currentPuzzle.correct_answer.toLowerCase()) {
       domUpdates.hideSolvePopup();
       domUpdates.yellCurrentSpin('CORRECT');

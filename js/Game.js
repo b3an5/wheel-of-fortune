@@ -42,7 +42,6 @@ class Game {
     this.playerIndex === 2 ? this.playerIndex = 0 : this.playerIndex++;
     domUpdates.newPlayerTurn(this.players, this.playerIndex);
     domUpdates.disableKeyboard();
-    return this.playerIndex;
   }
 
   endRound() {
@@ -55,13 +54,13 @@ class Game {
     });
   }
 
-  endGame(round) {
+  endGame() {
     let winner = this.players.sort((a, b) => {
       return this.players.bankAcct[b] - this.players.bankAcct[a];
     })[0];
     let winningScore = winner.bankAcct;
-    round.bonusPlayer = winner;
     domUpdates.displayBonusIntro(winner, winningScore);
+    return winner;
   }
 
   quitGame() {
@@ -79,11 +78,10 @@ class Game {
 
   tearDownWheel(wheel, round) {
     domUpdates.hideWheel();
-    wheel.grabSpinValue(wheel);
+    wheel.grabSpinValue();
     if (this.bonusRound) {
       round.bonusWheelValue = wheel.currentValue;
     }
-    return wheel.currentValue;
   }
 
 }

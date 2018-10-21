@@ -67,6 +67,11 @@ const domUpdates = {
     $('.wheel').toggleClass('slide-in');
   },
 
+  spinWheel() {
+    $('.vowel-error').css('display', 'none');
+    $('.wheel-circle').toggleClass('wheel-spin');
+  },
+
   hideWheel() {
     $('.popup-cover').css('display', 'none');
     $('.wheel').toggleClass('slide-in');
@@ -195,8 +200,8 @@ const domUpdates = {
     $('.winning-score').text(player.wallet);
   },
 
-  updateCurrentSpin(wheel) {
-    $('.spin-number').text(wheel.currentValue)
+  updateCurrentSpin(value) {
+    $('.spin-number').text(value)
   },
 
   yellCurrentSpin(value) {
@@ -296,6 +301,13 @@ const domUpdates = {
           <h2 class="in-the-hole-score">2,000</h2>
         </div>
       </header>`);
+  },
+
+  resetOnQuit() {
+    $('.vowel-error').css('display', 'none');
+    $('.solve-popup').css('display', 'none');
+    $('.solve-input').val('');
+    $('.spin-number').text('--');
   }
 
 }
