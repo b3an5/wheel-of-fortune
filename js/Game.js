@@ -1,3 +1,11 @@
+import data from './data.js';
+import domUpdates from './DOM.js';
+import Player from './Player.js';
+import Puzzle from './Puzzle.js';
+import Round from './Round.js';
+import BonusRound from './BonusRound.js';
+import Wheel from './Wheel.js';
+
 class Game {
   constructor() {
     this.round = 0;
@@ -48,7 +56,7 @@ class Game {
     return scoreReset;
   }
 
-  endGame() {
+  endGame(round) {
     const playerKeys = Object.keys(this.players);
     let winner = playerKeys.sort((a, b) => {
       return this.players[b] - this.players[a];
@@ -72,9 +80,9 @@ class Game {
     domUpdates.displayWheel();
   }
 
-  tearDownWheel() {
+  tearDownWheel(wheel, round) {
     domUpdates.hideWheel();
-    wheel.grabSpinValue();
+    wheel.grabSpinValue(wheel);
     if (this.bonusRound) {
       round.bonusWheelValue = wheel.currentValue;
     }
@@ -84,6 +92,4 @@ class Game {
 }
 
 
-if (typeof module !== 'undefined') {
-  module.exports = Game;
-}
+export default Game;

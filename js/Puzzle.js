@@ -1,3 +1,11 @@
+import data from './data.js';
+import Game from './Game.js';
+import domUpdates from './DOM.js';
+import Player from './Player.js';
+import Round from './Round.js';
+import Wheel from './Wheel.js';
+
+
 class Puzzle {
   constructor(currentPuzzle) {
     this.currentPuzzle = currentPuzzle;
@@ -64,7 +72,7 @@ class Puzzle {
     }
   }
 
-  solvePuzzle(guess) {
+  solvePuzzle(guess, wheel) {
     if (guess === this.currentPuzzle.correct_answer.toLowerCase()) {
       domUpdates.hideSolvePopup();
       wheel.currentValue = 'CORRECT';
@@ -85,6 +93,4 @@ class Puzzle {
 }
 
 
-if (typeof module !== 'undefined') {
-  module.exports = Puzzle;
-}
+export default Puzzle;

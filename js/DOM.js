@@ -1,3 +1,5 @@
+
+
 const domUpdates = {
 
   getPlayerNames() {
@@ -192,20 +194,22 @@ const domUpdates = {
     $('.winning-score').text(player.wallet);
   },
 
-  updateCurrentSpin() {
+  updateCurrentSpin(wheel) {
     $('.spin-number').text(wheel.currentValue)
   },
 
-  yellCurrentSpin() {
-    $('.yell-box').text(wheel.currentValue);
+  yellCurrentSpin(wheel) {
+    if (wheel) {
+      $('.yell-box').text(wheel.currentValue);
+    }
     $('.yell-box').toggleClass('yell-active');
   },
 
-  updateCategory() {
+  updateCategory(puzzle) {
     $('.hint-value').text(puzzle.currentPuzzle.category)
   },
 
-  displayWheelValues() {
+  displayWheelValues(wheel) {
     for (var i = 0; i < 6; i++) {
       $(`.mark${i + 1}`).text(wheel.spinValues[i])
     }
@@ -294,3 +298,5 @@ const domUpdates = {
   }
 
 }
+
+export default domUpdates;
