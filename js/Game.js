@@ -10,16 +10,16 @@ class Game {
   constructor() {
     this.round = 0;
     this.bonusRound = false;
-    this.players = {};
+    this.players = null;
+    this.playerIndex = 0;
     this.puzzleKeys = Object.keys(data.puzzles);
     this.winner = null;
   }
 
-  init() {
-    this.players = Object.assign({}, domUpdates.getPlayerNames());
+  getPlayers() {
+    this.players = domUpdates.getPlayerNames();
     domUpdates.clearInputs();
     domUpdates.goToGameScreen();
-    return this.players;
   }
 
   startRound() {
@@ -38,32 +38,29 @@ class Game {
     }
   }
 
-  endTurn(array, index) {
-    index === 2 ? index = 0 : index++;
-    domUpdates.newPlayerTurn(array, index);
+  endTurn() {
+    this.playerIndex === 2 ? this.playerIndex = 0 : this.playerIndex++;
+    domUpdates.newPlayerTurn(this.players, this.playerIndex);
     domUpdates.disableKeyboard();
-    return index;
+    return this.playerIndex;
   }
 
-  endRound(winner, players, index) {
-    let winningPlayer = winner;
-    let scoreReset = players.map(player => {
-      return new Player(player.name);
+  endRound() {
+    let winner = this.players[this.playerIndex];
+    winner.bankAcct += winner.wallet;
+    domUpdates.updateBankAccts(winner, this.playerIndex);
+    domUpdates.displayWinner(winner.name, winner.wallet);
+    this.players.forEach(player => {
+      player.wallet = 0;
     });
-    this.players[winningPlayer.name] += winningPlayer.wallet;
-    domUpdates.updateBankAccts(winningPlayer, index);
-    domUpdates.displayWinner(winningPlayer.name, winningPlayer.wallet);
-    return scoreReset;
   }
 
   endGame(round) {
-    const playerKeys = Object.keys(this.players);
-    let winner = playerKeys.sort((a, b) => {
-      return this.players[b] - this.players[a];
+    let winner = this.players.sort((a, b) => {
+      return this.players.bankAcct[b] - this.players.bankAcct[a];
     })[0];
-    let winningScore = this.players[winner];
-    this.winner = this.players[winner];
-    round.bonusPlayer = this.winner;
+    let winningScore = winner.bankAcct;
+    round.bonusPlayer = winner;
     domUpdates.displayBonusIntro(winner, winningScore);
   }
 

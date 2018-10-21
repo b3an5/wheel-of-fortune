@@ -75,8 +75,7 @@ class Puzzle {
   solvePuzzle(guess, wheel) {
     if (guess === this.currentPuzzle.correct_answer.toLowerCase()) {
       domUpdates.hideSolvePopup();
-      wheel.currentValue = 'CORRECT';
-      domUpdates.yellCurrentSpin();
+      domUpdates.yellCurrentSpin('CORRECT');
       setTimeout(domUpdates.yellCurrentSpin, 2000);
       this.completed = true;
       let letterBoxArray = Array.from($('.letter-content'));
@@ -84,8 +83,7 @@ class Puzzle {
       return true;
     } else {
       domUpdates.hideSolvePopup();
-      wheel.currentValue = 'INCORRECT';
-      domUpdates.yellCurrentSpin();
+      domUpdates.yellCurrentSpin('INCORRECT');
       setTimeout(domUpdates.yellCurrentSpin, 2000);
       return false;
     }

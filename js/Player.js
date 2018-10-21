@@ -9,6 +9,7 @@ class Player {
   constructor(name) {
     this.name = name;
     this.wallet = 0;
+    this.bankAcct = 0;
   }
 
   guessCorrectLetter(numCorrect, wheelValue) {

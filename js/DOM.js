@@ -1,12 +1,13 @@
+import Player from './Player.js';
 
 
 const domUpdates = {
 
   getPlayerNames() {
-    let players = {};
-    players[`Player 1: ${$('.player1-name').val()}`] = 0;
-    players[`Player 2: ${$('.player2-name').val()}`] = 0;
-    players[`Player 3: ${$('.player3-name').val()}`] = 0;
+    let players = [];
+    players.push(new Player(`Player 1: ${$('.player1-name').val()}`));
+    players.push(new Player(`Player 2: ${$('.player2-name').val()}`));
+    players.push(new Player(`Player 3: ${$('.player3-name').val()}`));
     if ($('.player1-name').val() &&
      $('.player2-name').val() &&
       $('.player3-name').val()) {
@@ -198,9 +199,9 @@ const domUpdates = {
     $('.spin-number').text(wheel.currentValue)
   },
 
-  yellCurrentSpin(wheel) {
-    if (wheel) {
-      $('.yell-box').text(wheel.currentValue);
+  yellCurrentSpin(value) {
+    if (value) {
+      $('.yell-box').text(value);
     }
     $('.yell-box').toggleClass('yell-active');
   },
