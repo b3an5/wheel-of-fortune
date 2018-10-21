@@ -42,12 +42,10 @@ function newRoundHandler() {
   if (game.bonusRound) {
     round.bonusPlayer = game.endGame();
     puzzle = round.generateBonusPuzzle();
-    console.log(puzzle.currentPuzzle.correct_answer);
     wheel = round.generateBonusWheel();
     domUpdates.highlightVowels();
   } else {
     puzzle = round.generatePuzzle();
-    console.log(puzzle.currentPuzzle.correct_answer);
     wheel = round.generateWheelValue();
   }
   setUpRound();
