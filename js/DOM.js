@@ -249,7 +249,7 @@ const domUpdates = {
   },
 
   updateBankAccts(winner, i) {
-    $(`.player${i + 1}-ba-num`).text(winner.wallet);
+    $(`.player${i + 1}-ba-num`).text(winner.bankAcct);
   },
 
   clearBankAccts() {

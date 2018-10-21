@@ -34,10 +34,10 @@ class BonusRound extends Round {
     $('.bonus-round-intro').css('display', 'flex');
     if (this.didWinBonus) {
       $('.win-message').text(` WINS THE BONUS!`);
-      var winnings = this.bonusPlayer + this.bonusWheelValue;
+      var winnings = this.bonusPlayer.bankAcct + this.bonusWheelValue;
     } else {
       $('.win-message').text(` MISSED THE BONUS!`);
-      var winnings = this.bonusPlayer;
+      var winnings = this.bonusPlayer.bankAcct;
     }
     $('.winner-money-pre-bonus').text(winnings)
     $('.start-bonus-round').remove();

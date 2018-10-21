@@ -26,7 +26,7 @@ $('.spin-button').on('click', game.setUpWheel);
 $('.solve-button').on('click', domUpdates.displaySolvePopup);
 $('.solve-input-button').on('click', solveHandler);
 $('.spin-text').on('click', spinHandler);
-$('.vowel-button').on('click', vowelHandler);
+$('.vowel-button').on('click', vowelPurchaseHandler);
 $('.start-bonus-round').on('click', startBonusHandler);
 $('.bonus-round-intro').on('click', newGameHandler);
 $('.keyboard-section').on('click', keyboardHandler);
@@ -48,6 +48,7 @@ function newRoundHandler() {
   if (game.bonusRound) {
     round.bonusPlayer = game.endGame();
     puzzle = round.generateBonusPuzzle();
+    console.log(puzzle.currentPuzzle.correct_answer);
     wheel = round.generateBonusWheel();
     domUpdates.highlightVowels();
   } else {
@@ -84,7 +85,7 @@ function checkIfPuzzleSolved() {
   }
 }
 
-function vowelHandler() {
+function vowelPurchaseHandler() {
   if (game.players[game.playerIndex].wallet < 100) {
     return $('.vowel-error').css('display', 'unset');
   }
@@ -97,8 +98,8 @@ function startBonusHandler() {
   domUpdates.highlightVowels();
 }
 
-function newGameHandler(event) {
-  if ($(event.target).hasClass('new-game')) {
+function newGameHandler(e) {
+  if ($(e.target).hasClass('new-game')) {
     domUpdates.resetGameDisplay();
     game.quitGame();
   }
@@ -112,24 +113,23 @@ function solveHandler() {
     // chooseSound.pause();
     // theme.play();
     // solveSound.play();
+    game.bonusRound ? solveBonusHandler(result) : null;
     game.endRound();
-    solveBonusHandler(result);
+    setTimeout(newRoundHandler, 2500);
   } else {
     // buzzer.play();
+    game.bonusRound ? solveBonusHandler(result) : null;
     game.endTurn();
-    solveBonusHandler(result);
   }
 };
 
 function solveBonusHandler(result) {
-  if (game.round === 5 && result) {
+  if (result) {
     round.didWinBonus = true;
     round.postBonusResult();
-  } else if (game.round === 5 && !result) {
+  } else {
     round.didWinBonus = false;
     round.postBonusResult();
-  } else {
-    setTimeout(newRoundHandler, 2500);
   }
 }
 
@@ -159,58 +159,53 @@ function badSpinHandler() {
   }
 }
 
-
-
-
-
-function keyboardHandler(event) {
+function keyboardHandler(e) {
   // chooseSound.volume = 0.4;
   $('.vowel-error').css('display', 'none');
   let currentTurn = game.players[game.playerIndex];
-  let currentGuess = $(event.target).text();
-  let isGuessCorrect = puzzle.checkGuess(currentGuess);
-  let isEnabled = puzzle.checkIfConsonantEnabled(event);
-  if (game.bonusRound === true) {
-    if (round.keyBoardClickCount === 0) {
-      domUpdates.disableKeyboard();
-      round.keyBoardClickCount++;
-    } else if (round.keyBoardClickCount < 3) {
-      domUpdates.disableKeyboard();
-      round.keyBoardClickCount++;
-    } else {
-      domUpdates.displaySolvePopup();
-    }
-  }
-  if (['A', 'E', 'I', 'O', 'U'].includes($(event.target).text())) {
-    if (!$(event.target).hasClass('active-vowel')) {
-      return;
-    } else if (isGuessCorrect) {
-      puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
-      checkIfPuzzleSolved();
-      // ding.play();
-      if (game.bonusRound === true) {
-        domUpdates.enableLetters();
-      }
-      return;
-    } else {
-      puzzle.checkIfVowelCorrect(currentGuess, currentTurn, event);
-      game.endTurn();
-      domUpdates.disableKeyboard();
-      // buzzer.play();
-      if (game.bonusRound === true) {
-        domUpdates.enableLetters();
-      }
-    }
+  let currentGuess = $(e.target).text();
+  if (['A', 'E', 'I', 'O', 'U'].includes(currentGuess)) {
+    vowelGuessHandler(currentGuess, currentTurn, e);
   } else {
-    if (isEnabled && isGuessCorrect) {
-      puzzle.countCorrectLetters(currentGuess);
-      currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
-      checkIfPuzzleSolved();
-      // ding.play();
-    } else if (isEnabled && !isGuessCorrect) {
-      game.endTurn();
-      // buzzer.play();
-    }
+    consonantGuessHandler(currentGuess, currentTurn, e);
   }
 }
+
+function vowelGuessHandler(currentGuess, currentTurn, e) {
+  if (!$(e.target).hasClass('active-vowel')) {
+    return;
+  } else {
+    guessActiveVowel(currentGuess, currentTurn, e); 
+  }
+}
+
+function guessActiveVowel(currentGuess, currentTurn, e) {
+  let isGuessCorrect = puzzle.checkGuess(currentGuess);
+  puzzle.checkIfVowelAvailable(currentGuess, currentTurn, e);
+  game.bonusRound ? domUpdates.enableLetters() : null;
+  if (isGuessCorrect) {
+    checkIfPuzzleSolved();
+    // ding.play();
+  } else {
+    game.endTurn();
+    // domUpdates.disableKeyboard();
+    // buzzer.play();
+  }
+}
+
+function consonantGuessHandler(currentGuess, currentTurn, e) {
+  let isGuessCorrect = puzzle.checkGuess(currentGuess);
+  let isEnabled = puzzle.checkIfConsonantEnabled(e);
+  game.bonusRound ? game.clickCounter(round) : null;
+  if (isEnabled && isGuessCorrect) {
+    puzzle.countCorrectLetters(currentGuess);
+    currentTurn.guessCorrectLetter(puzzle.numberCorrect, wheel.currentValue);
+    checkIfPuzzleSolved();
+    // ding.play();
+  } else if (isEnabled && !isGuessCorrect) {
+    game.endTurn();
+    // buzzer.play();
+  }
+}
+
 

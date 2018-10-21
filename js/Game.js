@@ -28,7 +28,9 @@ class Game {
     let roundIndex = this.round - 1;
     let bonusRoundPuzzles = this.puzzleKeys[roundIndex - 1];
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
-    if (this.round === 5) {
+    if (this.round === 6) {
+      return;
+    } else if (this.round === 5) {
       this.bonusRound = true;
       $('.round-num').text('$');
       return new BonusRound(data.puzzles[bonusRoundPuzzles].puzzle_bank,
@@ -56,15 +58,16 @@ class Game {
 
   endGame() {
     let winner = this.players.sort((a, b) => {
-      return this.players.bankAcct[b] - this.players.bankAcct[a];
+      return b.bankAcct - a.bankAcct;
     })[0];
     let winningScore = winner.bankAcct;
-    domUpdates.displayBonusIntro(winner, winningScore);
+    domUpdates.displayBonusIntro(winner.name, winningScore);
     return winner;
   }
 
   quitGame() {
     this.round = 0;
+    this.bonusRound = false;
     domUpdates.goToHomeScreen();
     domUpdates.resetPuzzleSquares();
     domUpdates.resetKeyboard();
@@ -81,6 +84,18 @@ class Game {
     wheel.grabSpinValue();
     if (this.bonusRound) {
       round.bonusWheelValue = wheel.currentValue;
+    }
+  }
+
+  clickCounter(round) {
+    if (round.keyBoardClickCount === 0) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    } else if (round.keyBoardClickCount < 2) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    } else {
+      domUpdates.displaySolvePopup();
     }
   }
 
