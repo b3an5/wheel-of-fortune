@@ -1,3 +1,5 @@
+import domUpdates from './DOM.js';
+
 class Puzzle {
   constructor(currentPuzzle) {
     this.currentPuzzle = currentPuzzle;
@@ -18,13 +20,13 @@ class Puzzle {
     domUpdates.showBonusLetters(puzzleLength);
   }
 
-  checkIfConsonantEnabled(event) {
-    if ($(event.target).hasClass('disabled') ||
-    $(event.target).hasClass('temp-disabled') ||
-    $(event.target).hasClass('keyboard-section')) {
+  checkIfConsonantEnabled(e) {
+    if ($(e.target).hasClass('disabled') ||
+      $(e.target).hasClass('temp-disabled') ||
+      $(e.target).hasClass('keyboard-section')) {
       return false;
     } else {
-      domUpdates.disableGuessedLetter(event);
+      domUpdates.disableGuessedLetter(e);
       return true;
     }
   }
@@ -36,10 +38,10 @@ class Puzzle {
     return false;
   }
 
-  checkIfVowelCorrect(vowel, player, event) {
-    if ($(event.target).hasClass('active-vowel')) {
+  checkIfVowelAvailable(vowel, player, e) {
+    if ($(e.target).hasClass('active-vowel')) {
       player.buyVowel();
-      domUpdates.disableGuessedVowel(event);
+      domUpdates.disableGuessedVowel(e);
       this.countCorrectLetters(vowel);
     }
   }
@@ -67,8 +69,7 @@ class Puzzle {
   solvePuzzle(guess) {
     if (guess === this.currentPuzzle.correct_answer.toLowerCase()) {
       domUpdates.hideSolvePopup();
-      wheel.currentValue = 'CORRECT';
-      domUpdates.yellCurrentSpin();
+      domUpdates.yellCurrentSpin('CORRECT');
       setTimeout(domUpdates.yellCurrentSpin, 2000);
       this.completed = true;
       let letterBoxArray = Array.from($('.letter-content'));
@@ -76,8 +77,7 @@ class Puzzle {
       return true;
     } else {
       domUpdates.hideSolvePopup();
-      wheel.currentValue = 'INCORRECT';
-      domUpdates.yellCurrentSpin();
+      domUpdates.yellCurrentSpin('INCORRECT');
       setTimeout(domUpdates.yellCurrentSpin, 2000);
       return false;
     }
@@ -85,6 +85,4 @@ class Puzzle {
 }
 
 
-if (typeof module !== 'undefined') {
-  module.exports = Puzzle;
-}
+export default Puzzle;

@@ -1,7 +1,10 @@
+import domUpdates from './DOM.js';
+
 class Player {
   constructor(name) {
     this.name = name;
     this.wallet = 0;
+    this.bankAcct = 0;
   }
 
   guessCorrectLetter(numCorrect, wheelValue) {
@@ -19,6 +22,4 @@ class Player {
 }
 
 
-if (typeof module !== 'undefined') {
-  module.exports = Player;
-}
+export default Player;

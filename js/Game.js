@@ -1,17 +1,22 @@
+import data from './data.js';
+import domUpdates from './DOM.js';
+import Round from './Round.js';
+import BonusRound from './BonusRound.js';
+
 class Game {
   constructor() {
     this.round = 0;
     this.bonusRound = false;
-    this.players = {};
+    this.players = null;
+    this.playerIndex = 0;
     this.puzzleKeys = Object.keys(data.puzzles);
     this.winner = null;
   }
 
-  init() {
-    this.players = Object.assign({}, domUpdates.getPlayerNames());
+  getPlayers() {
+    this.players = domUpdates.getPlayerNames();
     domUpdates.clearInputs();
     domUpdates.goToGameScreen();
-    return this.players;
   }
 
   startRound() {
@@ -20,7 +25,9 @@ class Game {
     let roundIndex = this.round - 1;
     let bonusRoundPuzzles = this.puzzleKeys[roundIndex - 1];
     let puzzleKeyIndex = this.puzzleKeys[roundIndex];
-    if (this.round === 5) {
+    if (this.round === 6) {
+      return;
+    } else if (this.round === 5) {
       this.bonusRound = true;
       $('.round-num').text('$');
       return new BonusRound(data.puzzles[bonusRoundPuzzles].puzzle_bank,
@@ -30,37 +37,34 @@ class Game {
     }
   }
 
-  endTurn(array, index) {
-    index === 2 ? index = 0 : index++;
-    domUpdates.newPlayerTurn(array, index);
+  endTurn() {
+    this.playerIndex === 2 ? this.playerIndex = 0 : this.playerIndex++;
+    domUpdates.newPlayerTurn(this.players, this.playerIndex);
     domUpdates.disableKeyboard();
-    return index;
   }
 
-  endRound(winner, players, index) {
-    let winningPlayer = winner;
-    let scoreReset = players.map(player => {
-      return new Player(player.name);
+  endRound() {
+    let winner = this.players[this.playerIndex];
+    winner.bankAcct += winner.wallet;
+    domUpdates.updateBankAccts(winner, this.playerIndex);
+    domUpdates.displayWinner(winner.name, winner.wallet);
+    this.players.forEach(player => {
+      player.wallet = 0;
     });
-    this.players[winningPlayer.name] += winningPlayer.wallet;
-    domUpdates.updateBankAccts(winningPlayer, index);
-    domUpdates.displayWinner(winningPlayer.name, winningPlayer.wallet);
-    return scoreReset;
   }
 
   endGame() {
-    const playerKeys = Object.keys(this.players);
-    let winner = playerKeys.sort((a, b) => {
-      return this.players[b] - this.players[a];
+    let winner = this.players.sort((a, b) => {
+      return b.bankAcct - a.bankAcct;
     })[0];
-    let winningScore = this.players[winner];
-    this.winner = this.players[winner];
-    round.bonusPlayer = this.winner;
-    domUpdates.displayBonusIntro(winner, winningScore);
+    let winningScore = winner.bankAcct;
+    domUpdates.displayBonusIntro(winner.name, winningScore);
+    return winner;
   }
 
   quitGame() {
     this.round = 0;
+    this.bonusRound = false;
     domUpdates.goToHomeScreen();
     domUpdates.resetPuzzleSquares();
     domUpdates.resetKeyboard();
@@ -72,18 +76,27 @@ class Game {
     domUpdates.displayWheel();
   }
 
-  tearDownWheel() {
+  tearDownWheel(wheel, round) {
     domUpdates.hideWheel();
     wheel.grabSpinValue();
     if (this.bonusRound) {
       round.bonusWheelValue = wheel.currentValue;
     }
-    return wheel.currentValue;
+  }
+
+  clickCounter(round) {
+    if (round.keyBoardClickCount === 0) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    } else if (round.keyBoardClickCount < 2) {
+      domUpdates.disableKeyboard();
+      round.keyBoardClickCount++;
+    } else {
+      domUpdates.displaySolvePopup();
+    }
   }
 
 }
 
 
-if (typeof module !== 'undefined') {
-  module.exports = Game;
-}
+export default Game;
