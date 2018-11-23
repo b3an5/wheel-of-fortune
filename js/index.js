@@ -48,11 +48,12 @@ function newRoundHandler() {
   domUpdates.displayNames(game.players, game.playerIndex);
   if (game.bonusRound) {
     round.bonusPlayer = game.endGame();
-    puzzle = round.generateBonusPuzzle();
+    puzzle = round.generateBonusPuzzle(game.lastPuzzle);
     wheel = round.generateBonusWheel();
     domUpdates.highlightVowels();
   } else {
     puzzle = round.generatePuzzle();
+    game.lastPuzzle = puzzle;
     wheel = round.generateWheelValue();
   }
   setUpRound();
