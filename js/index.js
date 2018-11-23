@@ -28,11 +28,18 @@ $('header').on('click', () => {
   theme.volume = 0.7;
 });
 
+function playLoopingAudio(audioObject)  {
+  audioObject.play();
+  audioObject.addEventListener('ended', () => {
+    audioObject.play();
+  });
+}
+
 function init() {
   game.getPlayers();
   newRoundHandler();
   setTimeout(() => {
-    theme.play()
+    playLoopingAudio(theme);
   }, 1000);
 }
 
@@ -70,7 +77,7 @@ function checkIfPuzzleSolved() {
     game.endRound();
     domUpdates.yellCurrentSpin('CORRECT');
     chooseSound.pause();
-    theme.play();
+    playLoopingAudio(theme);
     solveSound.play();
     setTimeout(domUpdates.yellCurrentSpin, 2000);
     setTimeout(newRoundHandler, 2500);
@@ -103,7 +110,7 @@ function solveHandler() {
   let result = puzzle.solvePuzzle(guess);
   if (result) {
     chooseSound.pause();
-    theme.play();
+    playLoopingAudio(theme);
     solveSound.play();
     game.bonusRound ? solveBonusHandler(result) : null;
     game.endRound();
