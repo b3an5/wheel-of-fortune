@@ -21,9 +21,13 @@ class BonusRound extends Round {
     return new Wheel(wheelVals);
   }
 
-  generateBonusPuzzle() {
+  generateBonusPuzzle(lastPuzzle) {
     let randomIndex = Math.floor(Math.random() * this.puzzleBank.length);
-    return new Puzzle(this.puzzleBank[randomIndex]);
+    if (this.puzzleBank[randomIndex] === lastPuzzle) {
+      this.generateBonusPuzzle(lastPuzzle);
+    } else {
+      return new Puzzle(this.puzzleBank[randomIndex]);
+    }
   }
 
   postBonusResult() {

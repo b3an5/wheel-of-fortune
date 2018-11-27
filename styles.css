@@ -321,6 +321,7 @@ h2 {
 .wheel-circle {
   background: lightblue;
   clip-path: circle(50%);
+  -webkit-clip-path: circle(50%);
   height: 525px;
   left: 0;
   margin: 0 auto;
@@ -336,6 +337,7 @@ h2 {
 
 .wheel-option {
   clip-path: polygon(0% 87%, 50% 0%, 50% 0%, 100% 87%);
+  -webkit-clip-path: polygon(0% 87%, 50% 0%, 50% 0%, 100% 87%);
   height: 350px;
   position: absolute;
   width: 350px;
@@ -395,6 +397,7 @@ h2 {
 
 .option2 {
   clip-path: polygon(0% 84%, 50% 0%, 50% 0%, 100% 87%);
+  -webkit-clip-path: polygon(0% 84%, 50% 0%, 50% 0%, 100% 87%);
   top: 90.5px;
   left: -91.5px;
   background: #ff0000;
@@ -424,6 +427,7 @@ h2 {
 
 .option6 {
   clip-path: polygon(0% 83%, 50% 0%, 50% 0%, 100% 87%);
+  -webkit-clip-path: polygon(0% 83%, 50% 0%, 50% 0%, 100% 87%);
   top: -60px;
   left: 171px;
   background: #ff6a0e;

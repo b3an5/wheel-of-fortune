@@ -10,6 +10,7 @@ class Game {
     this.players = null;
     this.playerIndex = 0;
     this.puzzleKeys = Object.keys(data.puzzles);
+    this.lastPuzzle= {};
     this.winner = null;
   }
 
