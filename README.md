@@ -10,7 +10,7 @@ Either visit [this page](https://b3an5.github.io/wheel-of-fortune/) to see the l
 
 Run `git clone https://github.com/b3an5/wheel-of-fortune.git` in your terminal to copy locally
 
-## To collaberate:
+## To collab0rate:
 
 clone down the repository `cd` into the directory and run `npm install`
 
